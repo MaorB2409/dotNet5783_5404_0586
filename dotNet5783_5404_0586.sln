@@ -10,10 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E94A6236-BFBB-4E95-96A7-932725B9A425}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items (2)", "Solution Items (2)", "{E94A6236-BFBB-4E95-96A7-932725B9A425}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalFacadeReal", "DalFacadeReal\DalFacadeReal.csproj", "{104B03B0-0856-4080-87EB-3CEFA86505A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalListReal", "DalListReal\DalListReal.csproj", "{E4611D90-8EF1-4C99-B2B0-FFC10C46B40E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTestReal", "DalTestReal\DalTestReal.csproj", "{42085999-05D5-4485-BEB6-17BD7E2F9BDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,9 +28,20 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CEB436A8-ABD4-4CC2-A3E1-95A160D14850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEB436A8-ABD4-4CC2-A3E1-95A160D14850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEB436A8-ABD4-4CC2-A3E1-95A160D14850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEB436A8-ABD4-4CC2-A3E1-95A160D14850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{104B03B0-0856-4080-87EB-3CEFA86505A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{104B03B0-0856-4080-87EB-3CEFA86505A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{104B03B0-0856-4080-87EB-3CEFA86505A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{104B03B0-0856-4080-87EB-3CEFA86505A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4611D90-8EF1-4C99-B2B0-FFC10C46B40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4611D90-8EF1-4C99-B2B0-FFC10C46B40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4611D90-8EF1-4C99-B2B0-FFC10C46B40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4611D90-8EF1-4C99-B2B0-FFC10C46B40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42085999-05D5-4485-BEB6-17BD7E2F9BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42085999-05D5-4485-BEB6-17BD7E2F9BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42085999-05D5-4485-BEB6-17BD7E2F9BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42085999-05D5-4485-BEB6-17BD7E2F9BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
