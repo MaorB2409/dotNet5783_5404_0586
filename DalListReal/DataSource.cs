@@ -5,14 +5,14 @@ namespace DalApi;
 
 internal static class DataSource
 {
-    static DataSource() { s_Initialize();}//private ctor that calls initialize on all the data
     //public static DataSource s_instance { get;}=new DataSource();//property that returns a copy of data
     static readonly Random randNum = new Random();//rand number pick
     public static List<Order> orderList { get;}=new List<Order> { };//list of orders
     public static List<OrderItem> orderItemList { get;}=new List<OrderItem> { };//list of orderItems
     public static List<Product> productList { get;} =new List<Product> { };//list of products
+    static DataSource() { s_Initialize(); }//private ctor that calls initialize on all the data
 
-      internal static class Config//internal class
+    internal static class Config//internal class
     {
         internal const int s_startOrderNumber = 1000;//order number starts at 1000
         public static int s_nextOrderNumber = s_startOrderNumber;//next order number is now order number 
