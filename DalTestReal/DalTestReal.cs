@@ -11,7 +11,7 @@ using static DO.Enums;
 
 namespace DalTestReal
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {//class that can go to data source
@@ -21,7 +21,7 @@ namespace DalTestReal
             Order order = new();
             OrderItem orderItem = new();
             Product product = new();
-
+            DataSource a = new DataSource();//call datasource
             while (true)
             {
                 Console.WriteLine("Hello! \n" +
@@ -52,8 +52,13 @@ namespace DalTestReal
                     case (Enums.Type.Product, Enums.Action.Add)://product,add
                         try
                         {
-                            product = ProductFunciton.Add();
-                            Console.WriteLine("your new product ID is: " + dalProduct.Add(product) + "\n");
+                            Console.WriteLine("enter product name:\n");
+                            product.Name = Console.ReadLine() ?? "";
+                            product.Price = GetNumberFromUser("enter product price:\n");
+                            product.Category = (Enums.Category)GetNumberFromUser("enter product category:\n");
+                            product.InStock = GetNumberFromUser("enter product stock\n");
+                            Console.WriteLine("your new product ID is: " + DalList.Instance.Product.Add(product));
+
                         }
                         catch (Exception)
                         {
@@ -64,7 +69,7 @@ namespace DalTestReal
                     case (Enums.Type.Product, Enums.Action.Del):
                         try
                         {
-                            dalProduct.Delete(GetNumberFromUser("Enter product ID:\n"));
+                            DalList.Instance.Product.Delete(GetNumberFromUser("Enter product ID:\n"));
                         }
                         catch (Exception)
                         {
@@ -75,8 +80,14 @@ namespace DalTestReal
                     case (Enums.Type.Product, Enums.Action.Update):
                         try
                         {
-                            product = ProductFunciton.Update();
-                            dalProduct.Update(product);
+                            product.ID = GetNumberFromUser("enter product ID:\n");
+                            Console.WriteLine("enter product name:\n");
+                            product.Name = Console.ReadLine() ?? "";
+                            product.Price = GetNumberFromUser("enter product price:\n");
+                            product.Category = (Enums.Category)GetNumberFromUser("enter product category:\n");
+                            product.InStock = GetNumberFromUser("enter product stock:\n");
+                            DalList.Instance.Product.Update(product);
+
                         }
                         catch (Exception)
                         {
@@ -87,7 +98,7 @@ namespace DalTestReal
                     case (Enums.Type.Product, Enums.Action.get):
                         try
                         {
-                            Console.WriteLine(dalProduct.GetById(GetNumberFromUser("Enter ID\n")));
+                            Console.WriteLine(DalList.Instance.Product.GetById(GetNumberFromUser("Enter ID\n")));
                         }
                         catch (Exception)
                         {
@@ -98,7 +109,13 @@ namespace DalTestReal
                     case (Enums.Type.Product, Enums.Action.GetList):
                         try
                         {
-                            ProductFunciton.printList(dalProduct.GetAll());
+                            IEnumerable < Product > products = DalList.Instance.Product.GetAll();//save list 
+                            foreach (Product i in products)
+                            {
+                                Console.WriteLine(i);
+                                Console.WriteLine('\n');
+                            }//print the list
+                           
                         }
                         catch (Exception)
                         {
@@ -137,7 +154,7 @@ namespace DalTestReal
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("the object is not faund");
+                            Console.WriteLine("the object is not found");
                         }
                         break;
 
@@ -148,7 +165,7 @@ namespace DalTestReal
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("the object is not faund");
+                            Console.WriteLine("the object is not found");
                         }
                         break;
 
