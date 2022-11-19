@@ -4,44 +4,39 @@ using DO;
 using DalApi;
 namespace Dal;
 
-public class DalOrder:IOrder
+public class DalOrder : IOrder
 {
-   DataSource _ds=DataSource.s_instance;//to access the data 
+    DataSource _ds = DataSource.s_instance;//to access the data 
 
     public int Add(Order o)//add order to a list and return its id
     {
-        if (o.ID != 0 )//if the item already exists 
+        if (o.ID == 0)//want to add a new item to the list
         {
-            int ind = 0;
-            foreach (Order order in _ds.orderList)//go over order list
-            {
-                if (order.ID == o.ID)//if o exists in list
-                    ind = _ds.orderList.IndexOf(order);//save place of the matching existing order 
-            }
-            _ds.orderList[ind] = o;//place o order in that place of ind
+            o.ID = DataSource.Config.NextOrderNumber;//set an id number to order p
+            _ds.orderList.Add(o);//add p to the order list
             return o.ID;//return the id
         }
-        else
+        int ind = _ds.orderList.FindIndex(x => x.ID == o.ID && x.IsDeleted == false);//save index of order with matching id if not deleted
+        if (ind != -1)//exists already so cant add again
         {
-            if (o.ID != 0 && _ds.orderList.ElementAt(o.ID).IsDeleted == false)//the item's ID exists, but it was not deleted from the collection => throw exression
-                throw new Exception("Unothorized override");
-            else
-            {
-                o.ID = DataSource.Config.s_nextOrderNumber;//set an id number to order o
-                _ds.orderList.Add(o);//add o to the order list
-                return o.ID;//return the id
-            }
+            throw new Exception("Unothorized override");//error
         }
+        ind = _ds.orderList.FindIndex(x => x.ID == o.ID && x.IsDeleted == true);//save index of order with matching id if deleted
+        if (ind != -1)//already exists but deleted 
+        {
+            _ds.orderList.Add(o);//add o to the order list
+            return o.ID;//return the id
+        }
+        throw new Exception("Unothorized override");//error
     }
 
-    public Order GetById(int id)//=>DataSource.orderList.Find(x=>x.GetValueOrDefault().ID==id)?? throw new Exception("order with entered order ID does not exist\n");//get an order by order id
-    {
-        Order res = _ds.orderList.Find(x => x.ID == id);
-        if (res.ID != id)
+    public Order GetById(int id) { 
+        Order res = _ds.orderList.Find(x => x.ID == id && x.IsDeleted == false);
+        if (res.ID != id || res.IsDeleted == true)
             throw new Exception("The order does not exist\n");
         return res;
-    }// =>DataSource.orderList.FirstOrDefault()??throw new Exception("missing order ID");//get an order by order id
-    
+    }
+
     public void Delete(int id)
     {
         int ind = 0;
@@ -62,18 +57,11 @@ public class DalOrder:IOrder
         bool flag = false;
         foreach (Order it in _ds.orderList)//go over order list
         {
-            if (or.ID == it.ID)//if found a matching id
+            if (or.ID == it.ID && it.IsDeleted == false)//if found a matching id
                 flag = true;
         }
         if (flag == true)//if found a matching id
         {
-            int ind = 0;
-            foreach (Order order in _ds.orderList)//go over order list
-            {
-                if (order.ID == or.ID)//if found a matching id to the one inputted
-                    ind = _ds.orderList.IndexOf(order);//save the index 
-            }
-            Order o = _ds.orderList[ind];//o is the order in ind index
             Delete(or.ID);//delete the existing order of matching id
             Add(or);//add the new order
         }
@@ -87,9 +75,11 @@ public class DalOrder:IOrder
         List<Order> list = new List<Order> { };
         foreach (Order it in _ds.orderList)
         {
-            list.Add(it);
+            if (it.IsDeleted == false)//if the orderItem exists 
+            {
+                list.Add(it);
+            }
         }
-        return list;//return the new list of orders
-       //return (from Order item in DataSource.orderList select item).ToList();//return the new list of orders
+        return list;
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace DO;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/// <summary>
-/// the order info includes-
-/// order id, costumer info, different time stamps, total price, and order status
-/// </summary>
-public struct Order
+namespace BO;
+
+public class BoOrder
 {
     public int ID { get; set; } //item ID
     public string CostumerName { get; set; }
@@ -19,7 +21,7 @@ public struct Order
     item ID is - {ID},
 	Costumer Name is - {CostumerName}, 
 	CostumerEmail is - {CostumerEmail},
-    Costumer Address is - {CostumerAddress},
+    Costumer Adrees is - {CostumerAddress},
     Order Date is - {OrderDate},
     Shipping Date is - {ShipDate},
     Delivery Date is - {DeliveryDate}

@@ -1,5 +1,4 @@
-﻿
-using DO;
+﻿using DO;
 using System.Collections.Generic;
 namespace DalApi;
 
@@ -17,7 +16,7 @@ public class DataSource
         internal const int s_startOrderNumber = 1000;//order number starts at 1000
         public static int s_nextOrderNumber = s_startOrderNumber;//next order number is now order number 
         internal static int NextOrderNumber { get => ++s_nextOrderNumber; }//change the value of next order for the next order
-        internal const int s_startProductNumber = 0;//product number starts at 0
+        internal const int s_startProductNumber = 100000;//product number starts at 0
         public static int s_nextProductNumber = s_startProductNumber;//next Product number is now Product number 
         internal static int NextProductNumber { get => ++s_nextProductNumber; }//change the value of next Product for the next Product
         internal const int s_startOrderItemNumber = 0;//OrderItem number starts at 0

@@ -6,42 +6,39 @@ namespace Dal;
 
 public class DalOrderItem : IOrderItem
 {
-   DataSource _ds=DataSource.s_instance;//to access the data 
+    DataSource _ds = DataSource.s_instance;//to access the data 
 
     public int Add(OrderItem oi)//add OrderItem to a list and return its id
-    { 
-        if (oi.ID != 0 && _ds.orderItemList.ElementAt(oi.ID).IsDeleted == true)//if the item already exists and was "deleted" => we came from the 'update' operation
+    {
+        if (oi.ID == 0)//want to add a new item to the list
         {
-            int ind = 0;
-            foreach (OrderItem orderi in _ds.orderItemList)//go over OrderItem list
-            {
-                if (orderi.ID == oi.ID)//if oi exists in list
-                    ind = _ds.orderItemList.IndexOf(orderi);//save place of the matching existing OrderItem 
-            }
-            _ds.orderItemList[ind] = oi;//place oi OrderItem in that place of ind
+            oi.ID = DataSource.Config.NextOrderItemNumber;//set an id number to Product p
+            _ds.orderItemList.Add(oi);//add p to the Product list
             return oi.ID;//return the id
         }
-        else
+        int ind = _ds.orderItemList.FindIndex(x => x.ID == oi.ID && x.IsDeleted == false);//save index of orderItem with matching id if not deleted
+        if (ind != -1)//exists already so cant add again
         {
-            if (oi.ID != 0 && _ds.orderItemList.ElementAt(oi.ID).IsDeleted == false)//the item's ID exists, but it was not deleted from the collection => throw exression
-                throw new Exception("Unothorized override");
-            else
-            {
-                oi.ID = DataSource.Config.s_nextOrderItemNumber;//set an id number to OrderItem p
-                _ds.orderItemList?.Add(oi);//add oi to the OrderItem list
-                return oi.ID;//return the id
-            }
-        } 
+            throw new Exception("Unothorized override");//error
+        }
+        ind = _ds.orderItemList.FindIndex(x => x.ID == oi.ID && x.IsDeleted == true);//save index of orderItem with matching id if deleted
+        if (ind != -1)//already exists but deleted 
+        {
+            _ds.orderItemList.Add(oi);//add oi to the orderItem list
+            return oi.ID;//return the id
+        }
+        throw new Exception("Unothorized override");//error
+
     }
 
     public OrderItem GetById(int id)
     {
-        OrderItem res = _ds.orderItemList.Find(x => x.ID == id);
-        if (res.ID != id)
+        OrderItem res = _ds.orderItemList.Find(x => x.ID == id && x.IsDeleted==false);
+        if (res.ID != id || res.IsDeleted == true)
             throw new Exception("The orderItem does not exist\n");
         return res;
-    } //=>DataSource.orderItemList.FirstOrDefault()??throw new Exception("missing order item ID");//get an OrderItem by its id
-   
+    }
+
     public void Delete(int id)
     {
         int ind = 0;
@@ -51,6 +48,7 @@ public class DalOrderItem : IOrderItem
                 ind = _ds.orderItemList.IndexOf(orderi);//save index of that OrderItem
         }
         OrderItem oi = _ds.orderItemList[ind];//oi is the OrderItem of that placement
+        oi.IsDeleted = true;//change flag
         _ds.orderItemList[ind] = oi; //updates "IsDeleted" to true in the OrderItem collection
     }
 
@@ -59,18 +57,11 @@ public class DalOrderItem : IOrderItem
         bool flag = false;
         foreach (OrderItem it in _ds.orderItemList)//go over OrderItem list
         {
-            if (oi.ID == it.ID)//if found a matching id
+            if (oi.ID == it.ID && it.IsDeleted == false)//if found a matching id
                 flag = true;
         }
         if (flag == true)//if found a matching id
         {
-            int ind = 0;
-            foreach (OrderItem orderi in _ds.orderItemList)//go over OrderItem list
-            {
-                if (orderi.ID == oi.ID)//if found a matching id to the one inputted
-                    ind = _ds.orderItemList.IndexOf(orderi);//save the index 
-            }
-            OrderItem ord = _ds.orderItemList[ind];//ord is the OrderItem in ind index
             Delete(oi.ID);//delete the existing OrderItem of matching id
             Add(oi);//add the new OrderItem
         }
@@ -83,20 +74,22 @@ public class DalOrderItem : IOrderItem
         List<OrderItem> list = new List<OrderItem> { };
         foreach (OrderItem it in _ds.orderItemList)
         {
-            list.Add(it);
+            if (it.IsDeleted == false)//if the orderItem exists 
+            {
+                list.Add(it);
+            }
         }
-        return list;//return the new list of Products
-        //return (from OrderItem item in DataSource.orderItemList select item).ToList();//return the new list of OrderItems
+        return list;
     }
 
     public IEnumerable<OrderItem> ItemsInOrder(int id)   //returns list of products in order number of id
     {
         IEnumerable<OrderItem> orderItems = new List<OrderItem>();
         foreach (OrderItem orderi in _ds.orderItemList)//go over OrderItem list
-            {
-                if (orderi.ID == id)//if found a matching id to the one inputted
-                    orderItems.Append(orderi);//add to the list
-            }//find the order of id
+        {
+            if (orderi.ID == id&& orderi.IsDeleted==false)//if found a matching id to the one inputted
+                orderItems.Append(orderi);//add to the list
+        }//find the order of id
         return orderItems;//return the products
     }
 
@@ -106,7 +99,12 @@ public class DalOrderItem : IOrderItem
         foreach (OrderItem orderi in _ds.orderItemList)//go over OrderItem list
         {
             if (orderi.OrderID == id && orderi.ProductID == productId)//if found a matching id to the one inputted and product
-                returnOI=orderi;//save that one
+            { 
+                if(orderi.IsDeleted == false)//not deleted
+                {
+                    returnOI = orderi;//save that one
+                }
+            }
         }//find the order of id with product
         return returnOI;//return the OrderItem
     }

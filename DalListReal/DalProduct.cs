@@ -4,63 +4,40 @@ using DO;
 using DalApi;
 namespace Dal;
 
-public class DalProduct:IProduct
+public class DalProduct : IProduct
 {
-   DataSource _ds=DataSource.s_instance;//to access the data 
+    DataSource _ds = DataSource.s_instance;//to access the data 
 
     public int Add(Product p)//add Product to a list and return its id
     {
         if (p.ID == 0)//want to add a new item to the list
         {
-            p.ID = DataSource.Config.s_nextProductNumber;//set an id number to Product p
+            p.ID = DataSource.Config.NextProductNumber;//set an id number to Product p
             _ds.productList.Add(p);//add p to the Product list
             return p.ID;//return the id
         }
         int ind = _ds.productList.FindIndex(x => x.ID == p.ID && x.IsDeleted == false);//save index of product with matching id if not deleted
-        if(ind != -1)//exists already so cant add again
+        if (ind != -1)//exists already so cant add again
         {
             throw new Exception("Unothorized override");//error
         }
         ind = _ds.productList.FindIndex(x => x.ID == p.ID && x.IsDeleted == true);//save index of product with matching id if deleted
-        if( ind != -1)//already exists but deleted 
+        if (ind != -1)//already exists but deleted 
         {
             _ds.productList.Add(p);//add p to the Product list
             return p.ID;//return the id
         }
         throw new Exception("Unothorized override");//error
-
-        ////Product temp = new Product();
-        ////save existing product that has p.ID-if even exists
-        //ind = _ds.productList.FindIndex(x => x.ID == p.ID && x.IsDeleted == false);//save index of product with matching id if not deleted
-
-
-        //if (p.ID != 0 && ind==-1)//if the item doesnt exist in list
-        //{
-        //    p.ID = DataSource.Config.s_nextProductNumber;//set an id number to Product p
-        //    _ds.productList.Add(p);//add p to the Product list
-        //    return p.ID;//return the id
-        //}
-        //else
-        //{
-        //    if (p.ID != 0 && ind!=-1)//the item's ID exists, but it was not deleted from the collection => throw exression
-        //        throw new Exception("Unothorized override");
-        //    else
-        //    {
-        //        p.ID = DataSource.Config.s_nextProductNumber;//set an id number to Product p
-        //        _ds.productList.Add(p);//add p to the Product list
-        //        return p.ID;//return the id
-        //    }
-        //} 
     }
 
     public Product GetById(int id)
     {
-        Product res = _ds.productList.Find(x => x.ID == id && x.IsDeleted==false );//find a priduct with same id and exists
-        if (res.ID!=id || res.IsDeleted==true)//if not found
+        Product res = _ds.productList.Find(x => x.ID == id && x.IsDeleted == false);//find a priduct with same id and exists
+        if (res.ID != id || res.IsDeleted == true)//if not found
             throw new Exception("The product does not exist\n");
         return res;
-    } 
-    
+    }
+
     public void Delete(int id)
     {
         int ind = 0;
@@ -79,7 +56,7 @@ public class DalProduct:IProduct
         bool flag = false;
         foreach (Product it in _ds.productList)//go over Product list
         {
-            if (p.ID == it.ID && it.IsDeleted==false)//if found a matching id
+            if (p.ID == it.ID && it.IsDeleted == false)//if found a matching id
                 flag = true;
         }
         if (flag == true)//if found a matching id-delete existing and add new
@@ -93,15 +70,14 @@ public class DalProduct:IProduct
 
     public IEnumerable<Product> GetAll()
     {
-        List<Product> list = new List<Product>{ };
+        List<Product> list = new List<Product> { };
         foreach (Product it in _ds.productList)
         {
-            if (it.IsDeleted==false)//if the product exists 
+            if (it.IsDeleted == false)//if the product exists 
             {
                 list.Add(it);
             }
         }
-        return list;//return the new list of Products
-       // return (from Product item in DataSource.productList select item).ToList();
+        return list;
     }
 }
