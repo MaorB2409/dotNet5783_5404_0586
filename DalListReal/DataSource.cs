@@ -6,9 +6,9 @@ public class DataSource
 {
     internal static DataSource s_instance { get; }//property that returns a copy of data
     static readonly Random randNum = new Random();//rand number pick
-    public List<Order> orderList { get; } = new List<Order> { };//list of orders
-    public List<OrderItem> orderItemList { get; } = new List<OrderItem> { };//list of orderItems
-    public List<Product> productList { get; set; } = new List<Product> { };//list of products
+    public List<Order?> orderList { get; } = new List<Order?> { };//list of orders
+    public List<OrderItem?> orderItemList { get; } = new List<OrderItem?> { };//list of orderItems
+    public List<Product?> productList { get; set; } = new List<Product?> { };//list of products
     public DataSource() { s_Initialize(); }//private ctor that calls initialize on all the data
     static DataSource() => s_instance = new DataSource();
     internal static class Config//internal class
@@ -81,7 +81,7 @@ public class DataSource
     {
         for (int i = 0; i < 40; i++)
         {
-            Product product = productList[randNum.Next(productList.Count)];
+            Product? product = productList[randNum.Next(productList.Count)];
             orderItemList.Add(
                 new OrderItem
                 {

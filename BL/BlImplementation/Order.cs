@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BlApi;
+using BO;
+using Dal;
+using DalApi;
+
+namespace BlImplementation;
+
+internal class Order : IOrder
+{
+    static IDal DOList = new DalList();
+    public IEnumerable<OrderForList> GetAllOrderForList()
+    {
+
+    }//calls get of DO order list, gets items for each order, and build orderorlist
+    public Order? GetBoOrder(int id)
+    {
+
+    }//get order id, check if right, and return BO order using DO order, orderItem, and product
+    public Order? ShipUpdate(int orderId)
+    {
+
+    }//get order number, check if exists, update date in DO order, and return BO order that has been "shipped"
+    public Order? DeliveredUpdate(int orderId)
+    {
+
+    }//get order number, check if exists, update date in DO order, and return BO order that has been "delivered" 
+    public OrderTracking? GetOrderTracking(int orderId)
+    {
+
+    }//get order id, check if exists, and build strings of dates and status in DO orders
+
+
+}

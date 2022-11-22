@@ -4,18 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using Dal;
+using DalApi;
 using DO;
 
 namespace BlImplementation;
 
-internal class BlBoOrderItem : IBoOrderItem
+internal class OrderItem : IOrderItem
 {
-    public OrderItem ItemOfOrder(int id, int productId)
+    static IDal DOList = new DalList();
+    public DO.OrderItem ItemOfOrder(int id, int productId)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<OrderItem> ItemsInOrder(int id)
+    public IEnumerable<DO.OrderItem> ItemsInOrder(int id)
     {
         throw new NotImplementedException();
     }

@@ -1,9 +1,12 @@
-﻿namespace DO;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/// <summary>
-/// short description and info on product for the cart 
-/// </summary>
-public struct OrderItem
+namespace BO;
+
+public class OrderItem
 {
     public int ID { get; set; } //general product ID
     public int? ProductID { get; set; } //specific product ID
