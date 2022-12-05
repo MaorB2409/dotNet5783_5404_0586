@@ -1,51 +1,119 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
 using BO;
-using Dal;
 using DalApi;
+using System.Linq;
+using System.Diagnostics;
 
 namespace BlImplementation;
 
-internal class Product:IProduct
+internal class Product:BlApi.IProduct
 {
-    static IDal DOList = new DalList();
-
-    private IDal DOList = new DalList();//to access DO info
-    public IEnumerable<ProductForList?> GetProductsForList(DO.Product? p)
+    static IDal? DOList = DalApi.Factory.Get();//to access DO info new 
+    public IEnumerable<ProductForList?> GetProductsForList()
     {
-        //    return from DO.Product item in DOList.
-        //           select new ProductForList()
-        //           {
-        //               ID = item.ID,
-        //               ProductName = item.Name,
-        //               Price = item.Price,
-        //               Category = (BO.Enums.Category)item.Category
-        //           };
+        return from DO.Product? item in DOList.Product.GetAll()
+               where item!=null && item?.IsDeleted==false
+               select new ProductForList
+               {
+                   ID = item.Value.ID,
+                   ProductName = item?.Name,
+                   Price = (double)item?.Price,
+                   Category = (BO.Enums.Category)item?.Category
+               };
 
     }//returns a list of products for the manager
-    public Product? ManagerProduct(int id) {
 
+
+    public BO.Product ManagerProduct(int id) {
+        BO.Product p = new BO.Product();//create a BO product
+        DO.Product product = new DO.Product();//create a DO product
+        product = DOList.Product.GetById(id);//get the matching product for the ID
+        if (product.IsDeleted == false)//if found product
+        {
+            p.ID = id;
+            p.Name = product.Name;
+            p.Price = product.Price;
+            p.Category = (BO.Enums.Category)product.Category;
+            p.InStock = product.InStock;
+            p.IsDeleted = product.IsDeleted;
+            return p;
+        }
+        throw new BO.IdNotExistException();
     }//return a BO product of DO product with id
-    public void AddProduct(Product? product)
+    public void AddProduct(BO.Product p)
     {
+        if (p.Name == "" || p.Price <= 0 || p.InStock < 0 || p.Category<BO.Enums.Category.Kitchen || p.Category>BO.Enums.Category.Office)
+        {
+            throw new IncorrectInput("Incorrect Amount");
+        }
+        //DO.Product prod = DOList.Product.GetById(p.ID);//get product with id
+        //if (prod.ID == p.ID)//already exists 
+        //    throw new BO.IdExistException();
 
+        DO.Product newProduct = new DO.Product(); //create new DO product
+        newProduct.ID = 0;
+        newProduct.Name = p.Name;
+        newProduct.Price = p.Price;
+        newProduct.InStock = p.InStock;
+        newProduct.IsDeleted = false;
+        newProduct.Category = (DO.Enums.Category)p.Category;
+
+        newProduct.ID=DOList.Product.Add(newProduct);//add to product list
     }//gets a BO product, check if right and add a DO product 
     public void DeleteProduct(int id)
     {
-
-    }//check in every order that DO product is deleted 
-    public void UpdateProduct(Product? product)
+        var v = from ords in DOList.Order.GetAll()
+                where ords != null && ords?.IsDeleted == false
+                select from oi in DOList.OrderItem.GetAll()
+                       where oi != null && oi?.IsDeleted == false && oi?.OrderID == ords?.ID && oi?.ProductID == id
+                       select oi;
+        if (v.Any() == false)//no matching order items were found
+        {
+            throw new BO.UnfoundException();//id not found
+        }
+        DOList.Product.Delete(id);//remove orderItem
+    }
+    public void UpdateProduct(BO.Product p)
     {
-
+        if (p.ID < 0 || p.Name == "" || p.Price <= 0 || p.InStock < 0)
+        {
+                throw new IncorrectInput("Incorrect Input");
+        }
+        DO.Product temp = new DO.Product();
+        temp.ID = p.ID;
+        temp.Name = p.Name;
+        temp.Price = p.Price;
+        temp.InStock = p.InStock;
+        temp.Category = (DO.Enums.Category)p.Category;
+        temp.IsDeleted=false;
+        DOList.Product.Update(temp);
     }//get BO product, check if right and updates DO product
 
-    public IEnumerable<ProductItem> GetCatalog()
+
+    public IEnumerable<ProductItem?> GetCatalog()
     {
-
-    }//get product list of DO and and return productItem list of BO
-
+        var v = from prods in DOList.Product.GetAll()
+               where prods != null && prods?.IsDeleted == false
+               select new ProductItem()
+               {
+                   ID = prods.Value.ID,
+                   ProductName = prods?.Name,
+                   Price = (double)prods?.Price,
+                   Amount = (int)prods?.InStock,
+                   Category = (BO.Enums.Category)prods?.Category
+               };
+        foreach (ProductItem item in v)
+        {
+            if (item.Amount > 0)
+                item.InStock = true;
+            item.InStock = false;
+        }
+        return v;
+    }//go over DO products and build BO product item list 
 }

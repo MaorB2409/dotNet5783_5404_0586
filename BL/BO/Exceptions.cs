@@ -34,4 +34,34 @@ namespace BO
         public IdNotExistException(string message, Exception inner) : base(message, inner) { }
         protected IdNotExistException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
+
+    [Serializable]
+    public class WrongInput : Exception
+    {
+        public WrongInput() : base() { }
+        public WrongInput(string message) : base(message) { }
+        public WrongInput(string message, Exception inner) : base(message, inner) { }
+        protected WrongInput(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    }
+
+
+    [Serializable]
+    public class UnfoundException : Exception
+    {
+        public UnfoundException() : base() { }
+        public UnfoundException(string message) : base(message) { }
+        public UnfoundException(string message, Exception inner) : base(message, inner) { }
+        protected UnfoundException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    }
+
+
+
+    [Serializable]
+    public class IncorrectInput : Exception
+    {
+        public IncorrectInput() : base() { }
+        public IncorrectInput(string message) : base(message) { }
+        public IncorrectInput(string message, Exception inner) : base(message, inner) { }
+        protected IncorrectInput(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    }
 }

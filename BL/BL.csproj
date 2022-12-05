@@ -37,8 +37,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DalFacadeReal\DalFacadeReal.csproj" />
-    <ProjectReference Include="..\DalListReal\DalListReal.csproj" />
+    <ProjectReference Include="..\DalFacade\DalFacade.csproj" />
+    <ProjectReference Include="..\DalList\DalList.csproj" />
   </ItemGroup>
 
 </Project>
