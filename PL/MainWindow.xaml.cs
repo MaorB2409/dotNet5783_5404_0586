@@ -21,7 +21,8 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        static public IBl bl= BlApi.Factory.Get();
+        //BlApi IBl? bl = BlApi.Factory.Get();
+        static public IBl bl= BlApi.Factory.Get()!;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace PL
         {
             ListView lv = new ListView(bl);
             lv.Show();
+            Close();//close this window
         }
     }
 }

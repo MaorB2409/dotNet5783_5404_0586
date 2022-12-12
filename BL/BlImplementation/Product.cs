@@ -21,7 +21,7 @@ internal class Product:BlApi.IProduct
                where item!=null && item?.IsDeleted==false
                select new ProductForList
                {
-                   ID = item?.ID ?? throw new Exception("id is null\n"),
+                   ID = item?.ID ?? throw new BO.Exceptions("id is null\n"),
                    ProductName = item?.Name!,
                    Price = (double)item?.Price!,
                    Category = (BO.Enums.Category)item?.Category!
