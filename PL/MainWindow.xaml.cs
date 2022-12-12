@@ -1,5 +1,4 @@
-﻿using BlApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +20,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        //BlApi IBl? bl = BlApi.Factory.Get();
-        static public IBl bl= BlApi.Factory.Get()!;
+        BlApi.IBl? bl = BlApi.Factory.Get();
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +28,7 @@ namespace PL
 
         private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
         {
-            ListView lv = new ListView(bl);
+            ListView lv = new ListView(bl!);
             lv.Show();
             Close();//close this window
         }

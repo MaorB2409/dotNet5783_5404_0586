@@ -1,5 +1,4 @@
-﻿using BlApi;
-using BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,7 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product p = new BO.Product();
-        public Window1(IBl Listbl)
+        public Window1(BlApi.IBl? Listbl)
         {
             bl = Listbl;
             InitializeComponent();

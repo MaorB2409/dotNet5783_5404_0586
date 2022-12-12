@@ -1,5 +1,4 @@
-﻿using BlApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +19,14 @@ namespace PL
     /// </summary>
     public partial class ListView : Window
     {
-        static public IBl bl = BlApi.Factory.Get()!;
-        public ListView(IBl Mainbl)
+        BlApi.IBl? bl = BlApi.Factory.Get();
+        public ListView(BlApi.IBl? Mainbl)
         {
             bl = Mainbl;
             InitializeComponent();
             try
             {
-                ItemListview.ItemsSource = bl.Product.GetProductsForList();//get products for list from BO
+                ItemListview.ItemsSource = bl?.Product.GetProductsForList();//get products for list from BO
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {
@@ -47,7 +46,7 @@ namespace PL
             {
                 try
                 {
-                    ItemListview.ItemsSource = bl.Product.GetProductsForList();//original list with no filter
+                    ItemListview.ItemsSource = bl?.Product.GetProductsForList();//original list with no filter
                 }
                 catch (BO.Exceptions ex)
                 {
@@ -64,7 +63,7 @@ namespace PL
             {
                 try
                 {
-                    ItemListview.ItemsSource = bl.Product.GetProductsForList().Select(x => x!.Category == ca);//show filtered list
+                    ItemListview.ItemsSource = bl?.Product.GetProductsForList().Select(x => x!.Category == ca);//show filtered list
                 }
                 catch (BO.Exceptions ex)
                 {
@@ -78,7 +77,7 @@ namespace PL
 
             try
             {
-                ItemListview.ItemsSource = from p in bl.Product.GetProductsForList()//get all products
+                ItemListview.ItemsSource = from p in bl?.Product.GetProductsForList()//get all products
                                            where p.Category == c
                                           select p;//selected all products of selected category
             }
@@ -99,7 +98,7 @@ namespace PL
             w1.updateButton.Visibility = Visibility.Collapsed;//update invisible 
             try
             {
-                ItemListview.ItemsSource = bl.Product.GetProductsForList();//update list view after add
+                ItemListview.ItemsSource = bl?.Product.GetProductsForList();//update list view after add
             }
             catch (BO.Exceptions ex)
             {
