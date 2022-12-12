@@ -13,14 +13,14 @@ namespace BlImplementation;
 
 internal class Cart:ICart
 {
-    readonly private static IDal DOList = DalApi.Factory.Get()!;//to access DO info 
+    readonly private static IDal? DOList = DalApi.Factory.Get()?? throw new BO.Exceptions("Factory does not exist\n");//to access DO info
     public BO.Cart AddToCart(BO.Cart myCart, int id)
     {
         int ind = myCart.orderItems!.FindIndex(x => x!=null && x.ID == id); //save index of order with ID in cart
         DO.Product? product = new DO.Product?();//create a DO product
         try
         {
-            product = DOList.Product.GetById(id);//get the matching product for the ID
+            product = DOList?.Product.GetById(id);//get the matching product for the ID
         }
         catch (DalApi.IdNotExistException)
         {
@@ -66,7 +66,7 @@ internal class Cart:ICart
         DO.Product product = new DO.Product();//create a DO product
         try
         {
-            product = DOList.Product.GetById(id);//get the matching product for the ID
+            product = (DO.Product)DOList?.Product.GetById(id)!;
         }
         catch (DalApi.IdNotExistException)
         {
@@ -103,14 +103,14 @@ internal class Cart:ICart
         {
             try
             {
-                if (item!.ProductID == DOList.Product.GetById(item.ProductID).ID && item.Amount > 0 && item.Amount <= DOList.Product.GetById(item.ProductID).InStock)//if orderItem exists and is instock
+                if (item!.ProductID == DOList?.Product.GetById(item.ProductID).ID && item.Amount > 0 && item.Amount <= DOList?.Product.GetById(item.ProductID).InStock)//if orderItem exists and is instock
                 {
                     DO.Order order = new DO.Order();//new DO order
                     order.OrderDate = DateTime.Now;//ordered now
                     int num;
                     try
                     {
-                        num = DOList.Order.Add(order);//add to DO orderlist and get order id
+                        num = (int)(DOList?.Order.Add(order)!);//add to DO orderlist and get order id
                     }
                     catch (DalApi.IdNotExistException)
                     {
@@ -129,7 +129,7 @@ internal class Cart:ICart
                     DO.Product p;
                     try
                     {
-                        p = DOList.Product.GetById(oi.ProductID);//get matching product
+                        p = (DO.Product)(DOList?.Product.GetById(oi.ProductID)!);//get matching product
                     }
                     catch (DalApi.IdNotExistException)
                     {
@@ -138,7 +138,7 @@ internal class Cart:ICart
                     p.InStock -= item.Amount;//subtract the amount of products in stock
                     try
                     {
-                        DOList.Product.Update(p);//update product in DO
+                        DOList?.Product.Update(p);//update product in DO
                     }
                     catch (DalApi.IdNotExistException)
                     {

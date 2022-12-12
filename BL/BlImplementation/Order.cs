@@ -15,11 +15,11 @@ namespace BlImplementation;
 
 internal class Order : BlApi.IOrder
 {
-    readonly private static IDal DOList = DalApi.Factory.Get()??throw new BO.Exceptions("Factory does not exist\n");//to access DO info  
+    readonly private static IDal? DOList = DalApi.Factory.Get()??throw new BO.Exceptions("Factory does not exist\n");//to access DO info  
     public IEnumerable<OrderForList?> GetAllOrderForList()
     {
-        IEnumerable<DO.Order?> orders = DOList.Order.GetAll();//get all orders from DO 
-        IEnumerable<DO.OrderItem?> orderItems = DOList.OrderItem.GetAll();//get all orderItems from DO 
+        IEnumerable<DO.Order?>? orders = DOList?.Order.GetAll();//get all orders from DO 
+        IEnumerable<DO.OrderItem?>? orderItems = DOList?.OrderItem.GetAll();//get all orderItems from DO 
         return from DO.Order? ord in orders
                select new BO.OrderForList
                {
@@ -48,14 +48,14 @@ internal class Order : BlApi.IOrder
         DO.Order ord;
         try
         {
-            ord = DOList.Order.GetById(id);//get right DO Order
+            ord = (DO.Order)(DOList?.Order.GetById(id)!);//get right DO Order ?????????????
         }
         catch (DalApi.IdNotExistException)
         {
             throw new BO.IdNotExistException("id does not exist\n");
         }
         double priceTemp = 0;
-        foreach(DO.OrderItem? o in DOList.OrderItem.GetAll())
+        foreach(DO.OrderItem? o in DOList?.OrderItem.GetAll()!)
         {
             if (o?.IsDeleted == false && o?.OrderID == id)
             {
@@ -85,7 +85,7 @@ internal class Order : BlApi.IOrder
         DO.Order oId;
         try
         {
-            oId = DOList.Order.GetById(orderId);//get the order from DO of orderId-or catch exception
+            oId = (DO.Order)(DOList?.Order.GetById(orderId)!);//get the order from DO of orderId-or catch exception
         }
         catch (DalApi.IdNotExistException)
         {
@@ -107,14 +107,14 @@ internal class Order : BlApi.IOrder
             };//set new delivery date in new DO Order
             try
             {
-                DOList.Order.Update(o);//update the order in DO
+                DOList?.Order.Update(o);//update the order in DO
             }
             catch (DalApi.IdNotExistException)
             {
                 throw new BO.IdNotExistException("Product does not exist");
             }
             double priceTemp = 0;
-            foreach (DO.OrderItem? temp in DOList.OrderItem.GetAll())
+            foreach (DO.OrderItem? temp in DOList?.OrderItem.GetAll()!)
             {
                 if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
                 {
@@ -143,7 +143,7 @@ internal class Order : BlApi.IOrder
         DO.Order oId;
         try
         {
-            oId = DOList.Order.GetById(orderId);//get the order from DO of orderId-or catch exception
+            oId = (DO.Order)(DOList?.Order.GetById(orderId)!);//get the order from DO of orderId-or catch exception
         }
         catch (DalApi.IdNotExistException)
         {
@@ -164,14 +164,14 @@ internal class Order : BlApi.IOrder
             };//set new ship date in new DO Order
             try
             {
-                DOList.Order.Update(o);//update the order in DO
+                DOList?.Order.Update(o);//update the order in DO
             }
             catch (DalApi.IdNotExistException)
             {
                 throw new BO.IdNotExistException("Product does not exist");
             }
             double priceTemp = 0;
-            foreach (DO.OrderItem? temp in DOList.OrderItem.GetAll())
+            foreach (DO.OrderItem? temp in DOList?.OrderItem.GetAll()!)
             {
                 if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
                 {
@@ -198,7 +198,7 @@ internal class Order : BlApi.IOrder
     {
         OrderTracking ot=new();//create new order tracking
         ot.Tracking = new();
-        foreach (DO.Order? item in DOList.Order.GetAll())//go over all orders in DO
+        foreach (DO.Order? item in DOList?.Order.GetAll()!)//go over all orders in DO
         {
             if (item?.ID == orderId )//if order exists 
             {
