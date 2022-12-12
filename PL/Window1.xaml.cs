@@ -23,7 +23,6 @@ namespace PL
     public partial class Window1 : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        //static public IBl bl = BlApi.Factory.Get();
         private BO.Product p = new BO.Product();
         public Window1(IBl Listbl)
         {
