@@ -9,7 +9,7 @@ namespace BO;
 public class OrderForList
 {
     public int ID { get; set; } //order ID
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public Enums.Status Status {get; set;}
     public int Amount { get; set; }
     public double TotalPrice { get; set; }

@@ -22,26 +22,28 @@ public class DalProduct : IProduct
         {
             throw new IdExistException("Unothorized override");//error
         }
-        ind = _ds.productList.FindIndex(x => x?.ID == p.ID && x?.IsDeleted == true);//save index of product with matching id if deleted
-        if (ind != -1)//already exists but deleted 
-        {
-            _ds.productList.Add(p);//add p to the Product list
-            return p.ID;//return the id
-        }
-        throw new IdExistException("Unothorized override");//error
+        _ds.productList.Add(p);//add p to the Product list
+        return p.ID;//return the id
+        //ind = _ds.productList.FindIndex(x => x?.ID == p.ID && x?.IsDeleted == true);//save index of product with matching id if deleted
+        //if (ind != -1)//already exists but deleted 
+        //{
+        //    _ds.productList.Add(p);//add p to the Product list
+        //    return p.ID;//return the id
+        //}
+        //throw new IdExistException("Unothorized override");//error
     }
 
     public Product GetById(int id)
     {
         Product? res = _ds.productList.Find(x => x?.ID == id && x?.IsDeleted == false);//find a priduct with same id and exists
         if (res?.ID != id || res?.IsDeleted == true)//if not found
-            throw new Exception("The product does not exist\n");
-        return res.Value;
+            throw new IdNotExistException("The product does not exist\n");
+        return res ?? throw new IdNotExistException("id does not exist\n");
     }
 
     public void Delete(int id)
     {
-        int index = _ds.productList.FindIndex(x => x.Value.ID == id);
+        int index = _ds.productList.FindIndex(x => x?.ID == id);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("Product does not exist");
@@ -49,7 +51,7 @@ public class DalProduct : IProduct
     }
     public void Update(Product p)
     {
-        int index = _ds.productList.FindIndex(x => x.Value.ID == p.ID);
+        int index = _ds.productList.FindIndex(x => x?.ID == p.ID);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("The product you wish to update does not exist");
@@ -69,17 +71,21 @@ public class DalProduct : IProduct
                select v;
     }
 
-
     public Product GetByFilter(Func<Product?, bool>? filter)
     {
-        foreach(Product p in _ds.productList)
+        if (filter == null)
         {
-            if (p.IsDeleted == false && filter(p))
+            throw new ArgumentNullException(nameof(filter));//filter is null
+        }
+        foreach (Product? p in _ds.productList)
+        {
+            if (p != null && p?.IsDeleted == false && filter(p))
             {
-                return p;
+                return (Product)p;
             }
         }
         throw new Exceptions("Does not exist\n");
     }
+    
 
 }

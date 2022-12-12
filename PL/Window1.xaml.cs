@@ -30,37 +30,6 @@ namespace PL
             InitializeComponent();
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
         }
-       // private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-       //{
-       //     if (tid!=null && tid.Text != "")
-       //     {
-       //         if(int.TryParse(tid.Text, out int val))
-       //         {
-       //             p.ID=val;
-       //         }
-       //         //else error
-       //     }
-       //     if (tprice!=null && tprice.Text != "")
-       //     {
-       //         if (int.TryParse(tprice.Text, out int val))
-       //         {
-       //             p.Price = val;
-       //         }
-       //         //else error
-       //     }
-       //     if (tinstock!= null && tinstock.Text != "")
-       //     {
-       //         if (int.TryParse(tinstock.Text, out int val))
-       //         {
-       //             p.InStock = val;
-       //         }
-       //         //else error
-       //     }
-       //     if (tname != null && tname.Text != "")
-       //     {
-       //         p.Name = tname.Text;
-       //     }
-       // }
 
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
@@ -76,7 +45,10 @@ namespace PL
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for price
         }
-
+        private void tname_previewtextinput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^a-z]+").IsMatch(e.Text);//only get letters 
+        }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             p.Category = (BO.Enums.Category)CategoryBox.SelectedItem;//save the category picked
@@ -86,12 +58,89 @@ namespace PL
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             bl.Product.AddProduct(p);//add product to BO
+            tid.Text = "Enter ID";
+            tname.Text = "Enter Name";
+            tprice.Text = "Enter Price";
+            tinstock.Text = "Enter Amount";//returned previous text
+            Close();//close this window
+
+
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             bl.Product.UpdateProduct(p);//add product to BO
+            tid.Text = "Enter ID";
+            tname.Text = "Enter Name";
+            tprice.Text = "Enter Price";
+            tinstock.Text = "Enter Amount";//returned previous text
         }
+
+        private void tid_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tid != null && tid.Text != "")
+            {
+                if (int.TryParse(tid.Text, out int val))
+                {
+                    p.ID = val;
+                }
+                //else error
+            }
+        }
+
+        private void tname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tname != null && tname.Text != "")
+            {
+                p.Name = tname.Text;
+            }
+        }
+
+        private void tprice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tprice != null && tprice.Text != "")
+            {
+                if (int.TryParse(tprice.Text, out int val))
+                {
+                    p.Price = val;
+                }
+                //else error
+            }
+        }
+
+        private void tinstock_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tinstock != null && tinstock.Text != "")
+            {
+                if (int.TryParse(tinstock.Text, out int val))
+                {
+                    p.InStock = val;
+                }
+                //else error
+            }
+        }
+
+        private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tid.Clear();//clear the default text
+        }
+
+        private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tname.Clear();
+        }
+
+        private void tprice_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tprice.Clear();
+        }
+
+        private void tinstock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tinstock.Clear();
+        }
+
+      
 
     }
 }

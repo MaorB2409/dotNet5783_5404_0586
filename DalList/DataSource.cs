@@ -93,9 +93,9 @@ internal class DataSource
                 new OrderItem
                 {
                     ID = Config.NextOrderItemNumber,
-                    ProductID = product.Value.ID,
+                    ProductID = product?.ID ?? throw new Exception(),
                     OrderID = randNum.Next(Config.s_startOrderNumber, Config.s_startOrderNumber + orderList.Count),
-                    Price = (double)product?.Price,
+                    Price = (double)product?.Price!,
                     IsDeleted = false,
                     Amount = randNum.Next(5)
                 });

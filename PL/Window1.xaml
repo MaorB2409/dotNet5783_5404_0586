@@ -29,10 +29,14 @@
         <Label Name="l5" Content="In Stock:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="259,6,0,0"/>
         <ComboBox Name="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="190" Height="33" SelectionChanged="ComboBox_SelectionChanged"/>
-        <TextBox Name="tid" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Center" Width="214" Height="40" PreviewTextInput="tid_previewtextinput"/>
-        <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="214" Height="40" />
-        <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="214" Height="40" PreviewTextInput="tprice_previewtextinput"/>
-        <TextBox Name="tinstock" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Center" Width="214" Height="40" PreviewTextInput="tinstock_previewtextinput"/>
+        <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="5" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Center" Width="214" Height="40"
+                 PreviewTextInput="tid_previewtextinput" TextChanged="tid_TextChanged" PreviewMouseDown="tid_PreviewMouseDown"/>
+        <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="214" Height="40" 
+                 PreviewTextInput="tname_previewtextinput"  TextChanged="tname_TextChanged" PreviewMouseDown="tname_PreviewMouseDown" />
+        <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="214" Height="40" 
+                 PreviewTextInput="tprice_previewtextinput" TextChanged="tprice_TextChanged" PreviewMouseDown="tprice_PreviewMouseDown"/>
+        <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Center" Width="214" Height="40"
+                 PreviewTextInput="tinstock_previewtextinput" TextChanged="tinstock_TextChanged" PreviewMouseDown="tinstock_PreviewMouseDown"/>
         <Button Name="addButton" Content="Add" FontSize="27" FontStyle="Italic" 
                 HorizontalAlignment="Left" Margin="35,76,0,-71" Grid.Row="4" Width="140" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Click="addButton_Click" Grid.Column="1">
             <Button.BorderBrush>

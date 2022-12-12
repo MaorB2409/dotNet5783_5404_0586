@@ -215,13 +215,13 @@ class Program
                             }
                             break;
                         case 2:
-                            //Console.WriteLine("Enter ID of new product:");
-                            //p.ID = GetNumberFromUser();
+                            Console.WriteLine("Enter ID of new product:");
+                            p.ID = GetNumberFromUser();
                             Console.WriteLine("Enter category of new product:");
                             cat = GetNumberFromUser();
                             p.Category = (BO.Enums.Category)cat;
                             Console.WriteLine("Enter name of product:");
-                            p.Name = Console.ReadLine();
+                            p.Name = Console.ReadLine()??throw new IncorrectInput("wrong name\n");
                             Console.WriteLine("Enter in stock:");
                             p.InStock = GetNumberFromUser();
                             Console.WriteLine("Enter price of Product");
@@ -259,7 +259,7 @@ class Program
                             cat = GetNumberFromUser();
                             p.Category = (BO.Enums.Category)cat;
                             Console.WriteLine("Enter name of product:");
-                            p.Name = Console.ReadLine();
+                            p.Name = Console.ReadLine()??throw new IncorrectInput("wrong name\n");
                             Console.WriteLine("Enter in stock:");
                             p.InStock = GetNumberFromUser();
                             Console.WriteLine("Enter price of Product");

@@ -40,28 +40,29 @@ namespace PL
                 return;
             }
             if (c is BO.Enums.Category ca)
-                ItemListview.ItemsSource = bl.Product.GetProductsForList().Select(x => x.Category == ca);//show filtered list
+                ItemListview.ItemsSource = bl.Product.GetProductsForList().Select(x => x!.Category == ca);//show filtered list
 
 
 
             ItemListview.ItemsSource = from p in bl.Product.GetProductsForList()//get all products
                                        where p.Category==c
                                        select p;//selected all products of selected category
-            AttributeSelector.SelectedIndex = -1;//clear the selected item in combobox 
+            //AttributeSelector.SelectedIndex = -1;//clear the selected item in combobox 
             //AttributeSelector.IsDropDownOpen = false;
-            AttributeSelector.Items.Add(BO.Enums.Category.NoCategory);//only show no category 
+            //AttributeSelector.Items.Add(BO.Enums.Category.NoCategory);//only show no category 
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Window1 w1 = new Window1(bl);
+            Window1 w1 = new(bl);
             w1.Show();
             w1.updateButton.Visibility = Visibility.Collapsed;//update invisible 
+            ItemListview.ItemsSource = bl.Product.GetProductsForList();//update list view after add
         }
 
         private void ItemListview_updates(object sender, MouseButtonEventArgs e)
         {
-            Window1 w1 = new Window1(bl);
+            Window1 w1 = new(bl);
             w1.Show();
             w1.addButton.Visibility = Visibility.Collapsed;//add invisible
             w1.updateButton.Visibility = Visibility.Visible;//show update

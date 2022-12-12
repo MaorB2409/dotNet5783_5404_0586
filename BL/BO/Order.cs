@@ -9,16 +9,16 @@ namespace BO;
 public class Order
 {
     public int ID { get; set; } //item ID
-    public string CostumerName { get; set; }
-    public string CostumerEmail { get; set; }
-    public string CostumerAddress { get; set; }
+    public string? CostumerName { get; set; }
+    public string? CostumerEmail { get; set; }
+    public string? CostumerAddress { get; set; }
     public DateTime? OrderDate { get; set; }
     public DateTime? ShipDate { get; set; }
     public DateTime? DeliveryDate { get; set; }
     public bool IsDeleted { get; set; }
     public Enums.Status Status { get; set; }
     public double TotalPrice { get; set; }
-    public List<BO.OrderItem?> orderItems { get; set; }
+    public List<BO.OrderItem?>? orderItems { get; set; }
 
 
     public override string ToString() => this.ToStringProperty();

@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTest", "DalTest\DalTest.
 		{9171C01D-F983-4053-92F6-8F64A8ADDD41} = {9171C01D-F983-4053-92F6-8F64A8ADDD41}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6A628A56-569E-4634-8EFB-8A024C344399}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{9CEF900B-B320-47F5-8841-22D32825DCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CEF900B-B320-47F5-8841-22D32825DCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CEF900B-B320-47F5-8841-22D32825DCFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A628A56-569E-4634-8EFB-8A024C344399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A628A56-569E-4634-8EFB-8A024C344399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A628A56-569E-4634-8EFB-8A024C344399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A628A56-569E-4634-8EFB-8A024C344399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

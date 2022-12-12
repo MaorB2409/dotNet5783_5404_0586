@@ -36,13 +36,13 @@ public class DalOrderItem : IOrderItem
         OrderItem? res = _ds.orderItemList.Find(x => x?.OrderID == id && x?.IsDeleted == false);//find a priduct with same id and exists
         if (res?.ID != id || res?.IsDeleted == true)//if not found
             throw new Exception("The OrderItem does not exist\n");
-        return res.Value;
+        return res ?? throw new Exception();
         
     }
 
     public void Delete(int id)
     {
-        int index = _ds.orderItemList.FindIndex(x => x.Value.ID == id);
+        int index = _ds.orderItemList.FindIndex(x => x?.ID == id);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("Order item does not exist");
@@ -51,7 +51,7 @@ public class DalOrderItem : IOrderItem
 
     public void Update(OrderItem oi)
     {
-        int index = _ds.orderItemList.FindIndex(x => x.Value.ID == oi.ID);
+        int index = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("The order item you wish to update does not exist");
@@ -83,13 +83,13 @@ public class DalOrderItem : IOrderItem
     public OrderItem ItemOfOrder(int id, int productId)//returns specific product from order of id
     {
         OrderItem returnOI = new();
-        foreach (OrderItem orderi in _ds.orderItemList)//go over OrderItem list
+        foreach (OrderItem? orderi in _ds.orderItemList)//go over OrderItem list
         {
-            if (orderi.OrderID == id && orderi.ProductID == productId)//if found a matching id to the one inputted and product
+            if (orderi?.OrderID == id && orderi?.ProductID == productId)//if found a matching id to the one inputted and product
             { 
-                if(orderi.IsDeleted == false)//not deleted
+                if(orderi?.IsDeleted == false)//not deleted
                 {
-                    returnOI = orderi;//save that one
+                    returnOI = orderi??throw new IdNotExistException("order item id does not exist\n");//save that one
                 }
             }
         }//find the order of id with product
@@ -100,11 +100,15 @@ public class DalOrderItem : IOrderItem
 
     public OrderItem GetByFilter(Func<OrderItem?, bool>? filter)
     {
-        foreach (OrderItem o in _ds.orderItemList)
+        if(filter == null)
         {
-            if (o.IsDeleted == false && filter(o))
+            throw new ArgumentNullException(nameof(filter));//filter is null
+        }
+        foreach (OrderItem? o in _ds.orderItemList)
+        {
+            if (o!=null && o?.IsDeleted == false && filter(o))
             {
-                return o;
+                return (OrderItem)o;
             }
         }
         throw new Exceptions("Does not exist\n");

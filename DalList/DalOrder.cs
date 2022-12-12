@@ -6,7 +6,7 @@ namespace Dal;
 
 public class DalOrder : IOrder
 {
-    DataSource _ds = DataSource.s_instance;//to access the data 
+    readonly DataSource _ds = DataSource.s_instance;//to access the data 
 
     public int Add(Order o)//add order to a list and return its id
     {
@@ -34,12 +34,12 @@ public class DalOrder : IOrder
         Order? res = _ds.orderList.Find(x => x?.ID == id && x?.IsDeleted == false);
         if (res?.ID != id || res?.IsDeleted == true)
             throw new IdNotExistException("The order does not exist\n");
-        return res.Value;
+        return res ?? throw new Exception();
     }
 
     public void Delete(int id)
     {
-        int index = _ds.orderList.FindIndex(x => x.Value.ID == id);
+        int index = _ds.orderList.FindIndex(x => x?.ID == id);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("Order does not exist");
@@ -50,7 +50,7 @@ public class DalOrder : IOrder
 
     public void Update(Order or)
     {
-        int index = _ds.orderList.FindIndex(x => x.Value.ID == or.ID);
+        int index = _ds.orderList.FindIndex(x => x?.ID == or.ID);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("The order you wish to update does not exist");
@@ -74,11 +74,15 @@ public class DalOrder : IOrder
 
     public Order GetByFilter(Func<Order?, bool>? filter)
     {
-        foreach (Order o in _ds.orderList)
+        if(filter == null)
         {
-            if (o.IsDeleted == false && filter(o))
+            throw new ArgumentNullException(nameof(filter));//filter is null
+        }
+        foreach (Order? o in _ds.orderList)
+        {
+            if (o!=null && o?.IsDeleted == false && filter(o))
             {
-                return o;
+                return (Order)o;
             }
         }
         throw new Exceptions("Does not exist\n");

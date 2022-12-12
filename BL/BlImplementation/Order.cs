@@ -15,7 +15,7 @@ namespace BlImplementation;
 
 internal class Order : BlApi.IOrder
 {
-    readonly private static IDal DOList = DalApi.Factory.Get();//to access DO info  
+    readonly private static IDal DOList = DalApi.Factory.Get()??throw new BO.Exceptions("Factory does not exist\n");//to access DO info  
     public IEnumerable<OrderForList?> GetAllOrderForList()
     {
         IEnumerable<DO.Order?> orders = DOList.Order.GetAll();//get all orders from DO 
@@ -23,11 +23,11 @@ internal class Order : BlApi.IOrder
         return from DO.Order? ord in orders
                select new BO.OrderForList
                {
-                   ID = ord?.ID ?? throw new BO.IdNotExistException(),
-                   Name = ord?.CostumerName,
-                   Status = GetStatus(ord.Value),
+                   ID = ord?.ID ?? throw new BO.IdNotExistException("ID does not exist\n"),
+                   Name = ord?.CostumerName??throw new BO.IncorrectInput("name does not exist\n"),
+                   Status = GetStatus(ord ?? throw new BO.IncorrectInput("status does not exist\n")),
                    Amount = orderItems.Select(orderItems => orderItems?.ID == ord?.ID).Count(),
-                   TotalPrice = (double)orderItems.Sum(orderItems => orderItems?.Price)
+                   TotalPrice = (double)orderItems.Sum(orderItems => orderItems?.Price ?? throw new BO.IncorrectInput("price does not exist\n"))
               };
     
     }//calls get of DO order list, gets items for each order, and build orderorlist
@@ -45,13 +45,21 @@ internal class Order : BlApi.IOrder
         {
             throw new BO.IdNotExistException();
         }
-        DO.Order ord = DOList.Order.GetById(id);//get right DO Order
-        double priceTemp = 0;
-        foreach(DO.OrderItem o in DOList.OrderItem.GetAll())
+        DO.Order ord;
+        try
         {
-            if (o.IsDeleted == false && o.OrderID == id)
+            ord = DOList.Order.GetById(id);//get right DO Order
+        }
+        catch (DalApi.IdNotExistException)
+        {
+            throw new BO.IdNotExistException("id does not exist\n");
+        }
+        double priceTemp = 0;
+        foreach(DO.OrderItem? o in DOList.OrderItem.GetAll())
+        {
+            if (o?.IsDeleted == false && o?.OrderID == id)
             {
-                priceTemp+=o.Price;//add up all of prices in the order
+                priceTemp+=o?.Price ?? 0;//add up all of prices in the order
             }
         }
         if(ord.IsDeleted == false && ord.ID == id)//if exists 
@@ -62,9 +70,9 @@ internal class Order : BlApi.IOrder
                 CostumerAddress = ord.CostumerAddress,
                 CostumerEmail = ord.CostumerEmail,
                 CostumerName = ord.CostumerName,
-                OrderDate = ord.OrderDate.Value,
-                ShipDate = ord.ShipDate.Value,
-                DeliveryDate = ord.DeliveryDate.Value,
+                OrderDate = ord.OrderDate ?? throw new Exception(),
+                ShipDate = ord.ShipDate ?? throw new Exception(),
+                DeliveryDate = ord.DeliveryDate ?? throw new Exception(),
                 Status = GetStatus(ord),
                 TotalPrice = priceTemp,
                 IsDeleted = ord.IsDeleted
@@ -74,11 +82,19 @@ internal class Order : BlApi.IOrder
     }//get order number, check if exists, update date in DO order, and return BO order that has been "shipped"
     public BO.Order DeliveredUpdate(int orderId)
     {
+        DO.Order oId;
+        try
+        {
+            oId = DOList.Order.GetById(orderId);//get the order from DO of orderId-or catch exception
+        }
+        catch (DalApi.IdNotExistException)
+        {
+            throw new BO.IdNotExistException("id does not exist\n");
+        }
 
-        DO.Order oId = DOList.Order.GetById(orderId);//get the order from DO of orderId-or catch exception
         if (oId.ID == orderId /*&& oId.DeliveryDate < DateTime.Today*/)//if oId exists and has not been shipped 
         {
-            DO.Order o = new()
+            DO.Order o = new DO.Order()
             {
                 ID = orderId,
                 CostumerAddress = oId.CostumerAddress,
@@ -89,13 +105,20 @@ internal class Order : BlApi.IOrder
                 DeliveryDate = DateTime.Now,//the only difference
                 IsDeleted = oId.IsDeleted
             };//set new delivery date in new DO Order
-            DOList.Order.Update(o);//update the order in DO
-            double priceTemp = 0;
-            foreach (DO.OrderItem temp in DOList.OrderItem.GetAll())
+            try
             {
-                if (temp.IsDeleted == false && temp.OrderID == o.ID)
+                DOList.Order.Update(o);//update the order in DO
+            }
+            catch (DalApi.IdNotExistException)
+            {
+                throw new BO.IdNotExistException("Product does not exist");
+            }
+            double priceTemp = 0;
+            foreach (DO.OrderItem? temp in DOList.OrderItem.GetAll())
+            {
+                if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
                 {
-                    priceTemp += temp.Price;//add up all of prices in the order
+                    priceTemp += temp?.Price ?? 0;//add up all of prices in the order
                 }
             }
             return new BO.Order
@@ -104,8 +127,8 @@ internal class Order : BlApi.IOrder
                 CostumerAddress = oId.CostumerAddress,
                 CostumerEmail = oId.CostumerEmail,
                 CostumerName = oId.CostumerName,
-                OrderDate = oId.OrderDate.Value,
-                ShipDate = oId.ShipDate.Value,
+                OrderDate = oId.OrderDate ?? throw new Exception(),
+                ShipDate = oId.ShipDate ?? throw new Exception(),
                 DeliveryDate = DateTime.Now,
                 Status = GetStatus(o),
                 TotalPrice = priceTemp,
@@ -117,7 +140,15 @@ internal class Order : BlApi.IOrder
     }//get order number, check if exists, update date in DO order, and return BO order that has been "delivered" 
     public BO.Order ShipUpdate(int orderId)
     {
-        DO.Order oId = DOList.Order.GetById(orderId);//get the order from DO of orderId-or catch exception
+        DO.Order oId;
+        try
+        {
+            oId = DOList.Order.GetById(orderId);//get the order from DO of orderId-or catch exception
+        }
+        catch (DalApi.IdNotExistException)
+        {
+            throw new BO.IdNotExistException("id does not exist\n");
+        }
         if (oId.ID == orderId /*&& oId.ShipDate < DateTime.Today*/ )//if oId exists and has not been shipped 
         {
             DO.Order o = new()
@@ -131,13 +162,20 @@ internal class Order : BlApi.IOrder
                 DeliveryDate = null,
                 IsDeleted = oId.IsDeleted
             };//set new ship date in new DO Order
-            DOList.Order.Update(o);//update the order in DO
-            double priceTemp = 0;
-            foreach (DO.OrderItem temp in DOList.OrderItem.GetAll())
+            try
             {
-                if (temp.IsDeleted == false && temp.OrderID == o.ID)
+                DOList.Order.Update(o);//update the order in DO
+            }
+            catch (DalApi.IdNotExistException)
+            {
+                throw new BO.IdNotExistException("Product does not exist");
+            }
+            double priceTemp = 0;
+            foreach (DO.OrderItem? temp in DOList.OrderItem.GetAll())
+            {
+                if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
                 {
-                    priceTemp += temp.Price;//add up all of prices in the order
+                    priceTemp += temp?.Price ?? 0;//add up all of prices in the order
                 }
             }
             return new BO.Order
@@ -146,7 +184,7 @@ internal class Order : BlApi.IOrder
                 CostumerAddress = oId.CostumerAddress,
                 CostumerEmail = oId.CostumerEmail,
                 CostumerName = oId.CostumerName,
-                OrderDate = oId.OrderDate.Value,
+                OrderDate = oId.OrderDate ?? throw new Exception(),
                 ShipDate = DateTime.Now,
                 Status = GetStatus(o),
                 TotalPrice = priceTemp,
