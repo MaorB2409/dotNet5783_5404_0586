@@ -14,10 +14,10 @@ namespace BlImplementation;
 
 internal class Product:BlApi.IProduct
 {
-    static readonly IDal? DOList = DalApi.Factory.Get();//to access DO info new 
+    static readonly IDal? DOList = DalApi.Factory.Get()??throw new BO.Exceptions("Factory does not exist\n");//to access DO info
     public IEnumerable<ProductForList?> GetProductsForList()
     {
-        return from DO.Product? item in DOList!.Product.GetAll()
+        return from DO.Product? item in DOList?.Product.GetAll()!
                where item!=null && item?.IsDeleted==false
                select new ProductForList
                {
@@ -35,7 +35,7 @@ internal class Product:BlApi.IProduct
         DO.Product product;//create a DO product
         try
         {
-            product = DOList!.Product.GetById(id);//get the matching product for the ID
+            product = (DO.Product)(DOList?.Product.GetById(id)!);//get the matching product for the ID
         }
         catch (DalApi.IdNotExistException){
             throw new BO.IdNotExistException("id does not exist\n");
@@ -72,7 +72,7 @@ internal class Product:BlApi.IProduct
 
         try
         {
-            newProduct.ID = DOList!.Product.Add(newProduct);//add to product list
+            newProduct.ID = (int)(DOList?.Product.Add(newProduct)!);//add to product list
         }
         catch (DalApi.IdExistException)
         {
@@ -81,9 +81,9 @@ internal class Product:BlApi.IProduct
     }//gets a BO product, check if right and add a DO product 
     public void DeleteProduct(int id)
     {
-        var v = from ords in DOList!.Order.GetAll()
+        var v = from ords in DOList?.Order.GetAll()
                 where ords != null && ords?.IsDeleted == false
-                select from oi in DOList.OrderItem.GetAll()
+                select from oi in DOList?.OrderItem.GetAll()
                        where oi != null && oi?.IsDeleted == false && oi?.OrderID == ords?.ID && oi?.ProductID == id
                        select oi;
         if (v.Any() == false)//no matching order items were found
@@ -92,7 +92,7 @@ internal class Product:BlApi.IProduct
         }
         try
         {
-            DOList.Product.Delete(id);//remove orderItem
+            DOList?.Product.Delete(id);//remove orderItem
         }
         catch (DalApi.IdNotExistException)
         {
@@ -114,7 +114,7 @@ internal class Product:BlApi.IProduct
         temp.IsDeleted=false;
         try
         {
-            DOList!.Product.Update(temp);
+            DOList?.Product.Update(temp);
         }
         catch (DalApi.IdNotExistException)
         {
@@ -125,7 +125,7 @@ internal class Product:BlApi.IProduct
 
     public IEnumerable<ProductItem?> GetCatalog()
     {
-        var v = from prods in DOList!.Product.GetAll()
+        var v = from prods in DOList?.Product.GetAll()
                 where prods != null && prods?.IsDeleted == false
                 select new ProductItem()
                 {
