@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        static public IBl bl= BlApi.Factory.Get();
+        static public IBl bl = BlApi.Factory.Get();
         public MainWindow()
         {
             InitializeComponent();
