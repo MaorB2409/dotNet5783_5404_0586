@@ -31,7 +31,8 @@ public static class Factory
 
         return type.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static)?
                    .GetValue(null) as IDal
-            ?? throw new DalConfigException($"Class {dal} is not singleton or Instance property not found");
+            ?? throw new 
+            ($"Class {dal} is not singleton or Instance property not found");
     }
 }
 
