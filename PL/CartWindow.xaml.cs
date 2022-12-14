@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CartWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CartWindow : Window
     {
-        BlApi.IBl? bl = BlApi.Factory.Get();
-        public MainWindow()
+        public CartWindow()
         {
             InitializeComponent();
-        }
-
-        private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
-        {
-            new ListView(bl!).ShowDialog();
-            Close();//close this window
         }
     }
 }

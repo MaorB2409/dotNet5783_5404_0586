@@ -19,7 +19,7 @@ public class DalOrderItem : IOrderItem
         int ind = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID && x?.IsDeleted == false);//save index of orderItem with matching id if not deleted
         if (ind != -1)//exists already so cant add again
         {
-            throw new Exception("Unothorized override");//error
+            throw new Exceptions("The order item exists already so cant add again");//error
         }
         ind = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID && x?.IsDeleted == true);//save index of orderItem with matching id if deleted
         if (ind != -1)//already exists but deleted 
@@ -27,7 +27,7 @@ public class DalOrderItem : IOrderItem
             _ds.orderItemList.Add(oi);//add oi to the orderItem list
             return oi.ID;//return the id
         }
-        throw new Exception("Unothorized override");//error
+        throw new Exceptions("The order item can not be added due to technical difficulties");//error
 
     }
 
@@ -35,8 +35,8 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem? res = _ds.orderItemList.Find(x => x?.OrderID == id && x?.IsDeleted == false);//find a priduct with same id and exists
         if (res?.ID != id || res?.IsDeleted == true)//if not found
-            throw new Exception("The OrderItem does not exist\n");
-        return res ?? throw new Exception();
+            throw new Exceptions("The OrderItem requested does not exist\n");
+        return res ?? throw new Exceptions("The OrderItem requested does not exist\n");
         
     }
 
@@ -45,7 +45,7 @@ public class DalOrderItem : IOrderItem
         int index = _ds.orderItemList.FindIndex(x => x?.ID == id);
 
         if (index == -1)//if does not exist
-            throw new IdNotExistException("Order item does not exist");
+            throw new IdNotExistException("Order item you wish to remove does not exist");
         _ds.orderItemList.RemoveAt(index);//remove from list
     }
 
@@ -89,7 +89,7 @@ public class DalOrderItem : IOrderItem
             { 
                 if(orderi?.IsDeleted == false)//not deleted
                 {
-                    returnOI = orderi??throw new IdNotExistException("order item id does not exist\n");//save that one
+                    returnOI = orderi??throw new IdNotExistException("The order item requested does not exist\n");//save that one
                 }
             }
         }//find the order of id with product
@@ -111,6 +111,6 @@ public class DalOrderItem : IOrderItem
                 return (OrderItem)o;
             }
         }
-        throw new Exceptions("Does not exist\n");
+        throw new Exceptions("The order item requested does not exist\n");
     }
 }

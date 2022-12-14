@@ -13,7 +13,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="cartBtn.jpg" />
+    <None Remove="errorIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="cartBtn.jpg" />
+    <Resource Include="errorIcon.png" />
   </ItemGroup>
 
 </Project>

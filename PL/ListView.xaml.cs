@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,10 +31,11 @@ namespace PL
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {
-                Console.WriteLine("List View Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("getting products failed-id is null\n");
-                Console.WriteLine(ex.InnerException?.ToString());
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("List View Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("getting products failed-id is null\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
             }
             AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
@@ -50,10 +52,11 @@ namespace PL
                 }
                 catch (BO.Exceptions ex)
                 {
-                    Console.WriteLine("List View Window\n");
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine("getting products failed-id is null\n");
-                    Console.WriteLine(ex.InnerException?.ToString());
+                    new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                    //Console.WriteLine("List View Window\n");
+                    //Console.WriteLine(ex.Message);
+                    //Console.WriteLine("getting products failed-id is null\n");
+                    //Console.WriteLine(ex.InnerException?.ToString());
                     //id is null error on screen
                 }
                 AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//show all of combobox options
@@ -67,10 +70,11 @@ namespace PL
                 }
                 catch (BO.Exceptions ex)
                 {
-                    Console.WriteLine("List View Window\n");
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine("getting products failed-id is null\n");
-                    Console.WriteLine(ex.InnerException?.ToString());
+                    new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                    //Console.WriteLine("List View Window\n");
+                    //Console.WriteLine(ex.Message);
+                    //Console.WriteLine("getting products failed-id is null\n");
+                    //Console.WriteLine(ex.InnerException?.ToString());
                     //id is null error on screen
                 }
             }
@@ -83,40 +87,55 @@ namespace PL
             }
             catch (BO.Exceptions ex)
             {
-                Console.WriteLine("List View Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("getting products failed-id is null\n");
-                Console.WriteLine(ex.InnerException?.ToString());
-                //id is null error on screen
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("List View Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("getting products failed-id is null\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
+                ////id is null error on screen
             }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Window1 w1 = new(bl);
-            w1.Show();
-            w1.updateButton.Visibility = Visibility.Collapsed;//update invisible 
+             new Window1().ShowDialog();
             try
             {
                 ItemListview.ItemsSource = bl?.Product.GetProductsForList();//update list view after add
             }
             catch (BO.Exceptions ex)
             {
-                Console.WriteLine("List View Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("getting products failed-id is null\n");
-                Console.WriteLine(ex.InnerException?.ToString());
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("List View Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("getting products failed-id is null\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
                 //id is null error on screen
             }
         }
 
         private void ItemListview_updates(object sender, MouseButtonEventArgs e)
         {
-            Window1 w1 = new(bl);
-            w1.Show();
-            w1.addButton.Visibility = Visibility.Collapsed;//add invisible
-            w1.updateButton.Visibility = Visibility.Visible;//show update
+            if(ItemListview.SelectedItem is ProductForList productForList)
+            {
+                new Window1(productForList).ShowDialog();
+            }
+            try
+            {
+                ItemListview.ItemsSource = bl?.Product.GetProductsForList();//update list view after add
+            }
+            catch (BO.Exceptions ex)
+            {
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("List View Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("getting products failed-id is null\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
+                ////id is null error on screen
+            }
+
         }
+
 
         
     }

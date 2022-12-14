@@ -24,11 +24,11 @@ internal class Cart:ICart
         }
         catch (DalApi.IdNotExistException)
         {
-            throw new BO.IdNotExistException("id does not exist\n");
+            throw new BO.IdNotExistException("The product requested does not exist\n");
         }
         if (product?.InStock < 1 || product?.IsDeleted==true)
         {
-            throw new BO.UnfoundException("Product unavailable");
+            throw new BO.UnfoundException("The product requested is unavailable");
         }
         if (ind != -1)//exists in cart
         {
@@ -45,7 +45,7 @@ internal class Cart:ICart
             IsDeleted = false,
             Amount = 1,
             Price = (double)product?.Price!,
-            ProductID = product?.ID ?? throw new Exception()
+            ProductID = product?.ID ?? throw new BO.Exceptions("The id of the product from the list is null")
         };
         try
         {
@@ -53,7 +53,7 @@ internal class Cart:ICart
         }
         catch (DalApi.IdExistException)
         {
-            throw new BO.IdExistException("product id already exists");
+            throw new BO.IdExistException("The product requested already exists");
         }
         myCart.Price += oi.Price;//update price of the cart
         return myCart;
@@ -70,12 +70,8 @@ internal class Cart:ICart
         }
         catch (DalApi.IdNotExistException)
         {
-            throw new BO.IdNotExistException("id does not exist\n");
+            throw new BO.IdNotExistException("The product requested does not exist\n");
         }
-        //if (product.InStock + myCart.orderItems[ind].Amount - amount < 1) //if the new amount is impossible
-        //{
-        //    throw new BO.UnfoundException("Incorrect Amount");
-        //}
         if (ind != -1)//if in cart
         {
             if (amount == 0)
@@ -90,13 +86,13 @@ internal class Cart:ICart
             myCart.Price += myCart.orderItems[ind]!.Price * amount;//add the new price
             return myCart;
         }
-        throw new BO.IdNotExistException();
+        throw new BO.IdNotExistException("The product requested does not exist");
     }
     public void MakeOrder(BO.Cart myCart, string CustomerName, string CustomerEmail, string CustomerAddress)
     {
         if (CustomerName == "" || CustomerEmail=="" || CustomerAddress=="")//check input
         {
-            throw new BO.UnfoundException("Incorrect Input");
+            throw new BO.UnfoundException("Incorrect Input of an order entered");
         }
         DO.OrderItem oi = new();//create order item
         foreach (BO.OrderItem? item in myCart.orderItems!)//go over orderItems in the cart
@@ -114,7 +110,7 @@ internal class Cart:ICart
                     }
                     catch (DalApi.IdNotExistException)
                     {
-                        throw new BO.IdNotExistException("id does not exist\n");
+                        throw new BO.IdNotExistException("The product requested does not exist\n");
                     }
                     oi.ProductID = item.ProductID;//save product id
                     oi.OrderID = num;//save order id
@@ -124,7 +120,7 @@ internal class Cart:ICart
                     }
                     catch (DalApi.IdNotExistException)
                     {
-                        throw new BO.IdNotExistException("id does not exist\n");
+                        throw new BO.IdNotExistException("The product requested does not exist");
                     }
                     DO.Product p;
                     try
@@ -133,7 +129,7 @@ internal class Cart:ICart
                     }
                     catch (DalApi.IdNotExistException)
                     {
-                        throw new BO.IdNotExistException("id does not exist\n");
+                        throw new BO.IdNotExistException("The product requested does not exist\n");
                     }
                     p.InStock -= item.Amount;//subtract the amount of products in stock
                     try
@@ -142,15 +138,15 @@ internal class Cart:ICart
                     }
                     catch (DalApi.IdNotExistException)
                     {
-                        throw new BO.IdNotExistException("Product does not exist");
+                        throw new BO.IdNotExistException("The product requested does not exist\n");
                     }
                 }
             }
             catch (DalApi.IdNotExistException)
             {
-                throw new BO.IdNotExistException("id does not exist\n");
+                throw new BO.IdNotExistException("The product requested does not exist\n");
             }
-            throw new BO.Exceptions("can not place order");
+            throw new BO.Exceptions("Can not place the order requested");
         }
        
     }

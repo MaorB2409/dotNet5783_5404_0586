@@ -14,8 +14,12 @@
         </Style>
     </Window.Resources>
     <Grid Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="243*"/>
+            <ColumnDefinition Width="157*"/>
+        </Grid.ColumnDefinitions>
         <Button x:Name="ToOtherWindow" Content="View Product" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80" HorizontalAlignment="Left" Margin="300,187,0,0" VerticalAlignment="Top" Click="ToOtherWindow_Click">
+                Background="LavenderBlush" Width="200" Height="80" HorizontalAlignment="Left" Margin="300,187,0,0" VerticalAlignment="Top" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>

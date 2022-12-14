@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,23 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product p = new BO.Product();
-        public Window1(BlApi.IBl? Listbl)
+        public Window1()//add ctor
         {
-            bl = Listbl;
             InitializeComponent();
+            bl = BlApi.Factory.Get();//new bl
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+            updateButton.Visibility = Visibility.Collapsed;//update invisible 
         }
-
+        public Window1(ProductForList productForList)
+        {
+            InitializeComponent();
+            bl = BlApi.Factory.Get();//new bl
+            CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+            addButton.Visibility = Visibility.Collapsed;//add invisible
+            updateButton.Visibility = Visibility.Visible;//show update
+            tid.Text = productForList.ID.ToString();
+            tid.IsReadOnly = true;//cant change id in update 
+        }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for id
@@ -62,17 +73,19 @@ namespace PL
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
-                Console.WriteLine("Add Product Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("your input is incorrect\n");
-                Console.WriteLine(ex.InnerException?.ToString());
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("Add Product Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("your input is incorrect\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
             }
             catch (BO.IdExistException ex)//IdExistException error on the screen 
             {
-                Console.WriteLine("Add Product Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("the ID you requested to add already exists\n");
-                Console.WriteLine(ex.InnerException?.ToString());
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("Add Product Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("the ID you requested to add already exists\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
             }
             //trigger of a pup op message
             tid.Text = "Enter ID";
@@ -92,17 +105,19 @@ namespace PL
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
-                Console.WriteLine("Add Product Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("your input is incorrect\n");
-                Console.WriteLine(ex.InnerException?.ToString());
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("Add Product Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("your input is incorrect\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
             }
             catch (BO.IdNotExistException ex)//IdExistException error on the screen 
             {
-                Console.WriteLine("Add Product Window\n");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("the ID you requested to update does not exists\n");
-                Console.WriteLine(ex.InnerException?.ToString());
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+                //Console.WriteLine("Add Product Window\n");
+                //Console.WriteLine(ex.Message);
+                //Console.WriteLine("the ID you requested to update does not exists\n");
+                //Console.WriteLine(ex.InnerException?.ToString());
             }
             tid.Text = "Enter ID";
             tname.Text = "Enter Name";
@@ -157,7 +172,10 @@ namespace PL
 
         private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            tid.Clear();//clear the default text
+            if(tid.Text=="Enter ID")
+            {
+                tid.Clear();//clear the default text
+            }
         }
 
         private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)

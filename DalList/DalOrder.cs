@@ -19,7 +19,7 @@ public class DalOrder : IOrder
         int ind = _ds.orderList.FindIndex(x => x?.ID == o.ID && x?.IsDeleted == false);//save index of order with matching id if not deleted
         if (ind != -1)//exists already so cant add again
         {
-            throw new Exception("Unothorized override");//error
+            throw new Exceptions("Order exists already so cant add again");//error
         }
         ind = _ds.orderList.FindIndex(x => x?.ID == o.ID && x?.IsDeleted == true);//save index of order with matching id if deleted
         if (ind != -1)//already exists but deleted 
@@ -27,14 +27,14 @@ public class DalOrder : IOrder
             _ds.orderList.Add(o);//add o to the order list
             return o.ID;//return the id
         }
-        throw new Exception("Unothorized override");//error
+        throw new Exceptions("The order can not be placed due to technical difficulties");//error
     }
 
     public Order GetById(int id) { 
         Order? res = _ds.orderList.Find(x => x?.ID == id && x?.IsDeleted == false);
         if (res?.ID != id || res?.IsDeleted == true)
-            throw new IdNotExistException("The order does not exist\n");
-        return res ?? throw new Exception();
+            throw new IdNotExistException("The order that was requested does not exist\n");
+        return res ?? throw new Exceptions("The order that was requested does not exist");
     }
 
     public void Delete(int id)
@@ -85,6 +85,6 @@ public class DalOrder : IOrder
                 return (Order)o;
             }
         }
-        throw new Exceptions("Does not exist\n");
+        throw new Exceptions("The order that was requested does not exist");
     }
 }
