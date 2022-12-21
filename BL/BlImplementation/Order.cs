@@ -20,14 +20,14 @@ internal class Order : BlApi.IOrder
     {
         IEnumerable<DO.Order?>? orders = DOList?.Order.GetAll();//get all orders from DO 
         IEnumerable<DO.OrderItem?>? orderItems = DOList?.OrderItem.GetAll();//get all orderItems from DO 
-        return from DO.Order? ord in orders
+        return from DO.Order? ord in orders!
                select new BO.OrderForList
                {
                    ID = ord?.ID ?? throw new BO.IdNotExistException("ID does not exist\n"),
                    Name = ord?.CostumerName??throw new BO.IncorrectInput("name does not exist\n"),
                    Status = GetStatus(ord ?? throw new BO.IncorrectInput("status does not exist\n")),
-                   Amount = orderItems.Select(orderItems => orderItems?.ID == ord?.ID).Count(),
-                   TotalPrice = (double)orderItems.Sum(orderItems => orderItems?.Price ?? throw new BO.IncorrectInput("price does not exist\n"))
+                   Amount = orderItems!.Select(orderItems => orderItems?.ID == ord?.ID).Count(),
+                   TotalPrice = (double)orderItems!.Sum(orderItems => orderItems?.Price ?? throw new BO.IncorrectInput("price does not exist\n"))
               };
     
     }//calls get of DO order list, gets items for each order, and build orderorlist
@@ -55,13 +55,14 @@ internal class Order : BlApi.IOrder
             throw new BO.IdNotExistException("id does not exist\n");
         }
         double priceTemp = 0;
-        foreach(DO.OrderItem? o in DOList?.OrderItem.GetAll()!)
-        {
-            if (o?.IsDeleted == false && o?.OrderID == id)
-            {
-                priceTemp+=o?.Price ?? 0;//add up all of prices in the order
-            }
-        }
+        priceTemp = (double)(DOList?.OrderItem.GetAll()!.Where(x => x != null && x?.IsDeleted == false && x?.OrderID == id).Sum(x=>x?.Price)!);
+        //foreach (DO.OrderItem? o in DOList?.OrderItem.GetAll()!)
+        //{
+        //    if (o?.IsDeleted == false && o?.OrderID == id)
+        //    {
+        //        priceTemp+=o?.Price ?? 0;//add up all of prices in the order
+        //    }
+        //}
         if(ord.IsDeleted == false && ord.ID == id)//if exists 
         {
             return new BO.Order
@@ -114,13 +115,14 @@ internal class Order : BlApi.IOrder
                 throw new BO.IdNotExistException("Product does not exist");
             }
             double priceTemp = 0;
-            foreach (DO.OrderItem? temp in DOList?.OrderItem.GetAll()!)
-            {
-                if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
-                {
-                    priceTemp += temp?.Price ?? 0;//add up all of prices in the order
-                }
-            }
+            priceTemp = (double)(DOList?.OrderItem.GetAll()!.Where(x => x != null && x?.IsDeleted == false && x?.OrderID == o.ID).Sum(x => x?.Price)!);
+            //foreach (DO.OrderItem? temp in DOList?.OrderItem.GetAll()!)
+            //{
+            //    if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
+            //    {
+            //        priceTemp += temp?.Price ?? 0;//add up all of prices in the order
+            //    }
+            //}
             return new BO.Order
             {
                 ID = orderId,
@@ -171,13 +173,14 @@ internal class Order : BlApi.IOrder
                 throw new BO.IdNotExistException("Product does not exist");
             }
             double priceTemp = 0;
-            foreach (DO.OrderItem? temp in DOList?.OrderItem.GetAll()!)
-            {
-                if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
-                {
-                    priceTemp += temp?.Price ?? 0;//add up all of prices in the order
-                }
-            }
+            priceTemp = (double)(DOList?.OrderItem.GetAll()!.Where(x => x != null && x?.IsDeleted == false && x?.OrderID == o.ID).Sum(x => x?.Price)!);
+            //foreach (DO.OrderItem? temp in DOList?.OrderItem.GetAll()!)
+            //{
+            //    if (temp?.IsDeleted == false && temp?.OrderID == o.ID)
+            //    {
+            //        priceTemp += temp?.Price ?? 0;//add up all of prices in the order
+            //    }
+            //}
             return new BO.Order
             {
                 ID = orderId,

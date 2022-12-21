@@ -78,13 +78,18 @@ public class DalOrder : IOrder
         {
             throw new ArgumentNullException(nameof(filter));//filter is null
         }
-        foreach (Order? o in _ds.orderList)
+        Order? order = _ds.orderList.Find(x=>x != null && x?.IsDeleted == false && filter(x))!;
+        if (order != null)
         {
-            if (o!=null && o?.IsDeleted == false && filter(o))
-            {
-                return (Order)o;
-            }
+            return (Order)order;
         }
+        //foreach (Order? o in _ds.orderList)
+        //{
+        //    if (o!=null && o?.IsDeleted == false && filter(o))
+        //    {
+        //        return (Order)o;
+        //    }
+        //}
         throw new Exceptions("The order that was requested does not exist");
     }
 }

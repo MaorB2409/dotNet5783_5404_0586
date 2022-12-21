@@ -9,6 +9,7 @@ using BO;
 using DalApi;
 using System.Linq;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BlImplementation;
 
@@ -62,13 +63,15 @@ internal class Product:BlApi.IProduct
         //if (prod.ID == p.ID)//already exists 
         //    throw new BO.IdExistException();
 
-        DO.Product newProduct = new(); //create new DO product
-        newProduct.ID = p.ID;
-        newProduct.Name = p.Name ?? "";
-        newProduct.Price = p.Price;
-        newProduct.InStock = p.InStock;
-        newProduct.IsDeleted = false;
-        newProduct.Category = (DO.Enums.Category)p.Category;
+        DO.Product newProduct = new()
+        {
+            ID = p.ID,
+            Name = p.Name ?? "",
+            Price = p.Price,
+            InStock = p.InStock,
+            IsDeleted = false,
+            Category = (DO.Enums.Category)p.Category,
+        }; //create new DO product
 
         try
         {
@@ -129,18 +132,19 @@ internal class Product:BlApi.IProduct
                 where prods != null && prods?.IsDeleted == false
                 select new ProductItem()
                 {
-                    ID = prods?.ID??throw new Exception(),
-                   ProductName = prods?.Name!,
-                   Price = (double)prods?.Price!,
-                   Amount = (int)prods?.InStock!,
-                   Category = (BO.Enums.Category)prods?.Category!
+                    ID = prods?.ID ?? throw new Exception(),
+                    ProductName = prods?.Name!,
+                    Price = (double)prods?.Price!,
+                    Amount = (int)prods?.InStock!,
+                    Category = (BO.Enums.Category)prods?.Category!,
+                    InStock = prods?.InStock == 0 ? false : true
                };
-        foreach (ProductItem item in v)
-        {
-            if (item.Amount > 0)
-                item.InStock = true;
-            item.InStock = false;
-        }
+        //foreach (ProductItem item in v)
+        //{
+        //    if (item.Amount > 0)
+        //        item.InStock = true;
+        //    item.InStock = false;
+        //}
         return v;
     }//go over DO products and build BO product item list 
 }

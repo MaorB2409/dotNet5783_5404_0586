@@ -2,12 +2,13 @@
 using System.Threading;
 using DO;
 using DalApi;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Dal;
 
 public class DalProduct : IProduct
 {
-    DataSource _ds = DataSource.s_instance;//to access the data 
+    readonly DataSource _ds = DataSource.s_instance;//to access the data 
 
     public int Add(DO.Product p)//add Product to a list and return its id
     {
@@ -77,13 +78,18 @@ public class DalProduct : IProduct
         {
             throw new ArgumentNullException(nameof(filter));//filter is null
         }
-        foreach (Product? p in _ds.productList)
+        Product? p = _ds.productList.FirstOrDefault(x => x != null && x?.IsDeleted == false && filter(x));
+        if (p != null)
         {
-            if (p != null && p?.IsDeleted == false && filter(p))
-            {
-                return (Product)p;
-            }
+            return (Product)p;
         }
+        //foreach (Product? p in _ds.productList)
+        //{
+        //    if (p != null && p?.IsDeleted == false && filter(p))
+        //    {
+        //        return (Product)p;
+        //    }
+        //}
         throw new Exceptions("Does not exist\n");
     }
     
