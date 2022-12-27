@@ -1,0 +1,21 @@
+﻿<Window x:Class="PL.EndingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="EndingWindow" Height="450" Width="800">
+
+
+    <Border Padding="10" Background="#eee">
+
+        <StackPanel>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp"/>
+                
+            </StackPanel.Background>
+
+        </StackPanel>
+    </Border>
+</Window>

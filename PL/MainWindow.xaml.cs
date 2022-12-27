@@ -39,7 +39,9 @@ namespace PL
 
         private void NewOrderWindow_Click(object sender, RoutedEventArgs e)
         {
-           
+            new Catalog().ShowDialog();
+            Close();//close this window
+
         }
 
         private void CartWindow_Click(object sender, RoutedEventArgs e)
