@@ -14,7 +14,7 @@ public class OrderTracking
 
     public BO.Enums.Status Status { set; get; }
 
-    public List<Tuple<DateTime, string>>? Tracking { set; get; }
+    public List<Tuple<DateTime?, string>>? Tracking { set; get; }
     public override string ToString() => this.ToStringProperty();
 
 }

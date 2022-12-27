@@ -64,4 +64,12 @@ namespace BO
         public IncorrectInput(string message, Exception inner) : base(message, inner) { }
         protected IncorrectInput(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
+    [Serializable]
+    public class NoApproval : Exception
+    {
+        public NoApproval() : base() { }
+        public NoApproval(string message) : base(message) { }
+        public NoApproval(string message, Exception inner) : base(message, inner) { }
+        protected NoApproval(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    }
 }

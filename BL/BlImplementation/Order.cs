@@ -199,42 +199,23 @@ internal class Order : BlApi.IOrder
     }
     public OrderTracking GetOrderTracking(int orderId)
     {
-        OrderTracking ot=new();//create new order tracking
-        ot.Tracking = new();
-        foreach (DO.Order? item in DOList?.Order.GetAll()!)//go over all orders in DO
+        DO.Order order = new();
+        try
         {
-            if (item?.ID == orderId )//if order exists 
-            {
-                ot.ID = orderId;//save id
-                if (item?.DeliveryDate != null)//if order delivered 
-                {
-                    ot.Status = BO.Enums.Status.Shipped;//save status
-                    ot.Tracking.Add(Tuple.Create(item?.OrderDate ?? throw new BO.UnfoundException(), "The order has been created\n"));//save tracking
-                    ot.Tracking.Add(Tuple.Create(item?.ShipDate ?? throw new BO.UnfoundException(), "The order has been shipped\n"));//save tracking
-                    ot.Tracking.Add(Tuple.Create(DateTime.Now, "The order has been delivered\n"));//save tracking
-                    return ot;
-                }
-                if (item?.ShipDate != null)//if order shipped 
-                {
-                    ot.Status = BO.Enums.Status.Shipped;//save status
-                    ot.Tracking.Add(Tuple.Create(item?.OrderDate ?? throw new BO.UnfoundException(), "The order has been created\n"));//save tracking
-                    ot.Tracking.Add(Tuple.Create(DateTime.Now, "The order has been shipped\n"));//save tracking
-                    //ot.Tracking.Add(Tuple.Create(null, "The order has been delivered\n"));//save tracking
-                    return ot;
-                }
-                if (item?.OrderDate == DateTime.Now)//if order created now
-                {
-                    ot.Status = BO.Enums.Status.JustOrdered;//save status
-                    ot.Tracking.Add(Tuple.Create( DateTime.Now,"The order has been created\n"));//save tracking
-                    //ot.Tracking.Add(Tuple.Create (item?.ShipDate??throw new BO.UnfoundException(), "The order has been shipped\n"));//save tracking
-                    //ot.Tracking.Add(Tuple.Create(item?.DeliveryDate ?? throw new BO.UnfoundException(), "The order has been delivered\n" ));//save tracking
-                    return ot;
-                }
-               
-                
-            }
+           order = (DO.Order)DOList?.Order.GetById(orderId)!;//get the requested order from dal
         }
-        throw new BO.UnfoundException("Order does not exist\n");//order does not exist
+        catch
+        {
+            throw new BO.UnfoundException("The order requested does not exist\n");//order does not exist
+        }
+        return new OrderTracking()
+        {
+            ID = orderId,
+            Status = GetStatus(order),
+            Tracking = new List<Tuple<DateTime?, string>> { new Tuple<DateTime?, string>(order.OrderDate, "approved"), new Tuple<DateTime?, string>(order.ShipDate, "sent"),
+            new Tuple<DateTime?, string>(order.DeliveryDate, "delivered")}
+        };//create new order tracking
+       
     }//get order id, check if exists, and build strings of dates and status in DO orders
 
 

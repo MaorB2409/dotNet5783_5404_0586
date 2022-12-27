@@ -7,23 +7,47 @@
         mc:Ignorable="d"
         Title="ListView" Height="640" Width="800">
     <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MainC1" Width="*"/>
+            <ColumnDefinition x:Name="MainC2" Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="0"
              VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <ComboBox Name="AttributeSelector" Grid.Column="1" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged" Text="" />
-            <Label Name="Description" Content="Product:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
+            <Label Name="Description" Content="Products:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
                    Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
         </Grid>
-        <ListView x:Name="ItemListview" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
+        <Grid Name="OrderGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
+             VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Label Name="OrderDescription" Content="Orders:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
+                   Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
+        </Grid>
+        <ListView x:Name="ItemListview" Grid.Column="0" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
                   FontSize="18" Width="800" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="ItemListview_updates">
+            <ListView.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+            </ListView.Foreground>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="OrderListview" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
+                  FontSize="18" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="Orders_updates" Margin="0,0,0,45" Grid.RowSpan="2">
             <ListView.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </ListView.Foreground>

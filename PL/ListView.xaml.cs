@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,14 +29,17 @@ namespace PL
             try
             {
                 ItemListview.ItemsSource = bl?.Product.GetProductsForList();//get products for list from BO
+                OrderListview.ItemsSource = bl?.Order.GetAllOrderForList();
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("List View Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("getting products failed-id is null\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
+            }
+            catch(BO.IdNotExistException ex){
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+            }
+            catch (BO.IncorrectInput ex){
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
             }
             AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
@@ -53,11 +57,6 @@ namespace PL
                 catch (BO.Exceptions ex)
                 {
                     new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
-                    //Console.WriteLine("List View Window\n");
-                    //Console.WriteLine(ex.Message);
-                    //Console.WriteLine("getting products failed-id is null\n");
-                    //Console.WriteLine(ex.InnerException?.ToString());
-                    //id is null error on screen
                 }
                 AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//show all of combobox options
                 return;
@@ -71,11 +70,6 @@ namespace PL
                 catch (BO.Exceptions ex)
                 {
                     new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
-                    //Console.WriteLine("List View Window\n");
-                    //Console.WriteLine(ex.Message);
-                    //Console.WriteLine("getting products failed-id is null\n");
-                    //Console.WriteLine(ex.InnerException?.ToString());
-                    //id is null error on screen
                 }
             }
 
@@ -88,11 +82,6 @@ namespace PL
             catch (BO.Exceptions ex)
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("List View Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("getting products failed-id is null\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
-                ////id is null error on screen
             }
         }
 
@@ -106,11 +95,6 @@ namespace PL
             catch (BO.Exceptions ex)
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("List View Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("getting products failed-id is null\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
-                //id is null error on screen
             }
         }
 
@@ -127,16 +111,29 @@ namespace PL
             catch (BO.Exceptions ex)
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("List View Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("getting products failed-id is null\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
-                ////id is null error on screen
+                //id is null error on screen
             }
 
         }
+        private void Orders_updates(object sender, MouseButtonEventArgs e)
+        {
+            if (ItemListview.SelectedItem is OrderForList orderForList)
+            {
+                new UpdateOrdersAdmin(orderForList).ShowDialog();
+            }
+            try
+            {
+                ItemListview.ItemsSource = bl?.Order.GetAllOrderForList();//update order list view 
+            }
+            catch (BO.Exceptions ex)
+            {
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                //id is null error on screen
+            }
 
-
+        }
         
+
+
     }
 }

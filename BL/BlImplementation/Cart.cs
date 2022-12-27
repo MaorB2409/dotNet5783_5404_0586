@@ -88,12 +88,29 @@ internal class Cart:ICart
         }
         throw new BO.IdNotExistException("The product requested does not exist");
     }
-    public void MakeOrder(BO.Cart myCart, string CustomerName, string CustomerEmail, string CustomerAddress)
+    public void MakeOrder(BO.Cart myCart)
     {
-        if (CustomerName == "" || CustomerEmail=="" || CustomerAddress=="")//check input
+        if (myCart.CustomerName == "" || myCart.CustomerEmail =="" || myCart.CustomerAddress =="")//check input
         {
             throw new BO.UnfoundException("Incorrect Input of an order entered");
         }
+        //IEnumerable<DO.Product?> productList = DOList?.Product.GetAll()!;//get all products from dal
+        //IEnumerable<string> checkOrderItem = from BO.OrderItem item in myCart.orderItems!
+        //                                     let product = productList.FirstOrDefault(x => x?.ID == item.ID)
+        //                                     where item.Amount < 1 || product?.InStock < item.Amount
+        //                                     select item.ProductName + " is not in stock\n";//check if all of the products in cart are in stock
+        //if (checkOrderItem.Any())//if no products are available 
+        //    throw new BO.NoApproval(checkOrderItem.ToString()!);
+
+        //DOList?.Order.Add(new DO.Order() { CostumerAddress=myCart.CustomerAddress!,
+        //CostumerEmail=myCart.CustomerEmail!,CostumerName=myCart.CustomerName!,IsDeleted=false});//add a new order for the cart
+        //                                                                                        // myCart.orderItems!.ForEach(x => DOList?.OrderItem.Add(x?.CopyPropTo(new DO.OrderItem())));
+
+        //IEnumerable<DO.Product?> products=from item in myCart.orderItems
+        //                                  select DOList?.Product.GetById(item.ProductID);//list of products in cart
+        ////products.Zip(myCart.orderItems, (first, second) => first.InStock -= second!.Amount).ToList().ForEach(x => DOList?.Product.GetByFilter(x));
+        ////update the amount of products
+
         DO.OrderItem oi = new();//create order item
         foreach (BO.OrderItem? item in myCart.orderItems!)//go over orderItems in the cart
         {
