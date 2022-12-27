@@ -101,17 +101,23 @@ public class DalOrderItem : IOrderItem
 
     public OrderItem GetByFilter(Func<OrderItem?, bool>? filter)
     {
-        if(filter == null)
+        if (filter == null)
         {
             throw new ArgumentNullException(nameof(filter));//filter is null
         }
-        foreach (OrderItem? o in _ds.orderItemList)
+        OrderItem? o = _ds.orderItemList.FirstOrDefault(x => x != null && x?.IsDeleted == false && filter(x));
+        if (o != null)
         {
-            if (o!=null && o?.IsDeleted == false && filter(o))
-            {
-                return (OrderItem)o;
-            }
+            return (OrderItem)o;
         }
+      
+        //foreach (OrderItem? o in _ds.orderItemList)
+        //{
+        //    if (o!=null && o?.IsDeleted == false && filter(o))
+        //    {
+        //        return (OrderItem)o;
+        //    }
+        //}
         throw new Exceptions("The order item requested does not exist\n");
     }
 }

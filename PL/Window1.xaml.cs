@@ -31,7 +31,7 @@ namespace PL
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
         }
-        public Window1(ProductForList productForList)
+        public Window1(ProductForList productForList)//update ctor
         {
             InitializeComponent();
             bl = BlApi.Factory.Get();//new bl
@@ -40,6 +40,11 @@ namespace PL
             updateButton.Visibility = Visibility.Visible;//show update
             tid.Text = productForList.ID.ToString();
             tid.IsReadOnly = true;//cant change id in update 
+            tname.Text = productForList.ProductName!.ToString();
+            tprice.Text = productForList.Price.ToString();
+            tinstock.Text = bl!.Product.ManagerProduct(productForList.ID).InStock.ToString();
+            CategoryBox.Text = productForList.Category.ToString();
+            
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
@@ -74,18 +79,12 @@ namespace PL
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("Add Product Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("your input is incorrect\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
+               
             }
             catch (BO.IdExistException ex)//IdExistException error on the screen 
             {
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("Add Product Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("the ID you requested to add already exists\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
+               
             }
             //trigger of a pup op message
             tid.Text = "Enter ID";
@@ -106,18 +105,10 @@ namespace PL
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("Add Product Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("your input is incorrect\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
             }
             catch (BO.IdNotExistException ex)//IdExistException error on the screen 
             {
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
-                //Console.WriteLine("Add Product Window\n");
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("the ID you requested to update does not exists\n");
-                //Console.WriteLine(ex.InnerException?.ToString());
             }
             tid.Text = "Enter ID";
             tname.Text = "Enter Name";
@@ -180,17 +171,26 @@ namespace PL
 
         private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            tname.Clear();
+            if (tname.Text == "Enter Name")
+            {
+                tname.Clear();//clear the default text
+            }
         }
 
         private void tprice_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            tprice.Clear();
+            if (tprice.Text == "Enter Price")
+            {
+                tprice.Clear();//clear the default text
+            }
         }
 
         private void tinstock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            tinstock.Clear();
+            if (tinstock.Text == "Enter Amount")
+            {
+                tinstock.Clear();//clear the default text
+            }
         }
 
       
