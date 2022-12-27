@@ -40,6 +40,10 @@ namespace PL
             updateButton.Visibility = Visibility.Visible;//show update
             tid.Text = productForList.ID.ToString();
             tid.IsReadOnly = true;//cant change id in update 
+            tname.Text = productForList.ProductName!.ToString();
+            tprice.Text = productForList.Price.ToString();
+            tinstock.Text = bl!.Product.ManagerProduct(productForList.ID).InStock.ToString();
+            CategoryBox.Text = productForList.Category.ToString();
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {

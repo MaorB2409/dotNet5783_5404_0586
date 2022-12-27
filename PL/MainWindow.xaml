@@ -13,17 +13,49 @@
             <Setter Property="FontSize" Value="27"/>
         </Style>
     </Window.Resources>
-    <Grid Background="LightGray">
+    
+    <!--<Grid Background="LightGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="243*"/>
             <ColumnDefinition Width="157*"/>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="ToOtherWindow" Content="View Product" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80" HorizontalAlignment="Left" Margin="300,187,0,0" VerticalAlignment="Top" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
+        </Grid.ColumnDefinitions>-->
+    <Border Padding="10" Background="#eee">
+
+        <StackPanel>
+            
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
+            </StackPanel.Background>
+            <Button x:Name ="CartWindow" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,10,0,0" Click="CartWindow_Click">
+
+                <Button.Background>
+                    <ImageBrush ImageSource="/cartBtn.jpg"/>
+                </Button.Background>
+
+            </Button>
+            <Button x:Name="ToOtherWindow" Content="Manager View" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
+                Background="LavenderBlush" Width="200" Height="80" Margin="200,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
+            <Button x:Name="NewOrderWindow" Content="Create A New Order"  FontSize="20" FontWeight="Bold" FontStyle="Italic" 
+                Background="LavenderBlush" Width="200" Height="80"  Margin="200,20,200,0" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.ColumnSpan="2" Click="NewOrderWindow_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="TrackOrderWindow" Content="Track Order"  FontSize="25" FontWeight="Bold" FontStyle="Italic" 
+                Background="LavenderBlush" Width="200" Height="80" Margin="200,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="TrackOrderWindow_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
 
-    </Grid>
+           
+
+        </StackPanel>
+    </Border>
+
+    <!--</Grid>-->
 </Window>

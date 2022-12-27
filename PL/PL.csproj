@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Remove="cartBtn.jpg" />
     <None Remove="errorIcon.png" />
+    <None Remove="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
   <ItemGroup>
     <Resource Include="cartBtn.jpg" />
     <Resource Include="errorIcon.png" />
+    <Resource Include="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
   </ItemGroup>
 
 </Project>

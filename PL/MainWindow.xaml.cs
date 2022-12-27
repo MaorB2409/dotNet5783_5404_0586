@@ -31,5 +31,20 @@ namespace PL
             new ListView(bl!).ShowDialog();
             Close();//close this window
         }
+
+        private void TrackOrderWindow_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void NewOrderWindow_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void CartWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
