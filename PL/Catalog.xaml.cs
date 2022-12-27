@@ -21,14 +21,11 @@ namespace PL
     /// </summary>
     public partial class Catalog : Window
     {
-        //public Catalog()
-        //{
-        //    InitializeComponent();
-        //}
+       
 
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.ProductItem p = new BO.ProductItem();
-        public Catalog()//add ctor
+        public Catalog()//empty ctor
         {
             InitializeComponent();
             bl = BlApi.Factory.Get();//new bl
