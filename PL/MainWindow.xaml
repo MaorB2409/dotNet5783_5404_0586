@@ -33,6 +33,7 @@
                 </Button.Background>
 
             </Button>
+            
             <Button x:Name="ToOtherWindow" Content="Manager View" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
                 Background="LavenderBlush" Width="200" Height="80" Margin="200,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
             <Button.Effect>

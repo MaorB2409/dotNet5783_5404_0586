@@ -8,54 +8,31 @@
         Title="Catalog" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions >
-        <Label Name="l1" Content="ID:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="345,0,0,0"/>
-        <Label Name="l2" Content="Name:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="300,0,0,0"/>
-        <Label Name="l3" Content="Price:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="78" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Margin="311,0,0,0"/>
-        <Label Name="l4" Content="Category:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="66" Width="144" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="263,0,0,0"/>
-        <Label Name="l5" Content="In Stock:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="278,6,0,0"/>
-        <Label Name="l6" Content="Amount:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Margin="278,0,0,0"/>
-
-        <ComboBox Name="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="190" Height="33" SelectionChanged="ComboBox_SelectionChanged"/>
-        <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Center" Width="214" Height="40"
-                 PreviewTextInput="tid_previewtextinput" PreviewMouseDown="tid_PreviewMouseDown"/>
-        <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="214" Height="40" 
-                 PreviewTextInput="tname_previewtextinput"  PreviewMouseDown="tname_PreviewMouseDown" />
-        <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="214" Height="40" 
-                 PreviewTextInput="tprice_previewtextinput" PreviewMouseDown="tprice_PreviewMouseDown"/>
-        <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Is In Stock?" VerticalAlignment="Center" Width="214" Height="40"
-                 PreviewTextInput="tinstock_previewtextinput" PreviewMouseDown="tinstock_PreviewMouseDown"/>
-        <TextBox Name="tAmount" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Center" Width="214" Height="40" />
-        <!--<Button Name="addButton" Content="Add" FontSize="27" FontStyle="Italic" 
-                HorizontalAlignment="Left" Margin="128,2,0,3" Grid.Row="6" Width="140" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Click="addButton_Click" Grid.Column="1">-->
-        <!--<Button.BorderBrush>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="0"
+             VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox Name="AttributeSelector" Grid.Column="1" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged" Text="" />
+            <Label Name="Description" Content="Products:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
+                   Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
+        </Grid>
+        <ListView x:Name="ItemListview" Grid.Column="0" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
+                  FontSize="18" Width="800" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="ItemListview_updates">
+            <ListView.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </Button.BorderBrush>
-        </Button>-->
-        <!--<Button Name="updateButton" Content="Update" FontSize="27" FontStyle="Italic" 
-                HorizontalAlignment="Left" Margin="324,2,0,3" Grid.Row="6" Width="140" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Click="updateButton_Click" Grid.ColumnSpan="2">
-            <Button.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </Button.BorderBrush>
-        </Button>-->
-
+            </ListView.Foreground>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 
 </Window>

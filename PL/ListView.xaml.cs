@@ -29,7 +29,7 @@ namespace PL
             try
             {
                 ItemListview.ItemsSource = bl?.Product.GetProductsForList();//get products for list from BO
-                OrderListview.ItemsSource = bl?.Order.GetAllOrderForList();
+                OrderListview.ItemsSource = bl?.Order.GetAllOrderForList();//get orders for list from BO
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {

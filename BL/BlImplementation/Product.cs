@@ -132,7 +132,7 @@ internal class Product:BlApi.IProduct
                 where prods != null && prods?.IsDeleted == false
                 select new ProductItem()
                 {
-                    ID = prods?.ID ?? throw new Exception(),
+                    ID = prods?.ID ?? throw new BO.IdNotExistException("The product id does not exist"),
                     ProductName = prods?.Name!,
                     Price = (double)prods?.Price!,
                     Amount = (int)prods?.InStock!,
