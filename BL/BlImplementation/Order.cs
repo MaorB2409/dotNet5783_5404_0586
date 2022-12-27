@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ internal class Order : BlApi.IOrder
     {
         if (id < 0)//id is negative
         {
-            throw new BO.IdNotExistException();
+            throw new BO.IdNotExistException("Order ID is null");
         }
         DO.Order ord;
         try
@@ -71,9 +72,9 @@ internal class Order : BlApi.IOrder
                 CostumerAddress = ord.CostumerAddress,
                 CostumerEmail = ord.CostumerEmail,
                 CostumerName = ord.CostumerName,
-                OrderDate = ord.OrderDate ?? throw new Exception(),
-                ShipDate = ord.ShipDate ?? throw new Exception(),
-                DeliveryDate = ord.DeliveryDate ?? throw new Exception(),
+                OrderDate = ord.OrderDate ?? throw new BO.Exceptions("Order Date is null"),
+                ShipDate = ord.ShipDate ?? throw new BO.Exceptions("Ship Date is null"),
+                DeliveryDate = ord.DeliveryDate ?? throw new BO.Exceptions("Delivery Date is null"),
                 Status = GetStatus(ord),
                 TotalPrice = priceTemp,
                 IsDeleted = ord.IsDeleted

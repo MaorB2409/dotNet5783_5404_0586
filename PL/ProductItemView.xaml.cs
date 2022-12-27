@@ -29,15 +29,12 @@ namespace PL
                 InitializeComponent();
                 bl = BlApi.Factory.Get();//new bl
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-                                                                                    //updateButton.Visibility = Visibility.Collapsed;//update invisible 
             }
             public ProductItemView(ProductItem productItem)
             {
                 InitializeComponent();
                 bl = BlApi.Factory.Get();//new bl
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-                                                                                    //addButton.Visibility = Visibility.Collapsed;//add invisible
-                                                                                    //updateButton.Visibility = Visibility.Visible;//show update
                 tid.Text = productItem.ID.ToString();
                 tid.IsReadOnly = true;//cant change id in update 
                 tname.Text = productItem.ProductName!.ToString();

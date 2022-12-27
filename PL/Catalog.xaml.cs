@@ -34,7 +34,7 @@ namespace PL
             }
             catch (BO.IdNotExistException ex)
             {
-                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
 
         }

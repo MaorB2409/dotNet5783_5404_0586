@@ -1,0 +1,59 @@
+﻿<Window x:Class="PL.OrderView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="OrderView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="Col1" Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions >
+        <Label Name="l1" Content="Order ID:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+              HorizontalAlignment="Right"/>
+        <Label Name="l2" Content="Customer Name:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" Grid.Row="1"/>
+        <Label Name="l3" Content="Customer Email:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" Grid.Row="2"/>
+        <Label Name="l4" Content="Customer Address:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" Grid.Row="3"/>
+        <Label Name="l5" Content="OrderDate:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" Grid.Row="4"/>
+        <Label Name="l6" Content="ShipDate:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" Grid.Row="5"/>
+        <Label Name="l7" Content="DeliveryDate:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" Grid.Row="6"/>
+        <Label Name="l8" Content="Status:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
+              HorizontalAlignment="Right"/>
+        <Label Name="l10" Content="TotalPrice:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
+              HorizontalAlignment="Right"/>
+        <Label Name="l9" Content="orderItems:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="9"
+              HorizontalAlignment="Right"/>
+        <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
+        <TextBox Name="tname" Grid.Column="1" Grid.Row="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
+        <TextBox Name="temail" Grid.Column="1" Grid.Row="2" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
+        <TextBox Name="taddress" Grid.Column="1" Grid.Row="3" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
+        <Calendar x:Name="orderdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <Calendar x:Name="shipdate" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <Calendar x:Name="deliverydate" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <ComboBox Name="statusBox" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="10,39,0,39" Grid.RowSpan="3" Width="179"/>
+        <TextBox Name="tprice" Grid.Column="1" Grid.Row="8" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
+
+        
+    </Grid>
+</Window>
