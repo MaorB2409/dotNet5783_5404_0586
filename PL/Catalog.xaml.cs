@@ -78,7 +78,7 @@ namespace PL
                 new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
         }
-        private void ItemListview_updates(object sender, MouseButtonEventArgs e)
+        private void ItemListview_click(object sender, MouseButtonEventArgs e)
         {
             if (ItemListview.SelectedItem is ProductItem productItem)
             {

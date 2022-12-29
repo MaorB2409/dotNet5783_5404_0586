@@ -24,25 +24,25 @@
             <ColumnDefinition x:Name="Col1" Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Label Name="l1" Content="Order ID:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
               HorizontalAlignment="Right"/>
-        <Label Name="l2" Content="Customer Name:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l2" Content="Customer Name:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="1"/>
-        <Label Name="l3" Content="Customer Email:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l3" Content="Customer Email:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="2"/>
-        <Label Name="l4" Content="Customer Address:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l4" Content="Customer Address:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="3"/>
-        <Label Name="l5" Content="OrderDate:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l5" Content="OrderDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="4"/>
-        <Label Name="l6" Content="ShipDate:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l6" Content="ShipDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="5"/>
-        <Label Name="l7" Content="DeliveryDate:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Name="l7" Content="DeliveryDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="6"/>
-        <Label Name="l8" Content="Status:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
+        <Label Name="l8" Content="Status:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
               HorizontalAlignment="Right"/>
-        <Label Name="l10" Content="TotalPrice:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
+        <Label Name="l10" Content="TotalPrice:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
               HorizontalAlignment="Right"/>
-        <Label Name="l9" Content="orderItems:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="9"
+        <Label Name="l9" Content="orderItems:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="9"
               HorizontalAlignment="Right"/>
         <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
         <TextBox Name="tname" Grid.Column="1" Grid.Row="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />

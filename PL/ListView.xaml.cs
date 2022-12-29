@@ -117,13 +117,13 @@ namespace PL
         }
         private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
-            if (ItemListview.SelectedItem is OrderForList orderForList)
+            if (OrderListview.SelectedItem is OrderForList orderForList)
             {
                 new UpdateOrdersAdmin(orderForList).ShowDialog();
             }
             try
             {
-                ItemListview.ItemsSource = bl?.Order.GetAllOrderForList();//update order list view 
+                OrderListview.ItemsSource = bl?.Order.GetAllOrderForList();//update order list view 
             }
             catch (BO.Exceptions ex)
             {

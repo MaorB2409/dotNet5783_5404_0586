@@ -18,12 +18,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Label Name="l1" Content="ID:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="345,0,0,0"/>
-        <Label Name="l2" Content="Status:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="300,0,0,0"/>
-        <Label Name="l3" Content="Tracking:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
-               Height="50" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Margin="280,0,0,0"/>
+        <Label Name="l1" Content="ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label Name="l2" Content="Status:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+              HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+        <Label Name="l3" Content="Tracking:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" />
         <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Center" Width="214" Height="40"/>
         <ComboBox Name="StatusBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="190" Height="33" />
         <TextBox Name="ttracking" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Tracking" VerticalAlignment="Center" Width="214" Height="40"/>

@@ -25,11 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="cartBtn.jpg" />
-    <Resource Include="download.jpg" />
-    <Resource Include="errorIcon.png" />
-    <Resource Include="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
-    <Resource Include="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
+    <Resource Include="images\cartBtn.jpg" />
+    <Resource Include="images\download.jpg" />
+    <Resource Include="images\errorIcon.png" />
+    <Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
+    <Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
   </ItemGroup>
 
 </Project>
