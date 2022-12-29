@@ -23,7 +23,7 @@
                    Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
         </Grid>
         <ListView x:Name="ItemListview" Grid.Column="0" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
-                  FontSize="18" Width="800" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="ItemListview_updates">
+                  FontSize="18" Width="800" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="ItemListview_click">
             <ListView.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </ListView.Foreground>

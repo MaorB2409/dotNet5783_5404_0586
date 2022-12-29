@@ -35,21 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="4d626f34e71b87949f2bbf44cf4c0232.jpg" />
-    <Resource Include="7bc006adf238a27ab665999d6c7875f6.jpg" />
-    <Resource Include="9434af2f3fc993cacaed615eb4561deb.jpg" />
-    <Resource Include="9dc43e58583211eea3e95ff2397b693a.jpg" />
-    <Resource Include="b62d3cb99ce21bd2baed6aea28bca8d8.jpg" />
-    <Resource Include="cartBtn.jpg" />
-    <Resource Include="download.jpg" />
-    <Resource Include="e5050d6d674763135efe2ac898416df4.jpg" />
-    <Resource Include="e8faa395ecab57e4f66a0fad35c0d073.jpg" />
-    <Resource Include="errorIcon.png" />
-    <Resource Include="istockphoto-1284843286-612x612.jpg" />
-    <Resource Include="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
-    <Resource Include="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
-    <Resource Include="organized-workspace.jpg" />
-    <Resource Include="resize-161043321239661085posterwithverticalframesemptywhitewalllivingroominteriorwithbluevelvetarmchair3drendering.jpg" />
+    <Resource Include="images\cartBtn.jpg" />
+    <Resource Include="images\download.jpg" />
+    <Resource Include="images\errorIcon.png" />
+    <Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
+    <Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
   </ItemGroup>
 
 </Project>
