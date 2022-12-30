@@ -7,18 +7,19 @@
         mc:Ignorable="d"
         Title="EndingWindow" Height="450" Width="800">
 
+    <Border CornerRadius="52" BorderThickness="10" BorderBrush="White">
+        <Border Padding="10" Background="#eee" CornerRadius="35" BorderThickness="10">
 
-    <Border Padding="10" Background="#eee">
-
-        <StackPanel>
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
-            </StackPanel.Background>
-            <TextBlock x:Name="EndingText" Text="Your Order" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" />
-            <TextBlock x:Name="EndingText2" Text="Has Been Successfully Placed!" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" Foreground="Black" />
+            <StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
+                </StackPanel.Background>
+                <TextBlock x:Name="EndingText" Text="Your Order" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" />
+                <TextBlock x:Name="EndingText2" Text="Has Been Successfully Placed!" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" Foreground="Black" />
 
 
 
-        </StackPanel>
+            </StackPanel>
+        </Border>
     </Border>
 </Window>

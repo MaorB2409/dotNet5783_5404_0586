@@ -23,28 +23,29 @@ namespace PL
     public partial class Window1 : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private BO.Product p = new BO.Product();
-        public Window1()//add ctor
+        BO.Product p = new();//bo product
+        public Window1(BlApi.IBl? b)//add ctor
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
+            DataContext = p;//set product as data context
+
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
+            tid.IsEnabled = false;//cant decide an id for a product to add
         }
-        public Window1(ProductForList productForList)//update ctor
+        public Window1(BlApi.IBl? b,ProductForList productForList)//update ctor
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
+            p = new(){ ID = productForList.ID, Price = productForList.Price, Name = productForList.ProductName, Category = productForList.Category };
+            p.InStock = bl!.Product.ManagerProduct(productForList.ID).InStock;//get and save instock for BO product 
+            DataContext = p;//set product as data context
+
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             addButton.Visibility = Visibility.Collapsed;//add invisible
             updateButton.Visibility = Visibility.Visible;//show update
-            tid.Text = productForList.ID.ToString();
-            tid.IsReadOnly = true;//cant change id in update 
-            tname.Text = productForList.ProductName!.ToString();
-            tprice.Text = productForList.Price.ToString();
-            tinstock.Text = bl!.Product.ManagerProduct(productForList.ID).InStock.ToString();
-            CategoryBox.Text = productForList.Category.ToString();
-            
+            tid.IsReadOnly = true;//cant change id of a product to update                                            
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
@@ -64,11 +65,6 @@ namespace PL
         {
             e.Handled = new Regex("[^a-z]+").IsMatch(e.Text);//only get letters 
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            p.Category = (BO.Enums.Category)CategoryBox.SelectedItem;//save the category picked
-
-        }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
@@ -86,11 +82,7 @@ namespace PL
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
                
             }
-            //trigger of a pup op message
-            tid.Text = "Enter ID";
-            tname.Text = "Enter Name";
-            tprice.Text = "Enter Price";
-            tinstock.Text = "Enter Amount";//returned previous text
+            
             Close();//close this window
 
 
@@ -110,57 +102,11 @@ namespace PL
             {
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
             }
-            tid.Text = "Enter ID";
-            tname.Text = "Enter Name";
-            tprice.Text = "Enter Price";
-            tinstock.Text = "Enter Amount";//returned previous text
+            
             Close();//close this window
         }
 
-        private void tid_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (tid != null && tid.Text != "")
-            {
-                if (int.TryParse(tid.Text, out int val))
-                {
-                    p.ID = val;
-                }
-                //else error
-            }
-        }
-
-        private void tname_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (tname != null && tname.Text != "")
-            {
-                p.Name = tname.Text;
-            }
-        }
-
-        private void tprice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (tprice != null && tprice.Text != "")
-            {
-                if (int.TryParse(tprice.Text, out int val))
-                {
-                    p.Price = val;
-                }
-                //else error
-            }
-        }
-
-        private void tinstock_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (tinstock != null && tinstock.Text != "")
-            {
-                if (int.TryParse(tinstock.Text, out int val))
-                {
-                    p.InStock = val;
-                }
-                //else error
-            }
-        }
-
+       
         private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if(tid.Text=="Enter ID")

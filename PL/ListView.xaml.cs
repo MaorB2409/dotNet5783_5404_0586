@@ -87,7 +87,7 @@ namespace PL
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-             new Window1().ShowDialog();
+             new Window1(bl).ShowDialog();
             try
             {
                 ItemListview.ItemsSource = bl?.Product.GetProductsForList();//update list view after add
@@ -102,7 +102,7 @@ namespace PL
         {
             if(ItemListview.SelectedItem is ProductForList productForList)
             {
-                new Window1(productForList).ShowDialog();
+                new Window1(bl,productForList).ShowDialog();
             }
             try
             {

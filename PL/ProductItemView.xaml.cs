@@ -23,29 +23,26 @@ namespace PL
     {
 
             BlApi.IBl? bl = BlApi.Factory.Get();
-            private BO.ProductItem p = new BO.ProductItem();
+            private BO.Product p = new BO.Product();
             public ProductItemView()//empty ctor
             {
                 InitializeComponent();
                 bl = BlApi.Factory.Get();//new bl
+                DataContext = p;
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             }
             public ProductItemView(ProductItem productItem)
             {
                 InitializeComponent();
                 bl = BlApi.Factory.Get();//new bl
+                DataContext = productItem;
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-                tid.Text = productItem.ID.ToString();
-                tid.IsReadOnly = true;//cant change id in update 
-                tname.Text = productItem.ProductName!.ToString();
-                tname.IsReadOnly = true;
-                tprice.Text = productItem.Price.ToString();
-                tprice.IsReadOnly = true;
-                tinstock.Text = bl!.Product.ManagerProduct(productItem.ID).InStock.ToString();
-                tinstock.IsReadOnly = true;
-                CategoryBox.Text = productItem.Category.ToString();
                 CategoryBox.IsReadOnly = true;
-                tAmount.Text = productItem.Amount.ToString();
+                tid.IsReadOnly = true;//cant change id in update 
+                tname.IsReadOnly = true;
+                tprice.IsReadOnly = true;
+                tinstock.IsReadOnly = true;
+                CategoryBox.IsReadOnly = true;
                 tAmount.IsReadOnly = true;
 
             }
