@@ -21,19 +21,20 @@ namespace PL
     /// </summary>
     public partial class UpdateOrdersAdmin : Window
     {
+        
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Order p = new BO.Order();
-        public UpdateOrdersAdmin()
+        public UpdateOrdersAdmin(BlApi.IBl? b)
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
         }
-        public UpdateOrdersAdmin(OrderForList orderForList)
+        public UpdateOrdersAdmin(OrderForList orderForList, BlApi.IBl? b)
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateButton.Visibility = Visibility.Visible;//show update
             tid.Text = orderForList.ID.ToString();

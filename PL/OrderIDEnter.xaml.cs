@@ -22,17 +22,17 @@ namespace PL
     public partial class OrderIDEnter : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public OrderIDEnter()
+        public OrderIDEnter(BlApi.IBl b)
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             IdEnter.Text = "";
         }
 
         private void OKBtn_Click(object sender, RoutedEventArgs e)
         {
             int id = int.Parse(IdEnter.Text);//save the entered id as a number
-            new OrderTracking(id).ShowDialog();//open order tracking window with entered id
+            new OrderTracking(id,bl!).ShowDialog();//open order tracking window with entered id
             this.Close();//close current window
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)

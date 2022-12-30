@@ -24,17 +24,17 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.OrderTracking orderTracking = new();
-        public OrderTracking()//empty ctor
+        public OrderTracking(BlApi.IBl? b)//empty ctor
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
 
 
         }
-        public OrderTracking(int id)
+        public OrderTracking(int id, BlApi.IBl? b)
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
 
 
             try
@@ -55,7 +55,7 @@ namespace PL
 
         private void OrderDetails_Click(object sender, RoutedEventArgs e)
         {
-            new OrderView(orderTracking.ID).ShowDialog();
+            new OrderView(orderTracking.ID,bl!).ShowDialog();
             Close();//close this window
         }
     }

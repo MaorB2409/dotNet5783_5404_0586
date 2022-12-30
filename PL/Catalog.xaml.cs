@@ -23,10 +23,10 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.ProductItem p = new BO.ProductItem();
-        public Catalog()
+        public Catalog(BlApi.IBl b)
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             try
             {
@@ -82,7 +82,7 @@ namespace PL
         {
             if (ItemListview.SelectedItem is ProductItem productItem)
             {
-                new ProductItemView(productItem).ShowDialog();
+                new ProductItemView(bl!).ShowDialog();
             }
             try
             {

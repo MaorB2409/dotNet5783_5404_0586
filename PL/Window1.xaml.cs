@@ -24,17 +24,17 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product p = new BO.Product();
-        public Window1()//add ctor
+        public Window1(BlApi.IBl? b)//add ctor
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
         }
-        public Window1(ProductForList productForList)//update ctor
+        public Window1(ProductForList productForList, BlApi.IBl? b)//update ctor
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             addButton.Visibility = Visibility.Collapsed;//add invisible
             updateButton.Visibility = Visibility.Visible;//show update

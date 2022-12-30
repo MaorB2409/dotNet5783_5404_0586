@@ -24,16 +24,16 @@ namespace PL
 
             BlApi.IBl? bl = BlApi.Factory.Get();
             private BO.ProductItem p = new BO.ProductItem();
-            public ProductItemView()//empty ctor
+            public ProductItemView(BlApi.IBl? b)//empty ctor
             {
                 InitializeComponent();
-                bl = BlApi.Factory.Get();//new bl
+                bl = b;//new bl
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             }
-            public ProductItemView(ProductItem productItem)
+            public ProductItemView(ProductItem productItem, BlApi.IBl? b)
             {
                 InitializeComponent();
-                bl = BlApi.Factory.Get();//new bl
+                bl = b;//new bl
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
                 tid.Text = productItem.ID.ToString();
                 tid.IsReadOnly = true;//cant change id in update 

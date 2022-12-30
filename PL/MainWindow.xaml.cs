@@ -24,6 +24,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
@@ -34,12 +35,12 @@ namespace PL
 
         private void TrackOrderWindow_Click(object sender, RoutedEventArgs e)
         {
-            new OrderIDEnter().ShowDialog();//open order id window to view an order and track it
+            new OrderIDEnter(bl!).ShowDialog();//open order id window to view an order and track it
         }
 
         private void NewOrderWindow_Click(object sender, RoutedEventArgs e)
         {
-            new Catalog().ShowDialog();
+            new Catalog(bl!).ShowDialog();
             Close();//close this window
 
         }

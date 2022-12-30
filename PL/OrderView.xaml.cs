@@ -22,10 +22,10 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Order o = new();
-        public OrderView(int id)
+        public OrderView(int id, BlApi.IBl? b)
         {
             InitializeComponent();
-            bl = BlApi.Factory.Get();//new bl
+            bl = b;//new bl
             try
             {
                 o = bl?.Order.GetBoOrder(id)!;//get the order from BO with matching id
