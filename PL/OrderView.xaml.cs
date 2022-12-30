@@ -38,18 +38,8 @@ namespace PL
             {
                 new ErrorWindow("Order View Window\n",ex.Message).ShowDialog();
             }
-            tid.Text=o.ID.ToString();
-            tid.IsReadOnly = true;
-            tname.Text = o.CostumerName?.ToString();
-            tname.IsReadOnly = true;
-            taddress.Text=o.CostumerAddress?.ToString();
-            taddress.IsReadOnly = true;
-            temail.Text=o.CostumerEmail?.ToString();
-            temail.IsReadOnly = true;
-            tprice.Text=o.TotalPrice.ToString();
-            tprice.IsReadOnly = true;
-            statusBox.Text = o.Status.ToString();
-            statusBox.IsReadOnly = true;
+            DataContext = o;
+
             orderdate.DisplayDate = (System.DateTime)o.OrderDate!;
             shipdate.DisplayDate = (System.DateTime)o.ShipDate!;
             deliverydate.DisplayDate = (System.DateTime)o.DeliveryDate!;

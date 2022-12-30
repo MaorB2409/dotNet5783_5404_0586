@@ -37,12 +37,8 @@ namespace PL
             bl = b;//new bl
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateButton.Visibility = Visibility.Visible;//show update
-            tid.Text = orderForList.ID.ToString();
             tid.IsReadOnly = true;//cant change id in update 
-            tname.Text = orderForList.Name!.ToString();
-            tamount.Text=orderForList.Amount.ToString();
-            tprice.Text = orderForList.TotalPrice.ToString();
-            statusBox.Text = orderForList.Status.ToString();
+            
         }
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {

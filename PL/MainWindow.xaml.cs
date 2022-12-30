@@ -24,7 +24,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-
+            bl = BlApi.Factory.Get();
         }
 
         private void ToOtherWindow_Click(object sender, RoutedEventArgs e)

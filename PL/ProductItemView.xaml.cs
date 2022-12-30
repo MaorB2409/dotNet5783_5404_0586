@@ -35,17 +35,12 @@ namespace PL
                 InitializeComponent();
                 bl = b;//new bl
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-                tid.Text = productItem.ID.ToString();
-                tid.IsReadOnly = true;//cant change id in update 
-                tname.Text = productItem.ProductName!.ToString();
-                tname.IsReadOnly = true;
-                tprice.Text = productItem.Price.ToString();
-                tprice.IsReadOnly = true;
-                tinstock.Text = bl!.Product.ManagerProduct(productItem.ID).InStock.ToString();
-                tinstock.IsReadOnly = true;
-                CategoryBox.Text = productItem.Category.ToString();
                 CategoryBox.IsReadOnly = true;
-                tAmount.Text = productItem.Amount.ToString();
+                tid.IsReadOnly = true;//cant change id in update 
+                tname.IsReadOnly = true;
+                tprice.IsReadOnly = true;
+                tinstock.IsReadOnly = true;
+                CategoryBox.IsReadOnly = true;
                 tAmount.IsReadOnly = true;
 
             }
