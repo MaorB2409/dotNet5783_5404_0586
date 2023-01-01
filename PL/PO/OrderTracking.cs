@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace PL.PO
 {
-    internal class OrderForList : INotifyPropertyChanged
+    internal class OrderTracking : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+
         private int id;
         public int ID
         {
@@ -26,20 +27,6 @@ namespace PL.PO
             }
         }
 
-        private string? name;
-        public string? Name
-        {
-            get
-            { return name; }
-            set
-            {
-                name = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("CostumerName"));
-                }
-            }
-        }
         private Enums.Status status;
         public Enums.Status Status
         {
@@ -54,34 +41,21 @@ namespace PL.PO
                 }
             }
         }
-        private int amount;
-        public int Amount
-        {
-            get
-            { return amount; }
-            set
-            {
-                amount = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Amount"));
-                }
-            }
-        }
-        private double totalPrice;
-        public double TotalPrice
-        {
-            get
-            { return totalPrice; }
-            set
-            {
-                totalPrice = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("TotalPrice"));
-                }
-            }
-        }
 
+
+        private List<Tuple<DateTime?, string>>? tracking;
+        public List<Tuple<DateTime?, string>>? Tracking
+        {
+            get
+            { return tracking; }
+            set
+            {
+                tracking = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Tracking"));
+                }
+            }
+        }
     }
 }
