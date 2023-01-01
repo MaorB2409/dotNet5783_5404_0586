@@ -19,9 +19,18 @@ namespace PL
     /// </summary>
     public partial class CartWindow : Window
     {
-        public CartWindow()
+        BlApi.IBl? bl = BlApi.Factory.Get();
+
+        public CartWindow(BlApi.IBl b)
         {
             InitializeComponent();
+            bl = b;
+        }
+
+        void clickOnHomeBtn(object sender, RoutedEventArgs e)
+        {
+            new Catalog(bl!).ShowDialog();
+            Close();//close this window
         }
     }
 }

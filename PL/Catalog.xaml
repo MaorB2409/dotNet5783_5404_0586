@@ -21,7 +21,12 @@
             <ComboBox Name="AttributeSelector" Grid.Column="1" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged" Text="" />
             <Label Name="Description" Content="Products:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
                    Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
+
+
+            
         </Grid>
+        
+        
         <ListView x:Name="ItemListview" Grid.Column="0" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
                   FontSize="18" Width="800" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="ItemListview_click">
             <ListView.Foreground>
@@ -29,10 +34,19 @@
             </ListView.Foreground>
             <ListView.View>
                 <GridView>
+                    
                     <GridViewColumn/>
+                    
                 </GridView>
+                
             </ListView.View>
+            
         </ListView>
+
+        <Button Name="cartBtn" Width="40" Height="40" Click="clickOnCart" Margin="650,10,40,-78">
+                <Image Source="images\57563.png"></Image>
+            </Button>
+       
     </Grid>
 
 </Window>

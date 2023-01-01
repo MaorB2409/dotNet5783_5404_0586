@@ -24,7 +24,9 @@
                 </Button.Effect>
             </Button>
 
-
+            <Button Name="homeBtn" Width="50" Height="50" Click="clickOnHomeBtn" Margin="670,210,20,-78">
+                <Image Source="images\backBtn.jpg"></Image>
+            </Button>
 
         </StackPanel>
     </Border>

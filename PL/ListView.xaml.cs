@@ -132,7 +132,13 @@ namespace PL
             }
 
         }
-        
+
+        void clickOnHomeBtn(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().ShowDialog();
+            Close();//close this window
+        }
+
 
 
     }

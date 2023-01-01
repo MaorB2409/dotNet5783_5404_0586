@@ -24,16 +24,9 @@
         <StackPanel>
             
             <StackPanel.Background>
-                <ImageBrush ImageSource="C:\Users\kayma\source\repos\ShanaKayman1\dotNet5783_5404_0586\PL\images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
+                <ImageBrush ImageSource="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
             </StackPanel.Background>
-            <Button x:Name ="CartWindow" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,10,0,0" Click="CartWindow_Click">
 
-                <Button.Background>
-                    <ImageBrush ImageSource="C:\Users\kayma\source\repos\ShanaKayman1\dotNet5783_5404_0586\PL\images\cartBtn.jpg"/>
-                </Button.Background>
-
-            </Button>
-            
             <Button x:Name="ToOtherWindow" Content="Manager View" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
                 Background="LavenderBlush" Width="200" Height="80" Margin="200,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
             <Button.Effect>

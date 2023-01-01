@@ -28,6 +28,7 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
+            DataContext = orderTracking;
 
 
         }
@@ -35,7 +36,6 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
-
 
             try
             {
@@ -45,7 +45,7 @@ namespace PL
             {
                 new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
             }
-
+            DataContext = orderTracking;
             tid.Text = orderTracking.ID.ToString();
             tid.IsReadOnly = true;//cant change id in update 
             StatusBox.Text = orderTracking.Status.ToString();

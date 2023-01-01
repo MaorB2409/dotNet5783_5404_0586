@@ -28,6 +28,7 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
+            DataContext = bl;
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
             tid.IsEnabled = false;//cant decide an id for a product to add

@@ -95,5 +95,12 @@ namespace PL
             }
 
         }
+
+
+        void clickOnCart(object sender, RoutedEventArgs e)
+        {
+            new CartWindow(bl!).ShowDialog();
+            Close();//close this window
+        }
     }
 }
