@@ -64,8 +64,8 @@
             </Button.BorderBrush>
 
         </Button>
-        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="249,10,20,10" Padding="5" Click="btnHome_Click">
-                <Image Source="images/homeBtn.jpg"></Image>
+        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="249,10,20,10" Padding="5" Click="clickOnHomeBtn">
+                <Image Source="images/home.png"></Image>
 
         </Button>
 

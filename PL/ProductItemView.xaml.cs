@@ -23,7 +23,7 @@ namespace PL
     {
 
             BlApi.IBl? bl = BlApi.Factory.Get();
-            private BO.ProductItem p = new();
+            PO.ProductItem p = new();
             public ProductItemView(BlApi.IBl? b)//empty ctor
             {
                 InitializeComponent();
@@ -31,11 +31,12 @@ namespace PL
                 DataContext = p;
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             }
-            public ProductItemView(ProductItem productItem, BlApi.IBl? b)
+            public ProductItemView(BO.ProductItem productItem, BlApi.IBl? b)
             {
                 InitializeComponent();
                 bl = b;//new bl
-                DataContext = productItem;
+                p = PL.Tools.CastBoPIToPo(productItem);//matching po for bo 
+                DataContext = p;
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
                 CategoryBox.IsReadOnly = true;
                 tid.IsReadOnly = true;//cant change id in update 

@@ -38,7 +38,7 @@ namespace PL
             InitializeComponent();
             bl = b;//new bl
             BO.Product prod = bl!.Product.ManagerProduct(productForList.ID);//save the matching product or product for list
-            p = new PO.Product() { ID = prod.ID, InStock = prod.InStock, Name = prod.Name, Price = prod.Price,Category=prod.Category};
+            p = PL.Tools.CastBoProductToPo(prod);//save matching PO product
             DataContext = p;//set product as data context
 
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
@@ -69,7 +69,7 @@ namespace PL
         {
             try
             {
-                BO.Product BoProd = new BO.Product() { ID = p.ID, InStock = p.InStock, Name = p.Name, Price = p.Price,Category=p.Category };
+                BO.Product BoProd = PL.Tools.CastPoProductToBo(p);//matching BO prod
                 bl!.Product.AddProduct(BoProd);//add product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
@@ -92,7 +92,7 @@ namespace PL
         {
             try
             {
-                BO.Product BoProd = new BO.Product() { ID = p.ID, InStock = p.InStock, Name = p.Name, Price = p.Price,Category=p.Category };
+                BO.Product BoProd = PL.Tools.CastPoProductToBo(p);//matching BO prod
                 bl!.Product.UpdateProduct(BoProd);//add product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 

@@ -22,14 +22,16 @@ namespace PL
     public partial class ListView : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
+        PO.OrderForList ords = new();
+        //PO.ProductForList prods = new();
         public ListView(BlApi.IBl? Mainbl)
         {
             bl = Mainbl;
             InitializeComponent();
             try
             {
-                ItemListview.ItemsSource = bl?.Product.GetProductsForList();//get products for list from BO
-                OrderListview.ItemsSource = bl?.Order.GetAllOrderForList();//get orders for list from BO
+                ItemListview.DataContext = bl?.Product.GetProductsForList();//get products for list from BO
+                OrderListview.DataContext = bl?.Order.GetAllOrderForList();//get orders for list from BO
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {

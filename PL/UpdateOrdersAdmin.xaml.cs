@@ -35,12 +35,10 @@ namespace PL
             updateDelivery.Visibility = Visibility.Collapsed;//update invisible 
 
         }
-        public UpdateOrdersAdmin(OrderForList orderForList, BlApi.IBl? b)
+        public UpdateOrdersAdmin(BO.OrderForList orderForList, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
-            //BO.Order ord = bl!.Order.GetBoOrder(orderForList.ID);//save the matching bo order for orderforlist
-            o = new PO.OrderForList() { ID = orderForList.ID, Name = orderForList.Name, TotalPrice = orderForList.TotalPrice, Status = orderForList.Status, Amount = orderForList.Amount };
             DataContext = o;
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateShip.Visibility = Visibility.Visible;//show update
