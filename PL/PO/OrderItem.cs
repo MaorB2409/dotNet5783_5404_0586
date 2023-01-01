@@ -1,5 +1,4 @@
-﻿using BO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace PL.PO
 {
-    internal class OrderForList : INotifyPropertyChanged
+    internal class OrderItem : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+
         private int id;
         public int ID
         {
@@ -26,34 +26,40 @@ namespace PL.PO
             }
         }
 
-        private string? name;
-        public string? Name
+
+
+        private int productID;
+        public int ProductID
         {
             get
-            { return name; }
+            { return productID; }
             set
             {
-                name = value;
+                productID = value;
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("CostumerName"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("ProductID"));
                 }
             }
         }
-        private Enums.Status status;
-        public Enums.Status Status
+
+
+        private double price;
+        public double Price
         {
             get
-            { return status; }
+            { return price; }
             set
             {
-                status = value;
+                price = value;
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Status"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("Price"));
                 }
             }
         }
+
+
         private int amount;
         public int Amount
         {
@@ -68,17 +74,35 @@ namespace PL.PO
                 }
             }
         }
-        private double totalPrice;
-        public double TotalPrice
+
+
+        private string? productName;
+        public string? ProductName
         {
             get
-            { return totalPrice; }
+            { return productName; }
             set
             {
-                totalPrice = value;
+                productName = value;
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("TotalPrice"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("ProductName"));
+                }
+            }
+        }
+
+
+        private double productPrice;
+        public double ProductPrice
+        {
+            get
+            { return productPrice; }
+            set
+            {
+                productPrice = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("ProductPrice"));
                 }
             }
         }
