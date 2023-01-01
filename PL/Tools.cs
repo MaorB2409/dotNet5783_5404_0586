@@ -80,7 +80,7 @@ static class Tools
         ord.Name = p.Name;
         return ord;
     }
-    public static BO.ProductItem CastPoOrderPIToBo(PO.ProductItem p)
+    public static BO.ProductItem CastPoPIToBo(PO.ProductItem p)
     {
         BO.ProductItem prod = new();
         prod.Amount = p.Amount;
@@ -92,7 +92,7 @@ static class Tools
         prod.Price=p.Price;
         return prod;
     }
-    public static PO.ProductItem CastBoOrderPIToPo(BO.ProductItem p)
+    public static PO.ProductItem CastBoPIToPo(BO.ProductItem p)
     {
         PO.ProductItem prod = new();
         prod.Amount = p.Amount;
