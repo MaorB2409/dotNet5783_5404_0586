@@ -28,27 +28,24 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
-
+            DataContext = orderTracking;
 
         }
         public OrderTracking(int id, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
-
-
             try
             {
-                orderTracking = bl?.Order.GetOrderTracking(id)!;
+                BO.OrderTracking o = bl?.Order.GetOrderTracking(id)!;
             }
-            catch (BO.IdNotExistException ex)
+            catch (BO.UnfoundException ex)
             {
                 new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
             }
-
-            tid.Text = orderTracking.ID.ToString();
+            //orderTracking = BoToPoOt(o);//convert to PO orderTracking
+            DataContext = orderTracking;
             tid.IsReadOnly = true;//cant change id in update 
-            StatusBox.Text = orderTracking.Status.ToString();
             StatusBox.IsReadOnly = true;
 
         }

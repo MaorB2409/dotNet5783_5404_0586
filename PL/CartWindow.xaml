@@ -24,8 +24,6 @@
                 </Button.Effect>
             </Button>
 
-
-
         </StackPanel>
     </Border>
 </Window>

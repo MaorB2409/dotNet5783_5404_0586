@@ -19,9 +19,11 @@ namespace PL
     /// </summary>
     public partial class CartWindow : Window
     {
-        public CartWindow()
+        BlApi.IBl? bl = BlApi.Factory.Get();
+        public CartWindow(BlApi.IBl? b)
         {
             InitializeComponent();
+            bl = b;
         }
     }
 }

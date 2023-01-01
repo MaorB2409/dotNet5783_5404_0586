@@ -102,7 +102,7 @@ namespace PL
         {
             if(ItemListview.SelectedItem is ProductForList productForList)
             {
-                new Window1(bl!).ShowDialog();
+                new Window1(productForList, bl!).ShowDialog();
             }
             try
             {
@@ -119,7 +119,7 @@ namespace PL
         {
             if (OrderListview.SelectedItem is OrderForList orderForList)
             {
-                new UpdateOrdersAdmin(bl!).ShowDialog();
+                new UpdateOrdersAdmin(orderForList,bl!).ShowDialog();
             }
             try
             {

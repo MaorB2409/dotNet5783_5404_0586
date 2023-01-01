@@ -21,14 +21,14 @@ namespace PL
     public partial class OrderView : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        BO.Order o = new();
+        PO.Order o = new();
         public OrderView(int id, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
             try
             {
-                o = bl?.Order.GetBoOrder(id)!;//get the order from BO with matching id
+                BO.Order ord = bl?.Order.GetBoOrder(id)!;//get the order from BO with matching id
             }
             catch (BO.IdNotExistException ex)
             {
@@ -38,11 +38,13 @@ namespace PL
             {
                 new ErrorWindow("Order View Window\n",ex.Message).ShowDialog();
             }
+            o = new PO.Order();
+            //o = BoToPoOrder(ord);//convert to PO order 
             DataContext = o;
 
-            orderdate.DisplayDate = (System.DateTime)o.OrderDate!;
-            shipdate.DisplayDate = (System.DateTime)o.ShipDate!;
-            deliverydate.DisplayDate = (System.DateTime)o.DeliveryDate!;
+            //orderdate.DisplayDate = (System.DateTime)o.OrderDate!;
+            //shipdate.DisplayDate = (System.DateTime)o.ShipDate!;
+            //deliverydate.DisplayDate = (System.DateTime)o.DeliveryDate!;
         }
     }
 }

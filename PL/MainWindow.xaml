@@ -24,12 +24,12 @@
         <StackPanel>
             
             <StackPanel.Background>
-                <ImageBrush ImageSource="C:\Users\kayma\source\repos\ShanaKayman1\dotNet5783_5404_0586\PL\images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
+                <ImageBrush ImageSource="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
             </StackPanel.Background>
             <Button x:Name ="CartWindow" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,10,0,0" Click="CartWindow_Click">
 
                 <Button.Background>
-                    <ImageBrush ImageSource="C:\Users\kayma\source\repos\ShanaKayman1\dotNet5783_5404_0586\PL\images\cartBtn.jpg"/>
+                    <ImageBrush ImageSource="images\cartBtn.jpg"/>
                 </Button.Background>
 
             </Button>
@@ -56,6 +56,7 @@
            
 
         </StackPanel>
+       
     </Border>
 
 </Window>

@@ -11,7 +11,7 @@
         <StackPanel>
             <TextBox Name="ErrorTitle" Background="LightGray" FontSize="25" FontWeight="Bold" BorderThickness="4"
                      BorderBrush="#f00" TextAlignment="Center"/>
-            <Image Name="ErrorImage" Source="C:\Users\kayma\source\repos\ShanaKayman1\dotNet5783_5404_0586\PL\images\errorIcon.png" Margin="200,20,200,0" Height="150"/>
+            <Image Name="ErrorImage" Source="images\errorIcon.png" Margin="200,20,200,0" Height="150"/>
             <TextBox Name="ErrorDetails" Background="Transparent" FontSize="22" Margin="50,20,50,20" TextAlignment="Center"/>
             <Button x:Name="OKBtn" Background="LightGray" FontSize="25" Width="100" Height="50" Content="OK"
                     FontWeight="DemiBold" BorderBrush="Transparent" Click="OKBtn_Click" />

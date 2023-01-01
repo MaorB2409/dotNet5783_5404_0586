@@ -23,11 +23,12 @@ namespace PL
     public partial class Window1 : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private BO.Product p = new BO.Product();
+        PO.Product p = new();
         public Window1(BlApi.IBl? b)//add ctor
         {
             InitializeComponent();
             bl = b;//new bl
+            DataContext = p;
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
             tid.IsEnabled = false;//cant decide an id for a product to add
@@ -36,8 +37,8 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
-            p = new(){ ID = productForList.ID, Price = productForList.Price, Name = productForList.ProductName, Category = productForList.Category };
-            p.InStock = bl!.Product.ManagerProduct(productForList.ID).InStock;//get and save instock for BO product 
+            BO.Product prod = bl!.Product.ManagerProduct(productForList.ID);//save the matching product or product for list
+            p = new PO.Product() { ID = prod.ID, InStock = prod.InStock, Name = prod.Name, Price = prod.Price,Category=prod.Category};
             DataContext = p;//set product as data context
 
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
@@ -68,7 +69,8 @@ namespace PL
         {
             try
             {
-                bl!.Product.AddProduct(p);//add product to BO
+                BO.Product BoProd = new BO.Product() { ID = p.ID, InStock = p.InStock, Name = p.Name, Price = p.Price,Category=p.Category };
+                bl!.Product.AddProduct(BoProd);//add product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
@@ -90,7 +92,8 @@ namespace PL
         {
             try
             {
-                bl!.Product.UpdateProduct(p);//add product to BO
+                BO.Product BoProd = new BO.Product() { ID = p.ID, InStock = p.InStock, Name = p.Name, Price = p.Price,Category=p.Category };
+                bl!.Product.UpdateProduct(BoProd);//add product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PL
 {
@@ -23,19 +24,24 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.ProductItem p = new BO.ProductItem();
+        Cart myCart = new();
+
+      
         public Catalog(BlApi.IBl b)
         {
             InitializeComponent();
             bl = b;//new bl
+            DataContext = p;
             AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             try
             {
-                ItemListview.ItemsSource = bl?.Product.GetCatalog();//get catalog products from BO
+                ItemListview.DataContext = bl?.Product.GetCatalog();//get catalog products from BO
             }
             catch (BO.IdNotExistException ex)
             {
                 new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
+
 
         }
         private void AttributeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,7 +88,7 @@ namespace PL
         {
             if (ItemListview.SelectedItem is ProductItem productItem)
             {
-                new ProductItemView(bl!).ShowDialog();
+                new ProductItemView(productItem,bl!).ShowDialog();
             }
             try
             {
@@ -94,6 +100,49 @@ namespace PL
                 //id is null error on screen
             }
 
+        }
+
+
+
+
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Set tooltip visibility
+
+            if (Tg_Btn.IsChecked == true)
+            {
+                tt_home.Visibility = Visibility.Collapsed;
+                tt_back.Visibility = Visibility.Collapsed;
+                tt_cart.Visibility = Visibility.Collapsed;
+
+            }
+            else
+            {
+                tt_home.Visibility = Visibility.Visible;
+                tt_cart.Visibility = Visibility.Visible;
+                tt_back.Visibility = Visibility.Visible;
+
+            }
+        }
+
+        private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            img_bg.Opacity = 1;
+        }
+
+        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
+        {
+            img_bg.Opacity = 0.3;
+        }
+
+        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Tg_Btn.IsChecked = false;
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

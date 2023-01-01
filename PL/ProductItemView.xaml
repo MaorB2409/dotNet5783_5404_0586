@@ -32,12 +32,12 @@
         <Label Name="l6" Content="Amount:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
                Height="40" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Margin="278,0,0,0"/>
 
-        <ComboBox Name="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="190" Height="33" Text="{Binding Category}"/>
-        <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Center" Width="214" Height="40"/>
-        <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding ProductName}" VerticalAlignment="Center" Width="214" Height="40" />
-        <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Center" Width="214" Height="40"/>
-        <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding InStock}" VerticalAlignment="Center" Width="214" Height="40"/>
-        <TextBox Name="tAmount" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Amount}" VerticalAlignment="Center" Width="214" Height="40" />
+        <ComboBox Name="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="190" Height="33" Text="{Binding Category,Mode=TwoWay}"/>
+        <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ID,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
+        <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding ProductName,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40" />
+        <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Price,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
+        <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding InStock,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
+        <TextBox Name="tAmount" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Amount,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40" />
 
     </Grid>
 </Window>

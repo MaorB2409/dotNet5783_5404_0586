@@ -8,7 +8,7 @@
         Title="OrderIDEnter" Height="450" Width="800">
     <Border CornerRadius="52" BorderThickness="10" BorderBrush="White">
 
-        <Border Padding="100" Background="#eee" CornerRadius="35" BorderThickness="10">
+        <Border Padding="50" Background="#eee" CornerRadius="35" BorderThickness="10">
             <StackPanel>
                 <TextBlock x:Name="EnterOrderId" FontSize="25" TextAlignment="Center" FontWeight="DemiBold" FontFamily="italic" Text="Enter Your Order ID:"/>
                 <TextBox x:Name="IdEnter" FontSize="25" TextAlignment="Center" FontFamily="italic" Background="GhostWhite" BorderThickness="5" Margin="50,20,50,20" PreviewTextInput="tid_previewtextinput"
