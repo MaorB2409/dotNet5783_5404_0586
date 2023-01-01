@@ -30,16 +30,22 @@
     <None Remove="resize-161043321239661085posterwithverticalframesemptywhitewalllivingroominteriorwithbluevelvetarmchair3drendering.jpg" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Resource Include="images\cartBtn.jpg" />
+		<Resource Include="images\download.jpg" />
+		<Resource Include="images\backBtn.jpg" />
+		<Resource Include="images\homeBtn.jpg" />
+		<Resource Include="images\sidebar.jpg" />
+		<Resource Include="images\errorIcon.png" />
+		<Resource Include="images\marblebg.jpeg" />
+		<Resource Include="images\home.png" />
+		<Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
+		<Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
+	
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="images\cartBtn.jpg" />
-    <Resource Include="images\download.jpg" />
-    <Resource Include="images\errorIcon.png" />
-    <Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
-    <Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
   </ItemGroup>
 
 </Project>

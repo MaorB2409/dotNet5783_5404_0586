@@ -31,7 +31,15 @@ namespace PL
 
         private void OKBtn_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(IdEnter.Text);//save the entered id as a number
+            int id = 0;
+            try
+            {
+                id = int.Parse(IdEnter.Text);//save the entered id as a number
+            }
+            catch (System.FormatException)
+            {
+                new ErrorWindow("Enter Order ID Window", "Wrong id number entered").ShowDialog();
+            }
             new OrderTracking(id,bl!).ShowDialog();//open order tracking window with entered id
             this.Close();//close current window
         }

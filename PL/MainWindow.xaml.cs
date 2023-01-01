@@ -47,7 +47,6 @@ namespace PL
 
         private void CartWindow_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

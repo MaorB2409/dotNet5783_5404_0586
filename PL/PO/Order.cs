@@ -154,8 +154,8 @@ namespace PL.PO
 
 
 
-        private double TotalPrice;
-        public double totalPrice
+        private double totalPrice;
+        public double TotalPrice
         {
             get
             { return totalPrice; }
