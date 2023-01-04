@@ -21,6 +21,7 @@ namespace PL
     public partial class MainWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
+        PO.Cart myCart=new();
         public MainWindow()
         {
             InitializeComponent();
@@ -40,13 +41,11 @@ namespace PL
 
         private void NewOrderWindow_Click(object sender, RoutedEventArgs e)
         {
-            new Catalog(bl!).ShowDialog();
+            new Catalog(myCart,bl!).ShowDialog();
             Close();//close this window
 
         }
 
-        private void CartWindow_Click(object sender, RoutedEventArgs e)
-        {
-        }
+        
     }
 }

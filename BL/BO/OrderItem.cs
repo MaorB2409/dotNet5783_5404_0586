@@ -16,12 +16,5 @@ public class OrderItem
     public string? ProductName { get; set; }//product name
     public double ProductPrice { get; set; }//total product price= price*amount in cart or order
     public override string ToString() => this.ToStringProperty();
- //   public override string ToString() => $@"
-	//ID - {ID},
-	//Product ID - {ProductID},
- //   Order ID - {OrderID},
-	//Amount In Stock - {Amount},
-
-	//Product Price= {Price}
- //   ";
+ 
 }

@@ -126,7 +126,7 @@ internal class Product:BlApi.IProduct
     }//get BO product, check if right and updates DO product
 
 
-    public IEnumerable<ProductItem?> GetCatalog()
+    public IEnumerable<ProductItem> GetCatalog()
     {
         var v = from prods in DOList?.Product.GetAll()
                 where prods != null && prods?.IsDeleted == false

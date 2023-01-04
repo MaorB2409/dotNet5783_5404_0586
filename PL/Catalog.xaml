@@ -2,12 +2,32 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Catalog" Height="450" Width="800">
 
     <Window.Resources>
+
+        <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <Expander x:Name="expander" IsExpanded="True"
+                                  Background="Transparent"
+                                  Foreground="#2b331f">
+                            <Expander.Header>
+                                <TextBlock Text="{Binding Name}"/>
+                            </Expander.Header>
+                            <ItemsPresenter/>
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
 
         <!--// Toggle Button Style Template //-->
 
@@ -43,7 +63,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
-            <Setter Property="Background" Value="#4A5668"/>
+            <Setter Property="Background" Value="Lavender"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
@@ -329,16 +349,14 @@
 
                         <StackPanel Orientation="Horizontal"
                                         Width="230">
-
-                            <Image Source="images/home.png"
+                            <Button Name="homeBtn" Background="Transparent" BorderBrush="Transparent" Click="HomeBtn_Click">
+                                <Image Source="images/home.png"
                                        Stretch="Fill"
-                                       
                                        Margin="5,0,0,0"/>
-
+                            </Button>
                             <TextBlock Text="Home"
                                            Margin="25,0,0,0"
                                            Style="{StaticResource font_style}"/>
-
                         </StackPanel>
 
                         <!--// Tooltip //-->
@@ -361,11 +379,11 @@
 
                         <StackPanel Orientation="Horizontal"
                                         Width="230">
-
-                            <Image Source="images/cartBtn.jpg"
+                            <Button Name="cartBtn" Background="Transparent" BorderBrush="Transparent" Click="CartBtn_Click">
+                                <Image Source="images/cart-outline.png"
                                        Stretch="Fill"
                                        Margin="5,0,0,0"/>
-
+                            </Button>
                             <TextBlock Text="Cart"
                                            Margin="25,0,0,0"
                                            Style="{StaticResource font_style}"/>
@@ -394,11 +412,11 @@
 
                         <StackPanel Orientation="Horizontal"
                                         Width="230">
-
-                            <Image Source="images/return.png"
+                            <Button Name="backBtn" Background="Transparent" BorderBrush="Transparent" Click="BackBtn_Click">
+                                <Image Source="images/return.png"
                                        Stretch="Fill"
                                        Margin="5,0,0,0"/>
-
+                            </Button>
                             <TextBlock Text="Back"
                                            Margin="25,0,0,0"
                                            Style="{StaticResource font_style}"/>
@@ -489,24 +507,60 @@
                 <ColumnDefinition Width="65"/>
             </Grid.ColumnDefinitions >
             <ComboBox Name="AttributeSelector" Grid.Column="1" Background="Transparent" SelectionChanged="AttributeSelector_SelectionChanged" Text="" Margin="0,0,218,0" />
-            <Label Name="Description" Content="Products:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
-                   Background="Transparent" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
-        </Grid>
-        <ListView x:Name="ItemListview" Grid.Column="0" Grid.ColumnSpan="1" d:ItemsSource="{d:SampleData ItemCount=5}"
-                  FontSize="18" BorderBrush="{x:Null}" FontFamily="Segoe Print" Background="Transparent" FontWeight="Bold" MouseDoubleClick="ItemListview_click" Margin="0,32,379,0" Grid.RowSpan="2">
-            <ListView.Foreground>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </ListView.Foreground>
-            <ListView.View>
-                <GridView>
-                    
-                    <GridViewColumn/>
-                    
-                </GridView>
-                
-            </ListView.View>
             
-        </ListView>
+        </Grid>
+        <DataGrid Name="catalogGrid" Grid.Column="0" Grid.RowSpan="3" Width="415" HorizontalAlignment="Left"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="16"
+                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" >
+            <DataGrid.GroupStyle>
+                <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <DataGridRowsPresenter/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
 
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="AddProductToCart" MinWidth="10" Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="White" BorderBrush="Transparent" Click="AddToCart_Click"
+                                    Height="30" Width="30"
+                                    HorizontalAlignment="Center" >
+                                <Image Source="images/57563.png" IsEnabled="True"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductName}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}"
+                                    MinWidth="10" Width="*"/>
+            </DataGrid.Columns>
+            
+            
+        </DataGrid>
     </Grid>
 </Window>

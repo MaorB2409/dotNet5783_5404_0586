@@ -1,0 +1,56 @@
+﻿<Window x:Class="PL.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="RegisterWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="TitleStyle">
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+
+        <!--Input Section-->
+        <Border Padding="20" MouseDown="Border_MouseDown" Background="GhostWhite" CornerRadius="0 25 25 0">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="/marbleBg.jpeg"/>
+                </Grid.Background>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Enter Name:" Style="{StaticResource ResourceKey=TitleStyle}" Padding="10"/>
+                    <TextBlock Grid.Row="1" Text="Enter Email:" Style="{StaticResource ResourceKey=TitleStyle}" Padding="10"/>
+                    <TextBlock Grid.Row="2" Text="Enter Address:" Style="{StaticResource ResourceKey=TitleStyle}" Padding="10"/>
+                    <TextBlock Grid.Row="3" Text="Have you enjoyed your shopping experience?" Style="{StaticResource ResourceKey=TitleStyle}" Padding="10" TextWrapping="Wrap"/>
+
+
+                    <TextBox x:Name="nametbx" Grid.Column="1" Grid.Row="0" Width="300" TextAlignment="Center" Text="{Binding customerName}" FontFamily="italic" Background="GhostWhite" BorderThickness="5"/>
+                    <TextBox x:Name="emailtbx" Grid.Column="1" Grid.Row="1" Width="300" TextAlignment="Center" Text="{Binding customerEmail}" FontFamily="italic" Background="GhostWhite" BorderThickness="5"/>
+                    <TextBox x:Name="addresstbx" Grid.Column="1" Grid.Row="2" Width="300" TextAlignment="Center" Text="{Binding customerAddress}" FontFamily="italic" Background="GhostWhite" BorderThickness="5"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" Width="300" TextAlignment="Center" FontFamily="italic" Background="GhostWhite" BorderThickness="5"/>
+                    <Button Grid.ColumnSpan="2" Background="LavenderBlush" Margin="175,110,0,-60" Content="Save" FontSize="30" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="Transparent" Height="50" HorizontalAlignment="Left" Width="200" Grid.Row="3" Click="SaveBtn_Click"/>
+
+
+                </Grid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

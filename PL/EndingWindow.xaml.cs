@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL
+namespace PL////>ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
 {
     /// <summary>
     /// Interaction logic for EndingWindow.xaml

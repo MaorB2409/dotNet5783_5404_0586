@@ -22,7 +22,7 @@
     <Border Padding="10" Background="#eee">
 
         <StackPanel>
-            
+
             <StackPanel.Background>
                 <ImageBrush ImageSource="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
             </StackPanel.Background>

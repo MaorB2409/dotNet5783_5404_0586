@@ -1,7 +1,10 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,17 +23,113 @@ namespace PL
     public partial class CartWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-
-        public CartWindow(BlApi.IBl b)
+        PO.Cart cart = new();
+        ObservableCollection<PO.OrderItem> orderItems = new();
+        public CartWindow(PO.Cart myCart,BlApi.IBl b)
         {
             InitializeComponent();
             bl = b;
+            orderItems.Clear();
+            cart = myCart;
+            orderItems = PL.Tools.IEnumerableToObservable(myCart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
         {
-            new Catalog(bl!).ShowDialog();
+            new Catalog(cart,bl!).ShowDialog();
             Close();//close this window
+        }
+        void Back_Click(object sender, RoutedEventArgs e)
+        {
+            new Catalog(cart,bl!).ShowDialog();
+            Close();//close this window
+        }
+        private void StackPanel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == System.Windows.Input.MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void CheckoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            //complete order in cart
+            new EndingWindow().ShowDialog();//show succesful order placed window
+        }
+        private void ViewOrderItem_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+           new OrderItemView(bl!).ShowDialog();//open a window to view order item details
+        }
+        private void RemoveItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (PList.SelectedItem is PO.OrderItem orderItem)
+            {
+                try
+                {
+                    cart=PL.Tools.CastBoCToPo(bl!.Cart.UpdateCart(PL.Tools.CastPoCToBo(cart), orderItem.ID, 0));//remove the selected product from cart
+                }
+                catch (BO.IdNotExistException ex)
+                {
+                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+                }
+                orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+                Subtotal.DataContext = cart;//set subtotal data context to our cart
+
+            }
+        }
+        private void ReduceItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (PList.SelectedItem is PO.OrderItem orderItem)
+            {
+                try
+                {
+                    cart = PL.Tools.CastBoCToPo(bl!.Cart.UpdateCart(PL.Tools.CastPoCToBo(cart), orderItem.ID,orderItem.Amount-1));//remove one of the selected products from cart
+                }
+                catch (BO.IdNotExistException ex)
+                {
+                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+                }
+                orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+                Subtotal.DataContext = cart;//set subtotal data context to our cart
+            }
+        }
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            if(PList.SelectedItem is PO.OrderItem orderItem)
+            {
+                try
+                {
+                    cart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(cart),orderItem.ID));//add the selected product to cart
+                }
+                catch(BO.IdNotExistException ex)
+                {
+                    new ErrorWindow("Cart Window",ex.Message).ShowDialog();
+                }
+                catch(BO.UnfoundException ex)
+                {
+                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+                }
+                catch (BO.Exceptions ex)
+                {
+                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+                }
+                catch (BO.IdExistException ex)
+                {
+                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+                }
+                orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+                Subtotal.DataContext = cart;//set subtotal data context to our cart
+            }
+        }
+        private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for id
         }
     }
 }

@@ -26,9 +26,10 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
+            BO.Order ord = new();
             try
             {
-                BO.Order ord = bl?.Order.GetBoOrder(id)!;//get the order from BO with matching id
+                ord = bl?.Order.GetBoOrder(id)!;//get the order from BO with matching id
             }
             catch (BO.IdNotExistException ex)
             {
@@ -38,8 +39,7 @@ namespace PL
             {
                 new ErrorWindow("Order View Window\n",ex.Message).ShowDialog();
             }
-            o = new PO.Order();
-            //o = BoToPoOrder(ord);//convert to PO order 
+            o = PL.Tools.CastBoOrderToPo(ord);//convert to PO order 
             DataContext = o;
 
             //orderdate.DisplayDate = (System.DateTime)o.OrderDate!;

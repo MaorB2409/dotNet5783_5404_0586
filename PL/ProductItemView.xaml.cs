@@ -31,18 +31,17 @@ namespace PL
                 DataContext = p;
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             }
-            public ProductItemView(BO.ProductItem productItem, BlApi.IBl? b)
+            public ProductItemView(PO.ProductItem productItem, BlApi.IBl? b)
             {
                 InitializeComponent();
                 bl = b;//new bl
-                p = PL.Tools.CastBoPIToPo(productItem);//matching po for bo 
-                DataContext = p;
+                p = productItem;//save the new productItem  
+                DataContext = p;//set data context
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
                 CategoryBox.IsReadOnly = true;
                 tid.IsReadOnly = true;//cant change id in update 
                 tname.IsReadOnly = true;
                 tprice.IsReadOnly = true;
-                tinstock.IsReadOnly = true;
                 CategoryBox.IsReadOnly = true;
                 tAmount.IsReadOnly = true;
 

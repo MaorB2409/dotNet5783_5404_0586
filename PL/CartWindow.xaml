@@ -6,28 +6,194 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <Expander x:Name="expander" IsExpanded="True"
+                                  Background="Transparent"
+                                  Foreground="#2b331f">
+                            <Expander.Header>
+                                <TextBlock Text="{Binding Name}"/>
+                            </Expander.Header>
+                            <ItemsPresenter/>
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+    </Window.Resources>
 
-    <Border Padding="10" Background="#eee">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel>
-            <Button x:Name="CompleteOrder" Content="Complete Order"  FontSize="15" FontWeight="Bold" FontStyle="Normal" 
-                Background="#FFE7D4F1" Width="120" Height="44"  Margin="0,20,200,0" HorizontalAlignment="Left" Grid.ColumnSpan="2">
-                <Button.Effect>
-                    <DropShadowEffect/>
-                </Button.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitleBar-->
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Background="#444444" Panel.ZIndex="1" FlowDirection="RightToLeft" MouseDown="StackPanel_MouseDown">
+            <Button Style="{StaticResource buttonClose}">
+                <Image Width="20" Source="/Images/close.png" Margin="2 0 0 0"/>
             </Button>
-            <Button x:Name="ViewCart" Content="View Cart" FontSize="15" FontWeight="Bold" FontStyle="Normal" 
-                Background="#FFE7D4F1" Width="120" Height="44" Margin="0,20,200,0" HorizontalAlignment="Left">
-                <Button.Effect>
-                    <DropShadowEffect/>
-                </Button.Effect>
+            <Button Style="{StaticResource buttonMini}" Margin="5 0 0 0">
+                <Image Width="17" Source="/Images/mini.png" VerticalAlignment="Bottom"/>
             </Button>
-
-            <Button Name="homeBtn" Width="50" Height="50" Click="clickOnHomeBtn" Margin="670,210,20,-78">
-                <Image Source="images\backBtn.jpg"></Image>
-            </Button>
-
         </StackPanel>
-    </Border>
+
+        <!--Products Section-->
+        <Grid Background="WhiteSmoke"  Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,237,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!--Title-->
+            <StackPanel Orientation="Horizontal" Margin="0,40,0,30">
+                <Image Source="images/box.png" VerticalAlignment="Center" Margin="50 0 0 0" Width="30"/>
+                <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
+                <TextBlock Text="Your Shopping Cart" FontSize="25" FontWeight="DemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!--Products-->
+            <StackPanel Margin="0,103,0,40" Grid.RowSpan="3">
+                <ListView x:Name="PList" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="#E5E9EA" Margin="0 15 0 0" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="112"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="images/box.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Grid.Column="1" Text="{Binding Path=ProductName, Mode=TwoWay}" Padding="5" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Path=ID, Mode=TwoWay}" Padding="5" FontSize="13" VerticalAlignment="Center" Margin="0 38 0 0"/>
+
+                                <TextBlock Grid.Column="2" Text="{Binding Path=Price, Mode=TwoWay}" Padding="5" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+                                <TextBlock Grid.Column="3" Text="{Binding Path=Amount, Mode=TwoWay}" Padding="5" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+                                <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Button x:Name="addBtn" Style="{StaticResource buttonCounter}" Click="AddItem_Click">
+                                        <Image Source="images/add.png"/>
+                                    </Button>
+
+                                    <Button x:Name="lowBtn" Style="{StaticResource buttonCounter}" Margin="0 5 0 0" Click="ReduceItem_Click">
+                                        <Image Source="images/low.png"/>
+                                    </Button>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="5" Text="{Binding Path=ProductPrice, Mode=TwoWay}" Padding="5" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+                                <Button Style="{StaticResource buttonDelete}" Grid.Column="6" Click="RemoveItem_Click">
+                                    <Image Source="images/remove.png" Width="18" Style="{StaticResource icon}"/>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <!--Bottom Section-->
+            <Grid Grid.Row="2" Margin="80,40,150,40">
+                <Button Style="{StaticResource buttonBack}" Margin="-60,-40,0,0" Click="Back_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/left.png" Width="20"/>
+                        <TextBlock Text="Back to Shop" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="-60 -32 0 0">
+                    <TextBlock Text="Subtotal :" FontSize="16"/>
+                </StackPanel>
+                <TextBox x:Name="Subtotal" Text="{Binding Price, Mode=TwoWay}" IsReadOnly="True" TextAlignment="Center" FontWeight="SemiBold" FontSize="18" Height="30" Margin="338,-35,-98,5"/>
+            </Grid>
+        </Grid>
+
+        <!--Card Section-->
+        <Grid Grid.Column="1" Background="#4B4643" Grid.Row="1" Margin="89,0,0,0">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="10" BlurRadius="50"/>
+            </Grid.Effect>
+
+            <!--Ellipses-->
+            <Border HorizontalAlignment="Left" VerticalAlignment="Top" Width="24" Height="130" Margin="-24,50,0,0" Background="#4B4643" CornerRadius="10 0 0 10" Padding="10 20 5 20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Ellipse Width="8" Height="8" Fill="#7B7A78" Grid.Row="0"/>
+                    <Ellipse Width="8" Height="8" Fill="Pink" Grid.Row="1"/>
+                    <Ellipse Width="8" Height="8" Fill="#7B7A78" Grid.Row="2"/>
+                </Grid>
+            </Border>
+
+            <!--Inputs-->
+            <StackPanel Margin="30 100 30 0" VerticalAlignment="Top">
+                <TextBlock Text="Card Details" Foreground="Pink" FontWeight="SemiBold" FontSize="24" Margin="0 0 0 70"/>
+
+                <TextBlock Text="Select Card Type" Style="{StaticResource titleText}" TextAlignment="Center"/>
+                <Grid Margin="0 15 0 30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource buttonCapture}">
+                        <Image Source="images\mastercard.png" Width="30" Style="{StaticResource icon}"/>
+                    </Button>
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource buttonCapture}">
+                        <Image Source="images\visa.png" Width="30" Style="{StaticResource icon}"/>
+                    </Button>
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource buttonCapture}">
+                        <Image Source="images\credit.png" Width="30" Style="{StaticResource icon}"/>
+                    </Button>
+                </Grid>
+
+                <TextBlock Text="Card Number" Style="{StaticResource titleText}"/>
+                <TextBox Margin="0 5 0 30" MaxLength="19" PreviewTextInput="tid_previewtextinput" FontSize="18" Background="White" Height="22"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Expire Date" Style="{StaticResource titleText}"/>
+                        <TextBox Margin="0 5 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="30 0 0 0" Width="50">
+                        <TextBlock Text="CVV" Style="{StaticResource titleText}"/>
+                        <TextBox Margin="0 5 0 0"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <Button Content="Checkout" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click" Height="58" Margin="0,356,0,0" VerticalAlignment="Top" />
+        </Grid>
+
+    </Grid>
+
 </Window>

@@ -23,7 +23,7 @@ namespace PL
     public partial class OrderTracking : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        BO.OrderTracking orderTracking = new();
+        PO.OrderTracking orderTracking = new();
         public OrderTracking(BlApi.IBl? b)//empty ctor
         {
             InitializeComponent();
@@ -35,16 +35,17 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
+            BO.OrderTracking o = new();
             try
             {
-                BO.OrderTracking o = bl?.Order.GetOrderTracking(id)!;
+                o = bl?.Order.GetOrderTracking(id)!;
             }
             catch (BO.UnfoundException ex)
             {
                 new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
             }
-            //orderTracking = BoToPoOt(o);//convert to PO orderTracking
-            DataContext = orderTracking;
+            orderTracking = PL.Tools.CastBoOTToPo(o);//get matching po order tracking
+            DataContext = orderTracking;//set data context
             tid.IsReadOnly = true;//cant change id in update 
             StatusBox.IsReadOnly = true;
 

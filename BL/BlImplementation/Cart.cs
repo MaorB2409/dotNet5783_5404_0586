@@ -16,6 +16,36 @@ internal class Cart:ICart
     readonly private static IDal? DOList = DalApi.Factory.Get()?? throw new BO.Exceptions("Factory does not exist\n");//to access DO info
     public BO.Cart AddToCart(BO.Cart myCart, int id)
     {
+        if (myCart.orderItems == null)//if first order item in cart 
+        {
+            DO.Product? p = new DO.Product?();//create a DO product
+            try
+            {
+                p = DOList?.Product.GetById(id);//get the matching product for the ID
+            }
+            catch (DalApi.IdNotExistException)
+            {
+                throw new BO.IdNotExistException("The product requested does not exist\n");
+            }
+            if (p == null || p?.InStock < 1 || p?.IsDeleted == true)//if the product does not exist or out of stock
+            {
+                throw new BO.UnfoundException("The product requested is unavailable");
+            }
+            BO.OrderItem o = new BO.OrderItem//create new orderitem that is being added 
+            {
+                ID = id,
+                ProductName = p?.Name!,
+                ProductPrice = (double)p?.Price!,
+                IsDeleted = false,
+                Amount = 1,
+                Price = (double)p?.Price!,
+                ProductID = p?.ID ?? throw new BO.Exceptions("The id of the product from the list is null")
+            };
+            myCart.orderItems = new List<BO.OrderItem?>();//new list in cart bcs first order item
+            myCart.orderItems!.Add(o);//add the orderitem to cart
+            myCart.Price = (double)p?.Price!;//add the prudoct price to cart price
+            return myCart;
+        }
         int ind = myCart.orderItems!.FindIndex(x => x!=null && x.ID == id); //save index of order with ID in cart
         DO.Product? product = new DO.Product?();//create a DO product
         try
@@ -26,14 +56,14 @@ internal class Cart:ICart
         {
             throw new BO.IdNotExistException("The product requested does not exist\n");
         }
-        if (product?.InStock < 1 || product?.IsDeleted==true)
+        if (product==null || product?.InStock < 1 || product?.IsDeleted==true)
         {
             throw new BO.UnfoundException("The product requested is unavailable");
         }
         if (ind != -1)//exists in cart
         {
             myCart.orderItems[ind]!.Amount++; //add another product to the cart
-            myCart.orderItems[ind]!.Price += myCart.orderItems[ind]!.ProductPrice;//add to the total price 
+            myCart.orderItems[ind]!.ProductPrice += myCart.orderItems[ind]!.Price;//add to the total price of order item
             myCart.Price += myCart.orderItems[ind]!.Price;//update cart price
             return myCart;
         }
@@ -74,19 +104,20 @@ internal class Cart:ICart
         }
         if (ind != -1)//if in cart
         {
-            if (amount == 0)
+            if (amount == 0)//to delete a product
             {
                 BO.OrderItem temp= myCart.orderItems[ind]!;//save the orderitem with id
                 myCart.orderItems.Remove(temp);//remove orderItem from cart
-                myCart.Price -= myCart.orderItems[ind]!.Price;
+                myCart.Price -= myCart.orderItems[ind]!.ProductPrice;//update cart price
                 return myCart;
             }
-            myCart.Price -= myCart.orderItems[ind]!.Price * myCart.orderItems[ind]!.Amount; //substract price of product from cart
+            myCart.Price -= myCart.orderItems[ind]!.ProductPrice; //substract price of product from cart
             myCart.orderItems[ind]!.Amount = amount;//set new amount
-            myCart.Price += myCart.orderItems[ind]!.Price * amount;//add the new price
+            myCart.orderItems[ind]!.ProductPrice = myCart.orderItems[ind]!.Price * amount;//set new order item total price according to new amount
+            myCart.Price += myCart.orderItems[ind]!.ProductPrice;//add the new price
             return myCart;
         }
-        throw new BO.IdNotExistException("The product requested does not exist");
+        throw new BO.IdNotExistException("The product requested does not exist");//product does not exist in cart 
     }
     public void MakeOrder(BO.Cart myCart)
     {

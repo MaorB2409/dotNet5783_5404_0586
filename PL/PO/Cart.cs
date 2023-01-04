@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PL.PO
 {
-    internal class Cart: INotifyPropertyChanged
+    public class Cart: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         private string? customerName;

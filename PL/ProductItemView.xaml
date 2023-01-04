@@ -36,7 +36,7 @@
         <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ID,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
         <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding ProductName,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40" />
         <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Price,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
-        <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding InStock,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
+        <CheckBox Name="tinstock" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" IsChecked="{Binding InStock,Mode=TwoWay}" VerticalAlignment="Center" Width="40" Height="40"/>
         <TextBox Name="tAmount" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Amount,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40" />
 
     </Grid>

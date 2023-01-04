@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PL.PO
 {
-    internal class ProductItem : INotifyPropertyChanged
+    public class ProductItem : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         private int id;

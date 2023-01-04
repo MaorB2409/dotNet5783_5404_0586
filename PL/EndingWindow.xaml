@@ -12,13 +12,13 @@
 
             <StackPanel>
                 <StackPanel.Background>
-                    <ImageBrush ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
+                    <ImageBrush ImageSource="images/box.png"/>
                 </StackPanel.Background>
                 <TextBlock x:Name="EndingText" Text="Your Order" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" />
                 <TextBlock x:Name="EndingText2" Text="Has Been Successfully Placed!" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" Foreground="Black" />
 
-                <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" Margin="670,210,20,-78">
-                    <Image Source="images\homeBtn.jpg"></Image>
+                <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" Margin="670,210,20,-78" Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="images\home.png"></Image>
                 </Button>
 
             </StackPanel>

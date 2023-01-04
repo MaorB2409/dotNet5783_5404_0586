@@ -23,7 +23,7 @@ namespace PL
 
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private BO.Order o = new BO.Order();
+        PO.OrderItem o = new();
         public OrderItemView(BlApi.IBl? b)
         {
             InitializeComponent();
@@ -36,7 +36,8 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
-            DataContext = orderItem;
+            o=PL.Tools.CastBoOIToPo(orderItem);//matching po for bo
+            DataContext = o;
             tOrderID.IsReadOnly = true;//cant change id in update 
             tProductID.IsReadOnly = true;
             tPrice.IsReadOnly = true;

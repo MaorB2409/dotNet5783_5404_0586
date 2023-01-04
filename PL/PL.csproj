@@ -1,34 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-	  <BaseOutputPath>$(SolutionDir)\bin\</BaseOutputPath>
-	  <OutputPath>$(SolutionDir)\bin\</OutputPath>
-	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-	  <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<BaseOutputPath>$(SolutionDir)\bin\</BaseOutputPath>
+		<OutputPath>$(SolutionDir)\bin\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="4d626f34e71b87949f2bbf44cf4c0232.jpg" />
-    <None Remove="7bc006adf238a27ab665999d6c7875f6.jpg" />
-    <None Remove="9434af2f3fc993cacaed615eb4561deb.jpg" />
-    <None Remove="9dc43e58583211eea3e95ff2397b693a.jpg" />
-    <None Remove="b62d3cb99ce21bd2baed6aea28bca8d8.jpg" />
-    <None Remove="cartBtn.jpg" />
-    <None Remove="download.jpg" />
-    <None Remove="e5050d6d674763135efe2ac898416df4.jpg" />
-    <None Remove="e8faa395ecab57e4f66a0fad35c0d073.jpg" />
-    <None Remove="errorIcon.png" />
-    <None Remove="istockphoto-1284843286-612x612.jpg" />
-    <None Remove="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
-    <None Remove="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
-    <None Remove="organized-workspace.jpg" />
-    <None Remove="resize-161043321239661085posterwithverticalframesemptywhitewalllivingroominteriorwithbluevelvetarmchair3drendering.jpg" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="4d626f34e71b87949f2bbf44cf4c0232.jpg" />
+		<None Remove="7bc006adf238a27ab665999d6c7875f6.jpg" />
+		<None Remove="9434af2f3fc993cacaed615eb4561deb.jpg" />
+		<None Remove="9dc43e58583211eea3e95ff2397b693a.jpg" />
+		<None Remove="b62d3cb99ce21bd2baed6aea28bca8d8.jpg" />
+		<None Remove="cartBtn.jpg" />
+		<None Remove="download.jpg" />
+		<None Remove="e5050d6d674763135efe2ac898416df4.jpg" />
+		<None Remove="e8faa395ecab57e4f66a0fad35c0d073.jpg" />
+		<None Remove="errorIcon.png" />
+		<None Remove="HomeSpace_LOGO.png" />
+		<None Remove="istockphoto-1284843286-612x612.jpg" />
+		<None Remove="marbleBg.jpeg" />
+		<None Remove="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
+		<None Remove="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
+		<None Remove="organized-workspace.jpg" />
+		<None Remove="resize-161043321239661085posterwithverticalframesemptywhitewalllivingroominteriorwithbluevelvetarmchair3drendering.jpg" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Resource Include="images\cartBtn.jpg" />
@@ -39,13 +41,28 @@
 		<Resource Include="images\errorIcon.png" />
 		<Resource Include="images\marblebg.jpeg" />
 		<Resource Include="images\home.png" />
+		<Resource Include="images\box.png" />
+		<Resource Include="images\close.png" />
+		<Resource Include="images\left.png" />
+		<Resource Include="images\low.png" />
+		<Resource Include="images\return.png" />
+		<Resource Include="images\cart-outline.png" />
+		<Resource Include="images\plus-circle.png" />
+		<Resource Include="images\remove.png" />
+		<Resource Include="images\visa.png" />
+		<Resource Include="images\credit.png" />
+		<Resource Include="images\57563.png" />
+
+
+
 		<Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
 		<Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
-	
+		<Resource Include="marbleBg.jpeg" />
+
 	</ItemGroup>
-	
-  <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj" />
-  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BL\BL.csproj" />
+	</ItemGroup>
 
 </Project>

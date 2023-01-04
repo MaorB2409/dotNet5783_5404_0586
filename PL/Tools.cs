@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,5 +104,107 @@ static class Tools
         prod.Category = p.Category;
         prod.Price = p.Price;
         return prod;
+    }
+    public static PO.OrderItem CastBoOIToPo(BO.OrderItem p)
+    {
+        PO.OrderItem oi = new();
+        oi.ProductPrice=p.ProductPrice;
+        oi.ID = p.ID;
+        oi.Amount = p.Amount;
+        oi.Price = p.Price;
+        oi.ProductID = p.ProductID;
+        oi.ProductPrice = p.ProductPrice;   
+        oi.ProductName=p.ProductName;
+        return oi;
+    }
+    public static BO.OrderItem CastPoOIToBo(PO.OrderItem p)
+    {
+        BO.OrderItem oi = new();
+        oi.ProductPrice = p.ProductPrice;
+        oi.ID = p.ID;
+        oi.Amount = p.Amount;
+        oi.Price = p.Price;
+        oi.ProductID = p.ProductID;
+        oi.ProductPrice = p.ProductPrice;
+        oi.ProductName = p.ProductName;
+        return oi;
+    }
+    public static PO.OrderTracking CastBoOTToPo(BO.OrderTracking p)
+    {
+        PO.OrderTracking o = new()
+        {
+            Tracking = p.Tracking,
+            ID = p.ID,
+            Status = p.Status
+        };
+        return o;
+    }
+    public static BO.OrderTracking CastPoOTToBo(PO.OrderTracking p)
+    {
+        BO.OrderTracking o = new()
+        {
+            Tracking=p.Tracking,
+            ID=p.ID,
+            Status=p.Status
+        };
+        return o;
+    }
+    public static IEnumerable<PO.ProductItem> CastBoOPILToPo(IEnumerable<BO.ProductItem> prods)
+    {
+        IEnumerable<PO.ProductItem> p=from item in prods
+                                      select new PO.ProductItem()
+                                      {
+                                          ID = item.ID,
+                                          ProductName = item.ProductName,
+                                          Price = item.Price,
+                                          Amount = item.Amount,
+                                          Category = item.Category,
+                                          InStock = item.InStock
+                                      };
+        return p;
+    }
+    public static PO.Cart CastBoCToPo(BO.Cart c)
+    {
+        PO.Cart cart = new()
+        {
+            OrderItems = c.orderItems,
+            CustomerAddress = c.CustomerAddress,
+            CustomerEmail = c.CustomerEmail,
+            CustomerName = c.CustomerName,
+            Price = c.Price
+        };
+        return cart;
+    }
+
+    public static BO.Cart CastPoCToBo(PO.Cart c)
+    {
+        BO.Cart cart = new()
+        {
+            orderItems = c.OrderItems,
+            CustomerAddress = c.CustomerAddress,
+            CustomerEmail = c.CustomerEmail,
+            CustomerName = c.CustomerName,
+            Price = c.Price
+        };
+        return cart;
+    }
+
+    /// <summary>
+    /// convert from ienumerable to an observable collection
+    /// </summary>
+    /// <param name="listTOConvert">IEnumerable to convert</param>
+    public static ObservableCollection<PO.ProductItem> IEnumerableToObservable(IEnumerable<BO.ProductItem?> listTOConvert)
+    {
+        ObservableCollection<PO.ProductItem> newList = new();
+        foreach (var item in listTOConvert)
+            newList.Add(CastBoPIToPo(item!));
+        return newList;
+    }
+    public static ObservableCollection<PO.OrderItem> IEnumerableToObservable(IEnumerable<BO.OrderItem?> listTOConvert)
+    {
+        ObservableCollection<PO.OrderItem> newList = new();
+        foreach (var item in listTOConvert)
+            newList.Add(CastBoOIToPo(item!));
+        return newList;
     }
 }

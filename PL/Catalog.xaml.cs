@@ -1,6 +1,8 @@
 ﻿using BO;
+using PL.PO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,24 +25,28 @@ namespace PL
     public partial class Catalog : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private BO.ProductItem p = new BO.ProductItem();
-        Cart myCart = new();
+        ObservableCollection<PO.ProductItem> productList = new();
+        //private PO.ProductItem p = new();
+        PO.Cart myCart = new();
 
       
-        public Catalog(BlApi.IBl b)
+        public Catalog(PO.Cart cart,BlApi.IBl b)
         {
             InitializeComponent();
             bl = b;//new bl
-            DataContext = p;
-            AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+            myCart = cart;
+            productList.Clear();
             try
             {
-                ItemListview.DataContext = bl?.Product.GetCatalog();//get catalog products from BO
+                productList = PL.Tools.IEnumerableToObservable(bl!.Product.GetCatalog());//save the catalog collection from BO in PO obsv collec
             }
             catch (BO.IdNotExistException ex)
             {
                 new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
+            catalogGrid.DataContext=productList;//set data context of catalog as the product list
+            AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+            AddProductToCart.Visibility = Visibility.Visible;
 
 
         }
@@ -48,62 +54,80 @@ namespace PL
         {
             BO.Enums.Category c = (BO.Enums.Category)AttributeSelector.SelectedItem;//save the category picked
 
-            if (c == BO.Enums.Category.NoCategory)//if selected to view all products 
+            if (c == Enums.Category.NoCategory || AttributeSelector.SelectedItem==null)//if selected to view all products 
             {
                 try
                 {
-                    ItemListview.ItemsSource = bl?.Product.GetCatalog();//original list with no filter
+                    productList=PL.Tools.IEnumerableToObservable(bl?.Product.GetCatalog()!);//get catalog products from BO
                 }
                 catch (BO.IdNotExistException ex)
                 {
                     new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
                 }
                 AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//show all of combobox options
+                catalogGrid.DataContext = productList;//set data context of catalog as the product list
                 return;
             }
-            if (c is BO.Enums.Category ca)
+            if (c is Enums.Category ca)//if selected a category
             {
                 try
                 {
-                    ItemListview.ItemsSource = bl?.Product.GetCatalog().Select(x => x!.Category == ca);//show filtered list
+                    productList =PL.Tools.IEnumerableToObservable(from p in bl?.Product.GetCatalog()//get all products
+                                                                  where p.Category == c
+                                                                  select p);//show filtered list
                 }
                 catch (BO.IdNotExistException ex)
                 {
                     new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
                 }
             }
-
-            try
-            {
-                ItemListview.ItemsSource = from p in bl?.Product.GetCatalog()//get all products
-                                           where p.Category == c
-                                           select p;//selected all products of selected category
-            }
-            catch (BO.IdNotExistException ex)
-            {
-                new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
-            }
+            catalogGrid.DataContext = productList;//set data context of catalog as the product list
         }
-        private void ItemListview_click(object sender, MouseButtonEventArgs e)
+        private void ProductItemView_click(object sender, MouseButtonEventArgs e)
         {
-            if (ItemListview.SelectedItem is ProductItem productItem)
+            if (catalogGrid.SelectedItem is PO.ProductItem productItem)
             {
                 new ProductItemView(productItem,bl!).ShowDialog();
             }
-            try
-            {
-                ItemListview.ItemsSource = bl?.Product.GetCatalog();//update list view after add
-            }
-            catch (BO.IdNotExistException ex)
-            {
-                new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
-                //id is null error on screen
-            }
-
         }
-
-
-
+        private void AddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            if (catalogGrid.SelectedItem is PO.ProductItem productItem)
+            {
+                try
+                {
+                    myCart=PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(myCart), productItem.ID));//add the selected product to cart
+                }
+                catch (BO.IdNotExistException ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+                catch (BO.UnfoundException ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+                catch (BO.Exceptions ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+                catch (BO.IdExistException ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+            }//add the product to cart
+        }
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().ShowDialog();//go to home window 
+        }
+        private void CartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new CartWindow(myCart,bl!).ShowDialog();//go to cart window 
+        }
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().ShowDialog();//go to home window 
+        }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -148,7 +172,7 @@ namespace PL
 
         void clickOnCart(object sender, RoutedEventArgs e)
         {
-            new CartWindow(bl!).ShowDialog();
+            new CartWindow(myCart,bl!).ShowDialog();
             Close();//close this window
         }
     }
