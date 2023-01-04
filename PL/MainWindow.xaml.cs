@@ -30,7 +30,7 @@ namespace PL
 
         private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
         {
-            new ListView(bl!).ShowDialog();
+            new ManagerEnterPassword(bl!).ShowDialog();
             Close();//close this window
         }
 
@@ -45,7 +45,5 @@ namespace PL
             Close();//close this window
 
         }
-
-        
     }
 }

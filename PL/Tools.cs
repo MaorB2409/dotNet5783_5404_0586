@@ -81,6 +81,29 @@ static class Tools
         ord.Name = p.Name;
         return ord;
     }
+
+
+
+    public static PO.ProductForList CastBoPFLToPo(BO.ProductForList p)
+    {
+        PO.ProductForList ord = new();
+        ord.ID = p.ID;
+        ord.ProductName = p.ProductName;
+        ord.Price = p.Price;
+        ord.Category = p.Category;
+        return ord;
+    }
+
+    public static BO.ProductForList CastPoPFLToBo(PO.ProductForList p)
+    {
+        BO.ProductForList ord = new();
+        ord.ID = p.ID;
+        ord.ProductName = p.ProductName;
+        ord.Price = p.Price;
+        ord.Category = p.Category;
+        return ord;
+    }
+
     public static BO.ProductItem CastPoPIToBo(PO.ProductItem p)
     {
         BO.ProductItem prod = new();

@@ -54,5 +54,11 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </Button.BorderBrush>
         </Button>
+
+        <!--Back Button-->
+        <Button x:Name="btnBack"  Height ="50" Width="50" Grid.Row="0" Grid.Column="2" Margin="-900,-10, 160,-10" Padding="2" Click="clickBackBtn">
+            <Image Source="images/backBtn.jpg"></Image>
+        </Button>
+        
     </Grid>
 </Window>

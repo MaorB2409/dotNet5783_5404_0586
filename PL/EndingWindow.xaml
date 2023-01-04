@@ -17,8 +17,18 @@
                 <TextBlock x:Name="EndingText" Text="Your Order" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" />
                 <TextBlock x:Name="EndingText2" Text="Has Been Successfully Placed!" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" Foreground="Black" />
 
-                <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" Margin="670,210,20,-78" Background="Transparent" BorderBrush="Transparent">
-                    <Image Source="images\home.png"></Image>
+                <TextBlock x:Name="YourOrder" Text="Your Order Number Is:" FontFamily="Arial Narrow"  Height="50" HorizontalAlignment="Center" FontSize="20" Margin="100,150,10,-100">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF352B38" Offset="0.134"/>
+                            <GradientStop Color="#FFC992ED" Offset="1"/>
+                            <GradientStop Color="#FF6A5F67" Offset="0.435"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+
+                <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" Margin="670,210,20,-78">
+                    <Image Source="images\homeBtn.jpg"></Image>
                 </Button>
 
             </StackPanel>

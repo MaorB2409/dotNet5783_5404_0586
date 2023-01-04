@@ -23,7 +23,7 @@ namespace PL
     public partial class Window1 : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        PO.Product p = new();
+        PO.ProductForList p = new();
         public Window1(BlApi.IBl? b)//add ctor
         {
             InitializeComponent();
@@ -33,12 +33,13 @@ namespace PL
             updateButton.Visibility = Visibility.Collapsed;//update invisible 
             tid.IsEnabled = false;//cant decide an id for a product to add
         }
-        public Window1(ProductForList productForList, BlApi.IBl? b)//update ctor
+        public Window1(PO.ProductForList productForList, BlApi.IBl? b)//update ctor
         {
             InitializeComponent();
             bl = b;//new bl
-            BO.Product prod = bl!.Product.ManagerProduct(productForList.ID);//save the matching product or product for list
-            p = PL.Tools.CastBoProductToPo(prod);//save matching PO product
+            //BO.Product prod = bl!.Product.ManagerProduct(productForList.ID);//save the matching product or product for list
+            //p = PL.Tools.CastBoProductToPo(prod);//save matching PO product
+            p = productForList;
             DataContext = p;//set product as data context
 
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
@@ -69,7 +70,7 @@ namespace PL
         {
             try
             {
-                BO.Product BoProd = PL.Tools.CastPoProductToBo(p);//matching BO prod
+                BO.Product BoProd = bl!.Product.ManagerProduct(p.ID);//save BO product
                 bl!.Product.AddProduct(BoProd);//add product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
@@ -92,8 +93,11 @@ namespace PL
         {
             try
             {
-                BO.Product BoProd = PL.Tools.CastPoProductToBo(p);//matching BO prod
-                bl!.Product.UpdateProduct(BoProd);//add product to BO
+                BO.Product BoProd = bl!.Product.ManagerProduct(p.ID);//save BO product
+                BoProd.Name = p.ProductName;
+                BoProd.Category=p.Category;
+                BoProd.Price = p.Price;
+                bl!.Product.UpdateProduct(BoProd);//update product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
@@ -140,7 +144,13 @@ namespace PL
             }
         }
 
-      
+
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new ListView(bl!).ShowDialog();
+            Close();//close this window
+        }
+
 
     }
 }

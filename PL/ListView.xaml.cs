@@ -1,6 +1,8 @@
 ﻿using BO;
+using PL.PO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -23,15 +25,24 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.OrderForList ords = new();
+        ObservableCollection<PO.ProductForList> productsForList = new();
+        ObservableCollection<PO.OrderForList> ordersForList = new();
+
         //PO.ProductForList prods = new();
         public ListView(BlApi.IBl? Mainbl)
         {
             bl = Mainbl;
             InitializeComponent();
+            productsForList.Clear();
+            ordersForList.Clear();
             try
             {
-                ItemListview.DataContext = bl?.Product.GetProductsForList();//get products for list from BO
-                OrderListview.DataContext = bl?.Order.GetAllOrderForList();//get orders for list from BO
+
+                productsForList = PL.Tools.IEnumerableToObservable(bl!.Product.GetProductsForList());
+                ordersForList = PL.Tools.IEnumerableToObservable(bl!.Order.GetAllOrderForList());
+                
+                //ItemListview.DataContext = bl?.Product.GetProductsForList();//get products for list from BO
+                //OrderListview.DataContext = bl?.Order.GetAllOrderForList();//get orders for list from BO
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {
@@ -44,7 +55,14 @@ namespace PL
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
             }
             AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            ProductItemGrid.DataContext = productsForList;
+            ItemGrid.DataContext = ordersForList;
+
+
+
         }
+
+
 
         private void AttributeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -54,45 +72,59 @@ namespace PL
             {
                 try
                 {
-                    ItemListview.ItemsSource = bl?.Product.GetProductsForList();//original list with no filter
+
+                    productsForList = PL.Tools.IEnumerableToObservable(bl?.Product.GetProductsForList()!);//get catalog products from BO
+
+                    //ItemListview.ItemsSource = bl?.Product.GetProductsForList();//original list with no filter
                 }
                 catch (BO.Exceptions ex)
                 {
                     new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
                 }
                 AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//show all of combobox options
+                ProductItemGrid.DataContext = productsForList;
+
                 return;
             }
             if (c is BO.Enums.Category ca)
             {
                 try
                 {
-                    ItemListview.ItemsSource = bl?.Product.GetProductsForList().Select(x => x!.Category == ca);//show filtered list
+                    //ItemListview.ItemsSource = bl?.Product.GetProductsForList().Select(x => x!.Category == ca);//show filtered list
+
+                    productsForList = PL.Tools.IEnumerableToObservable(from p in bl?.Product.GetProductsForList()//get all products
+                                                                   where p.Category == c
+                                                                   select p);//show filtered list
                 }
                 catch (BO.Exceptions ex)
                 {
                     new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
                 }
+                ProductItemGrid.DataContext = productsForList;
+
             }
 
             try
             {
-                ItemListview.ItemsSource = from p in bl?.Product.GetProductsForList()//get all products
-                                           where p.Category == c
-                                          select p;//selected all products of selected category
+                productsForList = PL.Tools.IEnumerableToObservable(from p in bl?.Product.GetProductsForList()//get all products
+                                                                   where p.Category == c
+                                                                   select p);
             }
             catch (BO.Exceptions ex)
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
             }
+            ProductItemGrid.DataContext = productsForList;
+
         }
+
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-             new Window1(bl!).ShowDialog();
+            new Window1(bl!).ShowDialog();
             try
             {
-                ItemListview.ItemsSource = bl?.Product.GetProductsForList();//update list view after add
+                productsForList = PL.Tools.IEnumerableToObservable(bl?.Product.GetProductsForList()!);
             }
             catch (BO.Exceptions ex)
             {
@@ -100,15 +132,17 @@ namespace PL
             }
         }
 
-        private void ItemListview_updates(object sender, MouseButtonEventArgs e)
+        private void ProductItemGrid_updates(object sender, MouseButtonEventArgs e)
         {
-            if(ItemListview.SelectedItem is ProductForList productForList)
+            if (ProductItemGrid.SelectedItem is PO.ProductForList productForList)
             {
-                new Window1(productForList, bl!).ShowDialog();
+               new Window1(productForList, bl!).ShowDialog();
             }
+
+
             try
             {
-                ItemListview.ItemsSource = bl?.Product.GetProductsForList();//update list view after add
+                productsForList = PL.Tools.IEnumerableToObservable(bl?.Product.GetProductsForList()!);
             }
             catch (BO.Exceptions ex)
             {
@@ -119,13 +153,13 @@ namespace PL
         }
         private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
-            if (OrderListview.SelectedItem is OrderForList orderForList)
+            if (ItemGrid.SelectedItem is PO.OrderForList orderForList)
             {
-                new UpdateOrdersAdmin(orderForList,bl!).ShowDialog();
+               new UpdateOrdersAdmin(orderForList, bl!).ShowDialog();
             }
             try
             {
-                OrderListview.ItemsSource = bl?.Order.GetAllOrderForList();//update order list view 
+                ordersForList = PL.Tools.IEnumerableToObservable(bl?.Order.GetAllOrderForList()!);
             }
             catch (BO.Exceptions ex)
             {
@@ -134,6 +168,8 @@ namespace PL
             }
 
         }
+
+
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
         {

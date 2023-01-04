@@ -47,5 +47,11 @@ namespace PL
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for id
         }
+
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new OrderTracking(bl!).ShowDialog();
+            Close();//close this window
+        }
     }
 }

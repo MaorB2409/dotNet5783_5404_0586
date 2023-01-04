@@ -53,7 +53,13 @@
         <Calendar x:Name="deliverydate" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="10,0,0,0" DisplayDate="{Binding DeliveryDate,Mode=TwoWay}"/>
         <ComboBox Name="statusBox" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="10,39,0,39" Grid.RowSpan="3" Width="179"/>
         <TextBox Name="tprice" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="8" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
+        <TextBox Name="tOrderItems" Text="{Binding orderItems,Mode=TwoWay}" Grid.Column="1" Grid.Row="9" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
 
-        
+
+        <!--Back Button-->
+        <Button x:Name="btnBack"  Height ="40" Width="40" BorderBrush="Transparent" Grid.Row="0" Grid.Column="2" Margin="-900,-10, 160,-10" Padding="2" Click="clickBackBtn">
+            <Image Source="images/backBtn.jpg"></Image>
+        </Button>
+
     </Grid>
 </Window>

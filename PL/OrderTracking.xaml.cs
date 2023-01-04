@@ -53,7 +53,7 @@ namespace PL
 
         private void OrderDetails_Click(object sender, RoutedEventArgs e)
         {
-            new OrderView(orderTracking.ID,bl!).ShowDialog();
+            new OrderView(orderTracking.ID, bl!).ShowDialog();
             Close();//close this window
         }
     }

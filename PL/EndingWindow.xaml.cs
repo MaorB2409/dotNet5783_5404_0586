@@ -19,7 +19,7 @@ namespace PL////>ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
     /// </summary>
     public partial class EndingWindow : Window
     {
-        public EndingWindow()
+        public EndingWindow(int orderId)
         {
             InitializeComponent();
         }

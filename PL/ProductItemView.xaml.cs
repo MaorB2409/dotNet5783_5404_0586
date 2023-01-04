@@ -46,5 +46,11 @@ namespace PL
                 tAmount.IsReadOnly = true;
 
             }
+
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new Catalog(bl!).ShowDialog();
+            Close();//close this window
         }
+    }
 }

@@ -33,6 +33,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="GMap.NET.Core" Version="2.0.3" />
+		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="HomeSpace_LOGO.png" />
 		<Resource Include="images\cartBtn.jpg" />
 		<Resource Include="images\download.jpg" />
 		<Resource Include="images\backBtn.jpg" />
