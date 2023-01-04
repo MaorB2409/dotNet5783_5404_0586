@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PL.PO
 {
-    internal class OrderForList : INotifyPropertyChanged
+    public class OrderForList : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         private int id;

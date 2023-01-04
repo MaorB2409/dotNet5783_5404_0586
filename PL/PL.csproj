@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	
+	
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -23,6 +25,7 @@
     <None Remove="e5050d6d674763135efe2ac898416df4.jpg" />
     <None Remove="e8faa395ecab57e4f66a0fad35c0d073.jpg" />
     <None Remove="errorIcon.png" />
+    <None Remove="HomeSpace_LOGO.png" />
     <None Remove="istockphoto-1284843286-612x612.jpg" />
     <None Remove="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
     <None Remove="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
@@ -31,6 +34,16 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="GMap.NET.Core" Version="2.0.3" />
+		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="HomeSpace_LOGO.png" />
 		<Resource Include="images\cartBtn.jpg" />
 		<Resource Include="images\download.jpg" />
 		<Resource Include="images\backBtn.jpg" />

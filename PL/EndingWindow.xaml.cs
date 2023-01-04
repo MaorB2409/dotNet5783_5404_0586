@@ -19,7 +19,7 @@ namespace PL
     /// </summary>
     public partial class EndingWindow : Window
     {
-        public EndingWindow()
+        public EndingWindow(int orderId)
         {
             InitializeComponent();
         }

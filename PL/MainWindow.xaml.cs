@@ -29,7 +29,7 @@ namespace PL
 
         private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
         {
-            new ListView(bl!).ShowDialog();
+            new ManagerEnterPassword(bl!).ShowDialog();
             Close();//close this window
         }
 
@@ -43,10 +43,6 @@ namespace PL
             new Catalog(bl!).ShowDialog();
             Close();//close this window
 
-        }
-
-        private void CartWindow_Click(object sender, RoutedEventArgs e)
-        {
         }
     }
 }

@@ -6,71 +6,124 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ListView" Height="640" Width="800">
+
+
     <Grid x:Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MainC1" Width="*"/>
-            <ColumnDefinition x:Name="MainC2" Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="500*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="0"
+        <TabControl>
+            <!--<Products-->
+            <TabItem Header="Products">
+
+                <Grid Name="UpGrid" Height="auto" Grid.Row="0" Grid.Column="0" Width="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions >
+
+                    <ComboBox Name="AttributeSelector" HorizontalAlignment= "Left" VerticalAlignment="Top" SelectionChanged="AttributeSelector_SelectionChanged" Text="choose" Grid.Column="1" Margin="160,-2,0,0" Width="226" Height="42" />
+
+
+                    <DataGrid Name="ProductItemGrid" Grid.Column="0"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="16"
+                  ItemsSource= "{Binding}" Grid.ColumnSpan="2" Margin="0,0,249,10" MouseDoubleClick="ProductItemGrid_updates" >
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Product" Binding="{Binding ProductName}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Price}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Amount" Binding="{Binding Category}"
+                                    MinWidth="10" Width="*"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+
+            <!--orders-->
+            <TabItem Header="Orders">
+                <Grid Name="OrderGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
              VerticalAlignment="Stretch" Width="auto">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <ComboBox Name="AttributeSelector" Grid.Column="1" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged" Text="" />
-            <Label Name="Description" Content="Products:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
-                   Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
-        </Grid>
-        <Grid Name="OrderGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
-             VerticalAlignment="Stretch" Width="auto">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <Label Name="OrderDescription" Content="Orders:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Italic" FontWeight="Bold" FontSize="23" Width="400"
-                   Background="LavenderBlush" FontStyle="Italic" Height="43" HorizontalContentAlignment="Center"/>
-        </Grid>
-        <ListView x:Name="ItemListview" Grid.Column="0" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
-                  FontSize="18" Width="800" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="ItemListview_updates">
-            <ListView.Foreground>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </ListView.Foreground>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions >
 
-        <ListView x:Name="OrderListview" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
-                  FontSize="18" BorderBrush="{x:Null}" FontFamily="Segoe Print" FontWeight="Bold" MouseDoubleClick="Orders_updates" Margin="0,0,0,45" Grid.RowSpan="2">
-            <ListView.Foreground>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </ListView.Foreground>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="btnAdd" Content="Add Product" FontSize="25" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic"
-                Width="200" Grid.Row="2" HorizontalAlignment="Center" Padding="5" Click="btnAdd_Click">
-            <Button.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
-            </Button.BorderBrush>
 
+
+
+                    <DataGrid Name="ItemGrid" Grid.Column="0"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="16"
+                  ItemsSource="{Binding}" Grid.ColumnSpan="2" MouseDoubleClick="Orders_updates">
+                        <!--MouseDoubleClick="ProductItemView_click" >-->
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="   ID" Binding="{Binding ID}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Product" Binding="{Binding Name}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"
+                                    MinWidth="10" Width="*"/>
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+
+
+        <!--** Buttons **-->
+        
+        <!--Home Button-->
+        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="700,300,20,-190" Padding="5" Click="clickOnHomeBtn">
+            <Image Source="images/home.png"></Image>
         </Button>
-        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="249,10,20,10" Padding="5" Click="clickOnHomeBtn">
-                <Image Source="images/home.png"></Image>
-
-        </Button>
-
-
-
+        
+        <!--Add Button-->
+        <Button x:Name="btnAdd" Content="Add Button" FontSize="15" Height ="40" Width="100" Grid.Row="2" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="2" Margin="456,300,20,-190" Padding="5" Click="btnAdd_Click"/>
 
     </Grid>
 </Window>
+
+
+

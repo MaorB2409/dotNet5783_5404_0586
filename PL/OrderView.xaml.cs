@@ -42,9 +42,13 @@ namespace PL
             //o = BoToPoOrder(ord);//convert to PO order 
             DataContext = o;
 
-            //orderdate.DisplayDate = (System.DateTime)o.OrderDate!;
-            //shipdate.DisplayDate = (System.DateTime)o.ShipDate!;
-            //deliverydate.DisplayDate = (System.DateTime)o.DeliveryDate!;
+
+        }
+
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new OrderIDEnter(bl!).ShowDialog();
+            Close();//close this window
         }
     }
 }

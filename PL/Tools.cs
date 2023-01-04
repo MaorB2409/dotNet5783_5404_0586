@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +81,29 @@ static class Tools
         ord.Name = p.Name;
         return ord;
     }
+
+
+
+    public static PO.ProductForList CastBoPFLToPo(BO.ProductForList p)
+    {
+        PO.ProductForList ord = new();
+        ord.ID = p.ID;
+        ord.ProductName = p.ProductName;
+        ord.Price = p.Price;
+        ord.Category = p.Category;
+        return ord;
+    }
+
+    public static BO.ProductForList CastPoPFLToBo(PO.ProductForList p)
+    {
+        BO.ProductForList ord = new();
+        ord.ID = p.ID;
+        ord.ProductName = p.ProductName;
+        ord.Price = p.Price;
+        ord.Category = p.Category;
+        return ord;
+    }
+
     public static BO.ProductItem CastPoPIToBo(PO.ProductItem p)
     {
         BO.ProductItem prod = new();
@@ -103,5 +127,40 @@ static class Tools
         prod.Category = p.Category;
         prod.Price = p.Price;
         return prod;
+    }
+
+    public static PO.OrderTracking CastBoPIToPo(BO.OrderTracking p)
+    {
+        PO.OrderTracking ot = new();
+        ot.ID = p.ID;
+        ot.Status = p.Status;
+        ot.Tracking = p.Tracking;
+        return ot;
+    }
+
+    public static BO.OrderTracking CastPoPIToBo(PO.OrderTracking p)
+    {
+        BO.OrderTracking ot = new();
+        ot.ID = p.ID;
+        ot.Status = p.Status;
+        ot.Tracking = p.Tracking;
+        return ot;
+    }
+
+    public static ObservableCollection<PO.ProductForList> IEnumerableToObservable(IEnumerable<BO.ProductForList?> listTOConvert)
+    {
+        ObservableCollection<PO.ProductForList> newList = new();
+        foreach (var item in listTOConvert)
+            newList.Add(CastBoPFLToPo(item!));
+        return newList;
+    }
+
+
+    public static ObservableCollection<PO.OrderForList> IEnumerableToObservable(IEnumerable<BO.OrderForList?> listTOConvert)
+    {
+        ObservableCollection<PO.OrderForList> newList = new();
+        foreach (var item in listTOConvert)
+            newList.Add(CastBoOrderFLToPo(item!));
+        return newList;
     }
 }

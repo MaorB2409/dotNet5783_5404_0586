@@ -4,10 +4,78 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+
         mc:Ignorable="d"
         Title="OrderTracking" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
+
+
+    <!--<Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="ID :" 
+                               Margin="10,5,0,5"
+                               Grid.Column="0"
+                               Grid.Row="0"/>
+            <TextBlock VerticalAlignment="Center" 
+                               Text="{Binding ID}" 
+                               Margin="10,5,0,5"
+                               Grid.Column="1"
+                               Grid.Row="0"/>
+
+          
+            <TextBlock Text="Status :" 
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Margin="10,5,0,5"/>
+            <TextBlock Text="{Binding Status}" 
+                               Grid.Row="2" Grid.Column="1"
+                               Margin="10,5,0,5"/>
+
+            <TextBlock Text="Tracking :" 
+                               Grid.Row="2" Grid.Column="0"
+                               Margin="10,5,0,5"/>
+           
+
+
+
+            <StackPanel Grid.Row="3" Margin="10,5,0,5"
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center" 
+                                >
+                <TextBlock Text="Location :" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               />
+                -->
+    <!--<Button x:Name="locationMap" Height="30" Padding="0,0,0,0" Background="#009E9E9E" 
+                            BorderBrush="#009E9E9E"  Margin="10,0,0,0" Click="locationMap_Click">
+                    <materialDesign:PackIcon  Kind="MapMarker" 
+                                     Height="30" Width="30"
+                                     HorizontalAlignment="Center"
+                                         Foreground="Gray"/>
+                </Button>-->
+    <!--
+                
+                
+
+            </StackPanel>
+
+            <TextBlock Text="{Binding Location}" 
+                               Grid.Row="6" Grid.ColumnSpan="2"
+                               FontSize="10"
+                               Margin="10,5,10,5"/>-->
+    <!--<Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -26,13 +94,98 @@
                HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" />
         <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ID,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
         <ComboBox Name="StatusBox" Grid.Column="1" Text="{Binding Status,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="190" Height="33" />
-        <TextBox Name="ttracking" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Tracking" VerticalAlignment="Center" Width="214" Height="40"/>
+        <TextBox Name="ttracking" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Tracking" VerticalAlignment="Center" Width="214" Height="40"/>-->
+    <!--<Button Name="OrderDetails" Content="Show Order Details" FontSize="27" FontStyle="Italic" 
+                HorizontalAlignment="Left" Margin="201,28,0,29"  Width="200" Height="60"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="2" Click="OrderDetails_Click" >
+      
+        </Button>-->
 
-        <Button Name="OrderDetails" Content="Show Order Details" FontSize="27" FontStyle="Italic" 
-                HorizontalAlignment="Left" Margin="201,28,0,29" Grid.Row="3" Width="400" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="2" Click="OrderDetails_Click">
-            <Button.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </Button.BorderBrush>
-        </Button>
+
+    <!--Add Button-->
+    <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="337"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="LavenderBlush" Margin="0,0,1,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="ID :" 
+                               Margin="10,5,0,5"
+                               Grid.Column="0"
+                               Grid.Row="0"/>
+                <!--<TextBlock x: Name='tid' VerticalAlignment="Center" 
+                               Text="{Binding ID}" 
+                               Margin="10,5,0,5"
+                               Grid.Column="1"
+                               Grid.Row="0"/>-->
+
+                <TextBox Name="tid" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Center" Width="251" Height="40" Margin="73,0,0,0" Grid.ColumnSpan="2"/>
+
+
+                <TextBlock Text="Status :" 
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Margin="10,5,0,5"/>
+                <ComboBox Name="StatusBox"  Text="{Binding Status}" 
+                               Grid.Row="1" Height="40"
+                               Margin="73,11,12,11" Grid.ColumnSpan="2"/>
+
+
+
+                <TextBlock Text="Tracking :" 
+                               Grid.Row="2" Grid.Column="0"
+                               Margin="10,5,0,5"/>
+                <!--<TextBlock Text="{Binding Tracking}" 
+                               Grid.Row="2" Grid.Column="1"
+                               Margin="10,5,0,5"/>-->
+                <TextBox Name="ttracking" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Center" Width="251" Height="40" Margin="73,0,0,0" Grid.ColumnSpan="2"/>
+
+
+
+                <StackPanel Grid.Row="3" Margin="10,5,0,5"
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center" 
+                                >
+                    <TextBlock Text="Location :" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               />
+                    <Button x:Name="locationMap" Height="30" Padding="0,0,0,0" Background="#009E9E9E" 
+                            BorderBrush="#009E9E9E"  Margin="10,0,0,0"/>
+                    <!--Click="locationMap_Click"/-->
+
+                </StackPanel>
+
+                <!--<TextBlock Text="{Binding Location}" 
+                               Grid.Row="3" Grid.ColumnSpan="2"
+                               FontSize="10"
+                               Margin="10,5,10,5"/>-->
+
+            </Grid>
+        </Grid>
+        <Button x:Name="OrderDetails" Content="Show Order Details" FontSize="15" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" Margin="258,352,37,42" Padding="5" Click="OrderDetails_Click" />
+
+
     </Grid>
+
+
+
 </Window>

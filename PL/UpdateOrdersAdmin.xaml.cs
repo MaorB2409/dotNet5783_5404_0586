@@ -35,10 +35,11 @@ namespace PL
             updateDelivery.Visibility = Visibility.Collapsed;//update invisible 
 
         }
-        public UpdateOrdersAdmin(BO.OrderForList orderForList, BlApi.IBl? b)
+        public UpdateOrdersAdmin(PO.OrderForList orderForList, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
+            o = orderForList;
             DataContext = o;
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateShip.Visibility = Visibility.Visible;//show update
@@ -49,6 +50,12 @@ namespace PL
             tamount.IsReadOnly = true;
             tprice.IsReadOnly = true;
         }
-        
+
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new ListView(bl!).ShowDialog();
+            Close();//close this window
+        }
+
     }
 }

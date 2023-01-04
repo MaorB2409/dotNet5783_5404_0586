@@ -39,5 +39,9 @@
         <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding InStock,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40"/>
         <TextBox Name="tAmount" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Amount,Mode=TwoWay}" VerticalAlignment="Center" Width="214" Height="40" />
 
+        <!--Back Button-->
+        <Button x:Name="btnHome"  Height ="50" Width="50" Grid.Row="0" Grid.Column="2" Margin="-900,-10, 160,-10" Padding="2" Click="clickBackBtn">
+            <Image Source="images/backBtn.jpg"></Image>
+        </Button>
     </Grid>
 </Window>
