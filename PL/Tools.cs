@@ -230,4 +230,18 @@ static class Tools
             newList.Add(CastBoOIToPo(item!));
         return newList;
     }
+    public static ObservableCollection<PO.ProductForList> IEnumerableToObservable(IEnumerable<BO.ProductForList?> listTOConvert)
+    {
+        ObservableCollection<PO.ProductForList> newList = new();
+        foreach (var item in listTOConvert)
+            newList.Add(CastBoPFLToPo(item!));
+        return newList;
+    }
+    public static ObservableCollection<PO.OrderForList> IEnumerableToObservable(IEnumerable<BO.OrderForList?> listTOConvert)
+    {
+        ObservableCollection<PO.OrderForList> newList = new();
+        foreach (var item in listTOConvert)
+            newList.Add(CastBoOrderFLToPo(item!));
+        return newList;
+    }
 }

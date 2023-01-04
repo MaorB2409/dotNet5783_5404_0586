@@ -12,7 +12,7 @@
 
             <StackPanel>
                 <StackPanel.Background>
-                    <ImageBrush ImageSource="images/box.png"/>
+                    <ImageBrush ImageSource="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp"/>
                 </StackPanel.Background>
                 <TextBlock x:Name="EndingText" Text="Your Order" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" />
                 <TextBlock x:Name="EndingText2" Text="Has Been Successfully Placed!" FontFamily="Edwardian Script ITC" TextAlignment="Center" Height="50" HorizontalAlignment="Center" FontSize="48" Foreground="Black" />

@@ -36,8 +36,8 @@ namespace PL
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            new EndingWindow().ShowDialog();//show ending window 
+            int id = 1002;//save the order id
+            new EndingWindow(id).ShowDialog();//show ending window 
         }
     }
 }

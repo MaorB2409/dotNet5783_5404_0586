@@ -24,6 +24,7 @@ namespace PL
 
             BlApi.IBl? bl = BlApi.Factory.Get();
             PO.ProductItem p = new();
+            PO.Cart myCart = new();
             public ProductItemView(BlApi.IBl? b)//empty ctor
             {
                 InitializeComponent();
@@ -49,7 +50,7 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new Catalog(bl!).ShowDialog();
+            new Catalog(myCart,bl!).ShowDialog();
             Close();//close this window
         }
     }
