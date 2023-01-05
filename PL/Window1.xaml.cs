@@ -112,37 +112,37 @@ namespace PL
         }
 
        
-        private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if(tid.Text=="Enter ID")
-            {
-                tid.Clear();//clear the default text
-            }
-        }
+        //private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if(tid.Text=="Enter ID")
+        //    {
+        //        tid.Clear();//clear the default text
+        //    }
+        //}
 
-        private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tname.Text == "Enter Name")
-            {
-                tname.Clear();//clear the default text
-            }
-        }
+        //private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (tname.Text == "Enter Name")
+        //    {
+        //        tname.Clear();//clear the default text
+        //    }
+        //}
 
-        private void tprice_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tprice.Text == "Enter Price")
-            {
-                tprice.Clear();//clear the default text
-            }
-        }
+        //private void tprice_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (tprice.Text == "Enter Price")
+        //    {
+        //        tprice.Clear();//clear the default text
+        //    }
+        //}
 
-        private void tinstock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tinstock.Text == "Enter Amount")
-            {
-                tinstock.Clear();//clear the default text
-            }
-        }
+        //private void tinstock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (tinstock.Text == "Enter Amount")
+        //    {
+        //        tinstock.Clear();//clear the default text
+        //    }
+        //}
 
 
         void clickBackBtn(object sender, RoutedEventArgs e)
