@@ -107,8 +107,8 @@ internal class Cart:ICart
             if (amount == 0)//to delete a product
             {
                 BO.OrderItem temp= myCart.orderItems[ind]!;//save the orderitem with id
-                myCart.orderItems.Remove(temp);//remove orderItem from cart
                 myCart.Price -= myCart.orderItems[ind]!.ProductPrice;//update cart price
+                myCart.orderItems.Remove(temp);//remove orderItem from cart
                 return myCart;
             }
             myCart.Price -= myCart.orderItems[ind]!.ProductPrice; //substract price of product from cart
@@ -125,21 +125,54 @@ internal class Cart:ICart
         {
             throw new BO.UnfoundException("Incorrect Input of an order entered");
         }
-        //IEnumerable<DO.Product?> productList = DOList?.Product.GetAll()!;//get all products from dal
-        //IEnumerable<string> checkOrderItem = from BO.OrderItem item in myCart.orderItems!
-        //                                     let product = productList.FirstOrDefault(x => x?.ID == item.ID)
-        //                                     where item.Amount < 1 || product?.InStock < item.Amount
-        //                                     select item.ProductName + " is not in stock\n";//check if all of the products in cart are in stock
-        //if (checkOrderItem.Any())//if no products are available 
-        //    throw new BO.NoApproval(checkOrderItem.ToString()!);
+        IEnumerable<DO.Product?> productList = DOList?.Product.GetAll()!;//get all products from dal
+        IEnumerable<string> checkOrderItem = from BO.OrderItem item in myCart.orderItems!
+                                             let product = productList.FirstOrDefault(x => x?.ID == item.ID)
+                                             where item.Amount < 1 || product?.InStock < item.Amount
+                                             select item.ProductName + " is not in stock\n";//check if all of the products in cart are in stock
+        if (checkOrderItem.Any())//if no products are available 
+            throw new BO.IdNotExistException("The product requested does not exist\n");
 
-        //DOList?.Order.Add(new DO.Order() { CostumerAddress=myCart.CustomerAddress!,
-        //CostumerEmail=myCart.CustomerEmail!,CostumerName=myCart.CustomerName!,IsDeleted=false});//add a new order for the cart
-        //                                                                                        // myCart.orderItems!.ForEach(x => DOList?.OrderItem.Add(x?.CopyPropTo(new DO.OrderItem())));
+        int? orderId=DOList?.Order.Add(new DO.Order()
+        {
+            CostumerAddress = myCart.CustomerAddress!,
+            CostumerEmail = myCart.CustomerEmail!,
+            CostumerName = myCart.CustomerName!,
+            IsDeleted = false,
+            OrderDate = DateTime.Now
+        });//add a new order for the cart and get order ID
+        try
+        {
+            myCart.orderItems!.ForEach(x => DOList?.OrderItem.Add(new DO.OrderItem()
+            {
+                Amount = (int)x?.Amount!,
+                ID = x.ID,
+                IsDeleted = x.IsDeleted,
+                OrderID = (int)orderId!,
+                Price = x.Price,
+                ProductID = x.ProductID
+            }));//go over cart order items and add each to dal
+        }
+        catch (DalApi.Exceptions ex)
+        {
+            throw new BO.Exceptions(ex.Message);
+        }
+        catch(DalApi.IdExistException ex)
+        {
+            throw new BO.Exceptions(ex.Message);
+        }
+        IEnumerable<DO.Product?> products;
+        try
+        {
+            products = from item in myCart.orderItems
+                       select DOList?.Product.GetById(item.ProductID);//list of products in cart
+        }
+        catch (DalApi.IdNotExistException)
+        {
+            throw new BO.IdNotExistException("The product requested does not exist\n");
+        }
 
-        //IEnumerable<DO.Product?> products=from item in myCart.orderItems
-        //                                  select DOList?.Product.GetById(item.ProductID);//list of products in cart
-        ////products.Zip(myCart.orderItems, (first, second) => first.InStock -= second!.Amount).ToList().ForEach(x => DOList?.Product.GetByFilter(x));
+        //products.Zip(myCart.orderItems, (first, second) => first.InStock -= second!.Amount).ToList().ForEach(x => DOList?.Product.GetByFilter(x));
         ////update the amount of products
 
         DO.OrderItem oi = new();//create order item

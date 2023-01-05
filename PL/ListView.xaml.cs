@@ -27,8 +27,6 @@ namespace PL
         PO.OrderForList ords = new();
         ObservableCollection<PO.ProductForList> productsForList = new();
         ObservableCollection<PO.OrderForList> ordersForList = new();
-
-        //PO.ProductForList prods = new();
         public ListView(BlApi.IBl? Mainbl)
         {
             bl = Mainbl;
@@ -57,9 +55,6 @@ namespace PL
             AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             ProductItemGrid.DataContext = productsForList;
             ItemGrid.DataContext = ordersForList;
-
-
-
         }
 
 
@@ -130,6 +125,7 @@ namespace PL
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
             }
+            ProductItemGrid.DataContext = productsForList;
         }
 
         private void ProductItemGrid_updates(object sender, MouseButtonEventArgs e)
@@ -138,8 +134,6 @@ namespace PL
             {
                new Window1(productForList, bl!).ShowDialog();
             }
-
-
             try
             {
                 productsForList = PL.Tools.IEnumerableToObservable(bl?.Product.GetProductsForList()!);
@@ -149,7 +143,7 @@ namespace PL
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
                 //id is null error on screen
             }
-
+            ProductItemGrid.DataContext = productsForList;
         }
         private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
@@ -166,7 +160,7 @@ namespace PL
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
                 //id is null error on screen
             }
-
+            ItemGrid.DataContext = ordersForList;
         }
 
 

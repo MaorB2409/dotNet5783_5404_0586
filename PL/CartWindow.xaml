@@ -64,7 +64,12 @@
 
             <!--Products-->
             <StackPanel Margin="0,103,0,40" Grid.RowSpan="3">
-                <ListView x:Name="PList" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" >
+                <ListView x:Name="PList" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" >
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <EventSetter Event="PreviewGotKeyboardFocus" Handler="SelectCurrentItem"/>
+                        </Style>
+                    </ListView.Resources>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Background="#E5E9EA" Margin="0 15 0 0" HorizontalAlignment="Center">
@@ -123,7 +128,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="-60 -32 0 0">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
                 </StackPanel>
-                <TextBox x:Name="Subtotal" Text="{Binding Price, Mode=TwoWay}" IsReadOnly="True" TextAlignment="Center" FontWeight="SemiBold" FontSize="18" Height="30" Margin="338,-35,-98,5"/>
+                <TextBox x:Name="Subtotal" Text="{Binding Price}" IsReadOnly="True" TextAlignment="Center" FontWeight="SemiBold" FontSize="18" Margin="338,-40,-98,5"/>
             </Grid>
         </Grid>
 
@@ -149,7 +154,7 @@
             </Border>
 
             <!--Inputs-->
-            <StackPanel Margin="30 100 30 0" VerticalAlignment="Top">
+            <StackPanel Margin="30 20 30 0" VerticalAlignment="Top">
                 <TextBlock Text="Card Details" Foreground="Pink" FontWeight="SemiBold" FontSize="24" Margin="0 0 0 70"/>
 
                 <TextBlock Text="Select Card Type" Style="{StaticResource titleText}" TextAlignment="Center"/>
@@ -181,17 +186,17 @@
 
                     <StackPanel>
                         <TextBlock Text="Expire Date" Style="{StaticResource titleText}"/>
-                        <TextBox Margin="0 5 0 0"/>
+                        <TextBox Margin="0 5 0 0" MaxLength="4" PreviewTextInput="tid_previewtextinput"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="30 0 0 0" Width="50">
                         <TextBlock Text="CVV" Style="{StaticResource titleText}"/>
-                        <TextBox Margin="0 5 0 0"/>
+                        <TextBox Margin="0 5 0 0" MaxLength="3" PreviewTextInput="tid_previewtextinput"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
 
-            <Button Content="Checkout" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click" Height="58" Margin="0,356,0,0" VerticalAlignment="Top" />
+            <Button Content="Checkout" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click" Height="50" VerticalAlignment="Bottom" Margin="0,356,0,0"/>
         </Grid>
 
     </Grid>

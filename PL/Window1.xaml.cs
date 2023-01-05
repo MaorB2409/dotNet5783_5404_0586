@@ -37,7 +37,7 @@ namespace PL
         {
             InitializeComponent();
             bl = b;//new bl
-            //BO.Product prod = bl!.Product.ManagerProduct(productForList.ID);//save the matching product or product for list
+            BO.Product prod = bl!.Product.ManagerProduct(productForList.ID);//save the matching product or product for list
             //p = PL.Tools.CastBoProductToPo(prod);//save matching PO product
             p = productForList;
             DataContext = p;//set product as data context
@@ -45,16 +45,12 @@ namespace PL
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             addButton.Visibility = Visibility.Collapsed;//add invisible
             updateButton.Visibility = Visibility.Visible;//show update
-            tid.IsReadOnly = true;//cant change id of a product to update                                            
+            tid.IsReadOnly = true;//cant change id of a product to update
+            tinstock.Text = prod.InStock.ToString();
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for id
-        }
-
-        private void tinstock_previewtextinput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for instock
         }
 
         private void tprice_previewtextinput(object sender, TextCompositionEventArgs e)
@@ -65,13 +61,23 @@ namespace PL
         {
             e.Handled = new Regex("[^a-z]+").IsMatch(e.Text);//only get letters 
         }
-
+       
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            int temp = int.Parse(tinstock.Text);//save the instock text to a number
             try
             {
-                BO.Product BoProd = bl!.Product.ManagerProduct(p.ID);//save BO product
-                bl!.Product.AddProduct(BoProd);//add product to BO
+                BO.Product BoProd = new()
+                {
+                    ID = p.ID,
+                    InStock=temp,
+                    IsDeleted=false,
+                    Category=p.Category,
+                    Name=p.ProductName,
+                    Price=p.Price
+
+                };//save BO product
+                bl!.Product.AddProduct(BoProd);//add product to BO 
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
             {
@@ -91,12 +97,14 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            int temp = int.Parse(tinstock.Text);//save the instock text to a number
             try
             {
                 BO.Product BoProd = bl!.Product.ManagerProduct(p.ID);//save BO product
                 BoProd.Name = p.ProductName;
                 BoProd.Category=p.Category;
                 BoProd.Price = p.Price;
+                BoProd.InStock = temp;
                 bl!.Product.UpdateProduct(BoProd);//update product to BO
             }
             catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
@@ -109,39 +117,6 @@ namespace PL
             }
             
             Close();//close this window
-        }
-
-       
-        private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if(tid.Text=="Enter ID")
-            {
-                tid.Clear();//clear the default text
-            }
-        }
-
-        private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tname.Text == "Enter Name")
-            {
-                tname.Clear();//clear the default text
-            }
-        }
-
-        private void tprice_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tprice.Text == "Enter Price")
-            {
-                tprice.Clear();//clear the default text
-            }
-        }
-
-        private void tinstock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tinstock.Text == "Enter Amount")
-            {
-                tinstock.Clear();//clear the default text
-            }
         }
 
 

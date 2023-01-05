@@ -65,71 +65,69 @@ namespace PL
         }
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {
-            if (PList.SelectedItem is PO.OrderItem orderItem)
+            PO.OrderItem orderItem = (PO.OrderItem)PList.SelectedItem;//save the selected order item 
+            try
             {
-                try
-                {
-                    cart=PL.Tools.CastBoCToPo(bl!.Cart.UpdateCart(PL.Tools.CastPoCToBo(cart), orderItem.ID, 0));//remove the selected product from cart
-                }
-                catch (BO.IdNotExistException ex)
-                {
-                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
-                }
-                orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
-                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
-                Subtotal.DataContext = cart;//set subtotal data context to our cart
-
+                cart = PL.Tools.CastBoCToPo(bl!.Cart.UpdateCart(PL.Tools.CastPoCToBo(cart), orderItem.ID, 0));//remove the selected product from cart
             }
+            catch (BO.IdNotExistException ex)
+            {
+                new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+            }
+            orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
         private void ReduceItem_Click(object sender, RoutedEventArgs e)
         {
-            if (PList.SelectedItem is PO.OrderItem orderItem)
+            PO.OrderItem orderItem = (PO.OrderItem)PList.SelectedItem;//save the selected order item 
+            try
             {
-                try
-                {
-                    cart = PL.Tools.CastBoCToPo(bl!.Cart.UpdateCart(PL.Tools.CastPoCToBo(cart), orderItem.ID,orderItem.Amount-1));//remove one of the selected products from cart
-                }
-                catch (BO.IdNotExistException ex)
-                {
-                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
-                }
-                orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
-                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
-                Subtotal.DataContext = cart;//set subtotal data context to our cart
+                cart = PL.Tools.CastBoCToPo(bl!.Cart.UpdateCart(PL.Tools.CastPoCToBo(cart), orderItem.ID, orderItem.Amount - 1));//remove one of the selected products from cart
             }
+            catch (BO.IdNotExistException ex)
+            {
+                new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+            }
+            orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            if(PList.SelectedItem is PO.OrderItem orderItem)
+            PO.OrderItem orderItem = (PO.OrderItem)PList.SelectedItem;//save the selected order item 
+            try
             {
-                try
-                {
-                    cart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(cart),orderItem.ID));//add the selected product to cart
-                }
-                catch(BO.IdNotExistException ex)
-                {
-                    new ErrorWindow("Cart Window",ex.Message).ShowDialog();
-                }
-                catch(BO.UnfoundException ex)
-                {
-                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
-                }
-                catch (BO.Exceptions ex)
-                {
-                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
-                }
-                catch (BO.IdExistException ex)
-                {
-                    new ErrorWindow("Cart Window", ex.Message).ShowDialog();
-                }
-                orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
-                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
-                Subtotal.DataContext = cart;//set subtotal data context to our cart
+                cart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(cart), orderItem.ID));//add the selected product to cart
             }
+            catch (BO.IdNotExistException ex)
+            {
+                new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+            }
+            catch (BO.UnfoundException ex)
+            {
+                new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+            }
+            catch (BO.Exceptions ex)
+            {
+                new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+            }
+            catch (BO.IdExistException ex)
+            {
+                new ErrorWindow("Cart Window", ex.Message).ShowDialog();
+            }
+            orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for id
+        }
+        protected void SelectCurrentItem(Object sender, KeyboardFocusChangedEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)sender;
+            item.IsSelected = true;
         }
     }
 }

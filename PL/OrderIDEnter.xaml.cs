@@ -53,5 +53,9 @@ namespace PL
             new OrderTracking(bl!).ShowDialog();
             Close();//close this window
         }
+        private void EnterPressed_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) OKBtn_Click(sender, e);
+        }
     }
 }

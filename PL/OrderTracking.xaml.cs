@@ -29,7 +29,6 @@ namespace PL
             InitializeComponent();
             bl = b;//new bl
             DataContext = orderTracking;
-
         }
         public OrderTracking(int id, BlApi.IBl? b)
         {
