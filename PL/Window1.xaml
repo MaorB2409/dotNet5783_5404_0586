@@ -6,6 +6,9 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/marbleBg.jpeg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
             <RowDefinition Height="55"/>

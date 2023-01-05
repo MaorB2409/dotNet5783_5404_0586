@@ -19,7 +19,7 @@ public class DalOrderItem : IOrderItem
         int ind = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID && x?.IsDeleted == false);//save index of orderItem with matching id if not deleted
         if (ind != -1)//exists already so cant add again
         {
-            throw new Exceptions("The order item exists already so cant add again");//error
+            throw new IdExistException("The order item exists already so can't add again");//error
         }
         ind = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID && x?.IsDeleted == true);//save index of orderItem with matching id if deleted
         if (ind != -1)//already exists but deleted 

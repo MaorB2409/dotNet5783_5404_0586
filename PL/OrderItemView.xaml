@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="OrderItemView" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/marbleBg.jpeg"/>
+        </Grid.Background>
 
         <Grid.RowDefinitions>
         <RowDefinition Height="*"/>

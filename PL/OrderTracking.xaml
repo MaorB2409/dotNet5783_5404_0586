@@ -103,6 +103,9 @@
 
     <!--Add Button-->
     <Grid Grid.Row="1">
+        <Grid.Background>
+            <ImageBrush ImageSource="/marbleBg.jpeg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="337"/>
             <ColumnDefinition/>
