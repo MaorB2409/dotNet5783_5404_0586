@@ -3,6 +3,8 @@ using PL.PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -173,5 +175,25 @@ namespace PL
 
 
 
+        #region group by status
+        
+        private void GroupByStatus_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveGroupings_Click(sender, e);//remove prev grouping
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Status");
+            SortDescription sortDscription = new SortDescription("Status", ListSortDirection.Ascending);
+            view.GroupDescriptions.Add(groupDescription);
+            view.SortDescriptions.Add(sortDscription);
+            GroupByStatus.IsEnabled = false;
+        }
+
+        private void RemoveGroupings_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+            view.GroupDescriptions.Clear();
+        }
+        #endregion
+      
     }
 }
