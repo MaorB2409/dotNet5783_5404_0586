@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PL
 {
@@ -61,7 +62,7 @@ namespace PL
         }
         private void ViewOrderItem_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-           new OrderItemView(bl!).ShowDialog();//open a window to view order item details
+           new OrderItemView(cart,bl!).ShowDialog();//open a window to view order item details
         }
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {

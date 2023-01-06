@@ -64,12 +64,13 @@
 
             <!--Products-->
             <StackPanel Margin="0,103,0,40" Grid.RowSpan="3">
-                <ListView x:Name="PList" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" >
+                <ListView x:Name="PList" ItemsSource="{Binding}" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" >
                     <ListView.Resources>
                         <Style TargetType="{x:Type ListViewItem}">
                             <EventSetter Event="PreviewGotKeyboardFocus" Handler="SelectCurrentItem"/>
                         </Style>
                     </ListView.Resources>
+                    
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Background="#E5E9EA" Margin="0 15 0 0" HorizontalAlignment="Center">
@@ -164,19 +165,19 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource buttonCapture}">
+                    <Button x:Name="card1" Background="Transparent" BorderBrush="Transparent" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource buttonCapture}">
                         <Image Source="images\mastercard.png" Width="30" Style="{StaticResource icon}"/>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource buttonCapture}">
+                    <Button x:Name="card2" Background="Transparent" BorderBrush="Transparent" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource buttonCapture}">
                         <Image Source="images\visa.png" Width="30" Style="{StaticResource icon}"/>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource buttonCapture}">
+                    <Button x:Name="card3" Background="Transparent" BorderBrush="Transparent" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource buttonCapture}">
                         <Image Source="images\credit.png" Width="30" Style="{StaticResource icon}"/>
                     </Button>
                 </Grid>
 
                 <TextBlock Text="Card Number" Style="{StaticResource titleText}"/>
-                <TextBox Margin="0 5 0 30" MaxLength="19" PreviewTextInput="tid_previewtextinput" FontSize="18" Background="White" Height="22"/>
+                <TextBox x:Name="cardname" Margin="0 5 0 30" MaxLength="19" PreviewTextInput="tid_previewtextinput" FontSize="18" Background="White" Height="35"/>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -186,17 +187,26 @@
 
                     <StackPanel>
                         <TextBlock Text="Expire Date" Style="{StaticResource titleText}"/>
-                        <TextBox Margin="0 5 0 0" MaxLength="4" PreviewTextInput="tid_previewtextinput"/>
+                        <TextBox x:Name="expire" Margin="0 4 0 0" MaxLength="4" PreviewTextInput="tid_previewtextinput"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="30 0 0 0" Width="50">
                         <TextBlock Text="CVV" Style="{StaticResource titleText}"/>
-                        <TextBox Margin="0 5 0 0" MaxLength="3" PreviewTextInput="tid_previewtextinput"/>
+                        <TextBox x:Name="cvv" Margin="0 4 0 0" MaxLength="3" PreviewTextInput="tid_previewtextinput"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
 
-            <Button Content="Checkout" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click" Height="50" VerticalAlignment="Bottom" Margin="0,356,0,0"/>
+            <Button Content="Checkout" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click" Height="50" VerticalAlignment="Bottom" Margin="0,356,0,0"
+                    >
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource ValueConverter}">
+                        <Binding ElementName="cvv" Path="Text"/>
+                        <Binding ElementName="expire" Path="Text"/>
+                        <Binding ElementName="cardname" Path="Text"/>
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </Grid>
 
     </Grid>

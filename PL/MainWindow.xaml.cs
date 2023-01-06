@@ -36,7 +36,7 @@ namespace PL
 
         private void TrackOrderWindow_Click(object sender, RoutedEventArgs e)
         {
-            new OrderIDEnter(bl!).ShowDialog();//open order id window to view an order and track it
+            new OrderIDEnter(myCart,bl!).ShowDialog();//open order id window to view an order and track it
         }
 
         private void NewOrderWindow_Click(object sender, RoutedEventArgs e)

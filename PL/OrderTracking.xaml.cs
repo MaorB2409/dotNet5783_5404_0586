@@ -1,4 +1,5 @@
 ﻿using BO;
+using PL.PO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,16 +25,19 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.OrderTracking orderTracking = new();
-        public OrderTracking(BlApi.IBl? b)//empty ctor
+        PO.Cart myCart = new();
+        public OrderTracking(PO.Cart cart,BlApi.IBl? b)//empty ctor
         {
             InitializeComponent();
             bl = b;//new bl
+            myCart = cart;
             DataContext = orderTracking;
         }
-        public OrderTracking(int id, BlApi.IBl? b)
+        public OrderTracking(int id, PO.Cart cart, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
+            myCart= cart;
             BO.OrderTracking o = new();
             try
             {
@@ -52,7 +56,7 @@ namespace PL
 
         private void OrderDetails_Click(object sender, RoutedEventArgs e)
         {
-            new OrderView(orderTracking.ID, bl!).ShowDialog();
+            new OrderView(orderTracking.ID, myCart, bl!).ShowDialog();
             Close();//close this window
         }
     }

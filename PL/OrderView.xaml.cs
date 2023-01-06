@@ -22,10 +22,12 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.Order o = new();
-        public OrderView(int id, BlApi.IBl? b)
+        PO.Cart myCart = new();
+        public OrderView(int id, PO.Cart cart, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
+            myCart = cart;
             BO.Order ord = new();
             try
             {
@@ -47,7 +49,7 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new OrderIDEnter(bl!).ShowDialog();
+            new OrderIDEnter(myCart,bl!).ShowDialog();
             Close();//close this window
         }
     }

@@ -32,11 +32,12 @@ namespace PL
                 DataContext = p;
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             }
-            public ProductItemView(PO.ProductItem productItem, BlApi.IBl? b)
+            public ProductItemView(PO.ProductItem productItem,PO.Cart cart, BlApi.IBl? b)
             {
                 InitializeComponent();
                 bl = b;//new bl
                 p = productItem;//save the new productItem  
+                myCart = cart;  
                 DataContext = p;//set data context
                 CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
                 CategoryBox.IsReadOnly = true;
@@ -45,7 +46,6 @@ namespace PL
                 tprice.IsReadOnly = true;
                 CategoryBox.IsReadOnly = true;
                 tAmount.IsReadOnly = true;
-
             }
 
         void clickBackBtn(object sender, RoutedEventArgs e)

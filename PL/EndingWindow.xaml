@@ -34,6 +34,8 @@
             <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" HorizontalAlignment="Right" Margin="500 0 30 -330" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="images\home.png"></Image>
             </Button>
+            <Button x:Name="contshop" Width="120" Height="40" Click="BackToShop" Background="Transparent" BorderBrush="Black" Content="Continue Shopping" FontWeight="DemiBold" Margin="564,352,96,22"/>
+
         </Grid>
 
     </Border>

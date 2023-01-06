@@ -24,18 +24,20 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.OrderItem o = new();
-        public OrderItemView(BlApi.IBl? b)
+        PO.Cart myCart = new();
+        public OrderItemView(PO.Cart cart,BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
             DataContext = o;
-
+            myCart = cart;
         }
 
-        public OrderItemView(OrderItem orderItem, BlApi.IBl? b)
+        public OrderItemView(PO.Cart cart, OrderItem orderItem, BlApi.IBl? b)
         {
             InitializeComponent();
             bl = b;//new bl
+            myCart= cart;
             o=PL.Tools.CastBoOIToPo(orderItem);//matching po for bo
             DataContext = o;
             tOrderID.IsReadOnly = true;//cant change id in update 
@@ -44,6 +46,11 @@ namespace PL
             tAmount.IsReadOnly = true;
             tProductName.IsReadOnly = true;
             tProductPrice.IsReadOnly = true;
+        }
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new CartWindow(myCart, bl!).ShowDialog();
+            Close();//close this window
         }
     }
 }

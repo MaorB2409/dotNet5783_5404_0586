@@ -1,4 +1,5 @@
 ﻿using BO;
+using PL.PO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,12 @@ namespace PL
     public partial class OrderIDEnter : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public OrderIDEnter(BlApi.IBl b)
+        PO.Cart myCart = new();
+        public OrderIDEnter(PO.Cart cart, BlApi.IBl b)
         {
             InitializeComponent();
             bl = b;//new bl
+            cart=myCart;
             IdEnter.Text = "";
         }
 
@@ -40,7 +43,7 @@ namespace PL
             {
                 new ErrorWindow("Enter Order ID Window", "Wrong id number entered").ShowDialog();
             }
-            new OrderTracking(id,bl!).ShowDialog();//open order tracking window with entered id
+            new OrderTracking(id,myCart,bl!).ShowDialog();//open order tracking window with entered id
             this.Close();//close current window
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
@@ -50,7 +53,7 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new OrderTracking(bl!).ShowDialog();
+            new MainWindow().ShowDialog();
             Close();//close this window
         }
         private void EnterPressed_KeyDown(object sender, KeyEventArgs e)

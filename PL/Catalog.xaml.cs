@@ -87,7 +87,7 @@ namespace PL
         {
             if (catalogGrid.SelectedItem is PO.ProductItem productItem)
             {
-                new ProductItemView(productItem,bl!).ShowDialog();
+                new ProductItemView(productItem,myCart,bl!).ShowDialog();
             }
         }
         private void AddToCart_Click(object sender, RoutedEventArgs e)

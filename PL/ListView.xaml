@@ -126,8 +126,8 @@
         <!--** Buttons **-->
 
         <!--Home Button-->
-        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="700,300,20,-190" Padding="5" Click="clickOnHomeBtn">
-            <Image Source="images/home.png"></Image>
+        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="700,300,20,-190" Padding="5" Click="clickOnHomeBtn" Background="Transparent" BorderBrush="Transparent">
+            <Image Source="images/home.png"/>
         </Button>
 
         <!--Add Button-->

@@ -19,9 +19,13 @@ namespace PL////>ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
     /// </summary>
     public partial class EndingWindow : Window
     {
-        public EndingWindow(int orderId)
+        BlApi.IBl? bl = BlApi.Factory.Get();
+        PO.Cart myCart = new();
+        public EndingWindow(int orderId, PO.Cart cart, BlApi.IBl? b)
         {
             InitializeComponent();
+            bl = b;
+            myCart = cart;
         }
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
@@ -29,5 +33,11 @@ namespace PL////>ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
             new MainWindow().ShowDialog();
             Close();//close this window
         }
+        void BackToShop(object sender, RoutedEventArgs e)
+        {
+            new Catalog(myCart,bl!).ShowDialog();
+            Close();//close this window
+        }
+        
     }
 }

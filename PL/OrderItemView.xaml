@@ -24,7 +24,11 @@
         <ColumnDefinition x:Name="Col1" Width="*"/>
         <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions >
-    <Label Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <!--Back Button-->
+        <Button x:Name="btnBack"  Height ="40" Width="40" BorderBrush="Transparent" Background="Transparent" Grid.Row="0" Grid.Column="2" Margin="-900,-10, 160,-10" Padding="2" Click="clickBackBtn">
+            <Image Source="images/left.png"></Image>
+        </Button>
+        <Label Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
               HorizontalAlignment="Right"/>
     <Label Name="l2" Content="Product ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Right" Grid.Row="1"/>

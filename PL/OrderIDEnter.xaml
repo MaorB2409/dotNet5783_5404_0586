@@ -17,7 +17,7 @@
                     FontWeight="DemiBold" BorderBrush="Transparent" Click="OKBtn_Click" Margin="0,20,0,0"/>
                 <!--Back Button-->
                 <Button x:Name="btnBack"  Height ="50" Width="50" Margin="-860, -380, -200,-10" Padding="2" Click="clickBackBtn" BorderBrush="Transparent" Background="Transparent">
-                    <Image Source="images/backBtn.jpg"></Image>
+                    <Image Source="images/left.png"></Image>
                 </Button>
 
             </StackPanel>
