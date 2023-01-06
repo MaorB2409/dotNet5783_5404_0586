@@ -8,6 +8,7 @@
         Title="ListView" Height="640" Width="800">
 
 
+
     <Grid x:Name="MainGrid">
         <TabControl>
             <!--<Products-->
@@ -59,7 +60,7 @@
 
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btnAdd" Content="Add Button" FontSize="15" Height ="40" Width="100" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="3" Margin="161,523,136,33" Padding="5" Click="btnAdd_Click"/>
+                    <Button x:Name="btnAdd" Content="Add Button" FontSize="15" Height ="40" Width="100" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="3" Margin="180,488,112,10" Padding="5" Click="btnAdd_Click"/>
 
                 </Grid>
 
@@ -67,7 +68,7 @@
 
 
             <!--orders-->
-            <TabItem Header="Orders">
+            <TabItem Header="Orders" Height="20" VerticalAlignment="Top">
                 <Grid Name="OrderGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
              VerticalAlignment="Stretch" Width="auto">
                     <Grid.Background>
@@ -99,7 +100,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="16"
-                  ItemsSource="{Binding}" Grid.ColumnSpan="2" MouseDoubleClick="Orders_updates" Margin="48,0,46,0">
+                  ItemsSource="{Binding}" Grid.ColumnSpan="2" MouseDoubleClick="Orders_updates" Margin="0,0,198,0">
                         <!--MouseDoubleClick="ProductItemView_click" >-->
                         <DataGrid.Columns>
 
@@ -117,6 +118,22 @@
 
                         </DataGrid.Columns>
                     </DataGrid>
+
+                    <Button Name="GroupByStatus"
+                        Content="Group By Status" 
+                        Click="GroupByStatus_Click"
+                          Height="40" Width="100"
+                        IsEnabled="{Binding ElementName=GroupByStatusButton, 
+                                            Path=IsEnabled, 
+                                            Mode=TwoWay}" Margin="270,270,10,120" Grid.Column="1" Style="{DynamicResource buttonCheckout}"/>
+                    <Button Name="GroupBack"
+                        Content="Remove Grouping" 
+                        Click="RemoveGroupings_Click"
+                          Height="40" Width="100"
+                        IsEnabled="{Binding ElementName=GroupBack, 
+                                            Path=IsEnabled, 
+                                            Mode=TwoWay}" Margin="270,270,10,180" Grid.Column="1" Style="{DynamicResource buttonCheckout}"/>
+
                 </Grid>
 
             </TabItem>

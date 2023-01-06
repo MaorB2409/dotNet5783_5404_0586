@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Order>
+	<ID>1001</ID>
+	<CostumerName>FN2</CostumerName>
+	<CostumerEmail>LN2</CostumerEmail>
+	<CostumerAddress>ACTIVE</CostumerAddress>
+	<OrderDate>1985-03-12T00:00:00</OrderDate>
+	
+</Order>
+
+
