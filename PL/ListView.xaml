@@ -59,7 +59,7 @@
 
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btnAdd" Content="Add Button" FontSize="15" Height ="40" Width="100" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="3" Margin="161,523,136,33" Padding="5" Click="btnAdd_Click"/>
+                    <Button x:Name="btnAdd" Content="Add Button" FontSize="15" Height ="40" Width="100" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="3" Margin="180,488,112,10" Padding="5" Click="btnAdd_Click"/>
 
                 </Grid>
 
@@ -126,7 +126,7 @@
         <!--** Buttons **-->
 
         <!--Home Button-->
-        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="700,300,20,-190" Padding="5" Click="clickOnHomeBtn">
+        <Button x:Name="btnHome"  Height ="40" Width="40" Grid.Row="2" Grid.Column="2" Margin="700,260,20,-200" Padding="5" Click="clickOnHomeBtn">
             <Image Source="images/home.png"></Image>
         </Button>
 
