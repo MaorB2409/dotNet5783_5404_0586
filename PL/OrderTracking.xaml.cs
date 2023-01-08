@@ -49,8 +49,6 @@ namespace PL
             }
             orderTracking = PL.Tools.CastBoOTToPo(o);//get matching po order tracking
             DataContext = orderTracking;//set data context
-            tid.IsReadOnly = true;//cant change id in update 
-            StatusBox.IsReadOnly = true;
 
         }
 
