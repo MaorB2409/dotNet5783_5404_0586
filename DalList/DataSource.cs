@@ -52,7 +52,7 @@ internal class DataSource
     private void CreateOrders()//func to create a order
     {
         #region arrays:customerName,customerEmail, and address.
-        string[] customerName = { "Chaim", "Chagit", "Maor", "Chen", "Avihu", "Avinoam", "Yonatan", "Binyamin", "Yoni", "Batya", "Shana", "Sara", "Avraham", "Talia", "Shalom", "Asher", "Harry", "Yosef", "Rina", "Aron" };
+        string[] customerName = { "Haim", "Hagit", "Maor", "Chen", "Avihu", "Avinoam", "Yonatan", "Binyamin", "Yoni", "Batya", "Shana", "Sara", "Avraham", "Talia", "Shalom", "Asher", "Harry", "Yosef", "Rina", "Aron" };
         string[] customerEmail = {"aa@gamil.com", "bb@gamil.com", "cc@gamil.com", "dd@gamil.com", "ee@gamil.com", "ff@gamil.com", "gg@gamil.com", "hh@gamil.com",  "ii@gamil.com", "jj@gamil.com", "kk@gamil.com",
         "ll@gamil.com", "mm@gamil.com", "oo@gamil.com", "pp@gamil.com", "qq@gamil.com", "rr@gamil.com", "ss@gamil.com","tt@gamil.com"};
         string[] address = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t" };
