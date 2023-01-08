@@ -43,7 +43,7 @@ namespace PL
             }
             o = PL.Tools.CastBoOrderToPo(ord);//convert to PO order 
             DataContext = o;
-
+            OroductItemGrid.DataContext=o.OrderItems;
 
         }
 

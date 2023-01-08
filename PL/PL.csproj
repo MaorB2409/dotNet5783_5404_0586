@@ -30,6 +30,7 @@
 		<None Remove="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
 		<None Remove="organized-workspace.jpg" />
 		<None Remove="resize-161043321239661085posterwithverticalframesemptywhitewalllivingroominteriorwithbluevelvetarmchair3drendering.jpg" />
+	
 	</ItemGroup>
 
 	<ItemGroup>
@@ -43,6 +44,7 @@
 
 	<ItemGroup>
 		<Resource Include="HomeSpace_LOGO.png" />
+		<Resource Include="images\logo2.png" />
 		<Resource Include="images\cartBtn.jpg" />
 		<Resource Include="images\download.jpg" />
 		<Resource Include="images\backBtn.jpg" />
@@ -55,6 +57,7 @@
 		<Resource Include="images\close.png" />
 		<Resource Include="images\left.png" />
 		<Resource Include="images\low.png" />
+		<Resource Include="images\add.png" />
 		<Resource Include="images\return.png" />
 		<Resource Include="images\cart-outline.png" />
 		<Resource Include="images\plus-circle.png" />

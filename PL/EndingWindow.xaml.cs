@@ -26,6 +26,7 @@ namespace PL////>ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
             InitializeComponent();
             bl = b;
             myCart = cart;
+            orderNum.DataContext = orderId;
         }
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)

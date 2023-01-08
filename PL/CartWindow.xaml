@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        xmlns:converter="clr-namespace:PLConverter"
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
     <Window.Resources>
@@ -23,7 +24,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        <converter:BooleanAndConverter x:Key="TextToInabled"/>
     </Window.Resources>
 
     <Grid>
@@ -97,7 +98,7 @@
 
                                 <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Button x:Name="addBtn" Style="{StaticResource buttonCounter}" Click="AddItem_Click">
-                                        <Image Source="images/add.png"/>
+                                        <Image Source="images\add.png"/>
                                     </Button>
 
                                     <Button x:Name="lowBtn" Style="{StaticResource buttonCounter}" Margin="0 5 0 0" Click="ReduceItem_Click">
@@ -200,7 +201,7 @@
             <Button Content="Checkout" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click" Height="50" VerticalAlignment="Bottom" Margin="0,356,0,0"
                     >
                 <Button.IsEnabled>
-                    <MultiBinding Converter="{StaticResource ValueConverter}">
+                    <MultiBinding Converter="{StaticResource TextToInabled}">
                         <Binding ElementName="cvv" Path="Text"/>
                         <Binding ElementName="expire" Path="Text"/>
                         <Binding ElementName="cardname" Path="Text"/>

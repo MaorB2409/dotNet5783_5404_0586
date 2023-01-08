@@ -57,7 +57,6 @@ namespace PL
 
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
-            //complete order in cart
             new RegisterWindow(cart,bl!).ShowDialog();//show succesful order placed window
         }
         private void ViewOrderItem_MouseDoubleClick(object sender, RoutedEventArgs e)

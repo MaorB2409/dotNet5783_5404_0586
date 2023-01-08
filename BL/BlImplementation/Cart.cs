@@ -174,7 +174,6 @@ internal class Cart:ICart
 
         //products.Zip(myCart.orderItems, (first, second) => first.InStock -= second!.Amount).ToList().ForEach(x => DOList?.Product.GetByFilter(x));
         ////update the amount of products
-
         DO.OrderItem oi = new();//create order item
         foreach (BO.OrderItem? item in myCart.orderItems!)//go over orderItems in the cart
         {
@@ -229,6 +228,6 @@ internal class Cart:ICart
             }
             throw new BO.Exceptions("Can not place the order requested");
         }
-       
+
     }
 }

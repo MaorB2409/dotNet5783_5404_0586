@@ -41,10 +41,10 @@
                     <TextBlock Grid.Row="3" Text="Have you enjoyed your shopping experience?" Style="{StaticResource ResourceKey=TitleStyle}" Padding="10" TextWrapping="Wrap"/>
 
 
-                    <TextBox x:Name="nametbx" Grid.Column="1" Grid.Row="0" Width="300" TextAlignment="Center" Text="{Binding customerName}" FontFamily="italic" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,-16,0,15"/>
+                    <TextBox x:Name="nametbx" Grid.Column="1" Grid.Row="0" Width="300" TextAlignment="Center" Text="{Binding customerName}" FontFamily="italic" PreviewTextInput="tname_previewtextinput" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,-16,0,15"/>
                     <TextBox x:Name="emailtbx" Grid.Column="1" Width="300" TextAlignment="Center" Text="{Binding customerEmail}" FontFamily="italic" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,40,0,15" Grid.RowSpan="2"/>
                     <TextBox x:Name="addresstbx" Grid.Column="1" Grid.Row="1" Width="300" TextAlignment="Center" Text="{Binding customerAddress}" FontFamily="italic" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,40,0,15" Grid.RowSpan="2"/>
-                    <TextBox Grid.Column="1" Grid.Row="3" Width="300" TextAlignment="Center" FontFamily="italic" Background="GhostWhite" FontSize="20" FontWeight="DemiBold" BorderThickness="5" Margin="0,0,0,35"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" Width="300" PreviewTextInput="tname_previewtextinput" TextAlignment="Center" FontFamily="italic" Background="GhostWhite" FontSize="20" FontWeight="DemiBold" BorderThickness="5" Margin="0,0,0,35"/>
                     <Button Grid.ColumnSpan="2" Background="LavenderBlush" Margin="175,110,0,-60" Content="Save" FontSize="30" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="Transparent" Height="50" HorizontalAlignment="Left" Width="200" Grid.Row="3" Click="SaveBtn_Click"/>
 
 

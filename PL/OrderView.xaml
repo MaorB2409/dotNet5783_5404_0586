@@ -10,6 +10,11 @@
         <Grid.Background>
             <ImageBrush ImageSource="/marbleBg.jpeg"/>
         </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -21,46 +26,77 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="Col1" Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions >
-        <Label Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-              HorizontalAlignment="Right"/>
-        <Label Name="l2" Content="Customer Name:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-               HorizontalAlignment="Right" Grid.Row="1"/>
-        <Label Name="l3" Content="Customer Email:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-               HorizontalAlignment="Right" Grid.Row="2"/>
-        <Label Name="l4" Content="Customer Address:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-               HorizontalAlignment="Right" Grid.Row="3"/>
-        <Label Name="l5" Content="OrderDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-               HorizontalAlignment="Right" Grid.Row="4"/>
-        <Label Name="l6" Content="ShipDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-               HorizontalAlignment="Right" Grid.Row="5"/>
-        <Label Name="l7" Content="DeliveryDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
-               HorizontalAlignment="Right" Grid.Row="6"/>
-        <Label Name="l8" Content="Status:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
-              HorizontalAlignment="Right"/>
-        <Label Name="l10" Content="TotalPrice:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
-              HorizontalAlignment="Right"/>
-        <Label Name="l9" Content="orderItems:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="9"
-              HorizontalAlignment="Right"/>
-        <TextBox Name="tid" Text="{Binding ID,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
-        <TextBox Name="tname" Text="{Binding CustomerName,Mode=TwoWay}" Grid.Column="1" Grid.Row="1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
-        <TextBox Name="temail" Text="{Binding CustomerEmail,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
-        <TextBox Name="taddress" Text="{Binding CustomerAddress,Mode=TwoWay}" Grid.Column="1" Grid.Row="3" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
-        <Calendar x:Name="orderdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="10,0,0,0" DisplayDate="{Binding OrderDate,Mode=TwoWay}" Width="390"/>
-        <Calendar x:Name="shipdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="10,39,0,39" DisplayDate="{Binding ShipDate,Mode=TwoWay}" Grid.RowSpan="3" Width="390"/>
-        <Calendar x:Name="deliverydate" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="10,0,0,0" DisplayDate="{Binding DeliveryDate,Mode=TwoWay}" Width="390"/>
-        <ComboBox Name="statusBox" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="10,39,0,39" Grid.RowSpan="3" Width="179"/>
-        <TextBox Name="tprice" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="8" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
-        <TextBox Name="tOrderItems" Text="{Binding orderItems,Mode=TwoWay}" Grid.Column="1" Grid.Row="9" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,0,0,0" />
 
+        <Label Grid.Column="0" Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+              HorizontalAlignment="Center"/>
+        <Label Grid.Column="0" Name="l2" Content="Customer Name:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Center" Grid.Row="1"/>
+        <Label Grid.Column="0" Name="l3" Content="Customer Email:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Center" Grid.Row="2"/>
+        <Label Grid.Column="0" Name="l4" Content="Customer Address:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Center" Grid.Row="3"/>
+        <Label Grid.Column="0" Name="l5" Content="OrderDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Center" Grid.Row="4"/>
+        <Label Grid.Column="0" Name="l6" Content="ShipDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Center" Grid.Row="5"/>
+        <Label Grid.Column="0" Name="l7" Content="DeliveryDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+               HorizontalAlignment="Center" Grid.Row="6"/>
+        <Label Grid.Column="0" Name="l8" Content="Status:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
+              HorizontalAlignment="Center"/>
+        <Label Grid.Column="0" Name="l10" Content="TotalPrice:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
+              HorizontalAlignment="Center"/>
+
+        <TextBox Name="tid" Text="{Binding ID,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" />
+        <TextBox Name="tname" Text="{Binding CustomerName,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,43" Grid.RowSpan="3" />
+        <TextBox Name="temail" Text="{Binding CustomerEmail,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" />
+        <TextBox Name="taddress" Text="{Binding CustomerAddress,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="195" Margin="5,43,0,43" Grid.RowSpan="3" />
+        <Calendar x:Name="orderdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" DisplayDate="{Binding OrderDate,Mode=TwoWay}" Width="200"/>
+        <Calendar x:Name="shipdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Margin="0,39,0,39" DisplayDate="{Binding ShipDate,Mode=TwoWay}" Grid.RowSpan="3" Width="200"/>
+        <Calendar x:Name="deliverydate" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Margin="0,43,0,43" DisplayDate="{Binding DeliveryDate,Mode=TwoWay}" Width="200" Grid.RowSpan="3"/>
+        <ComboBox Name="statusBox" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" Width="200"/>
+        <TextBox Name="tprice" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="7" FontSize="20" MaxLength="6" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,43" Grid.RowSpan="3" />
+
+        <Label Name="l11" Content="Order Items::" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="0" Grid.Column="2"
+              HorizontalAlignment="Center"/>
+        <DataGrid Name="OroductItemGrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="9"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="16"
+                  ItemsSource= "{Binding}" Grid.ColumnSpan="4">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Order ID" Binding="{Binding ID}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Product ID" Binding="{Binding ProductID}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}"
+                                    MinWidth="10" Width="*"/>
+                <DataGridTextColumn Header="Product Price" Binding="{Binding ProductPrice}"
+                                    MinWidth="10" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!--Back Button-->
-        <Button x:Name="btnBack"  Height ="40" Width="40" BorderBrush="Transparent" Grid.Row="0" Grid.Column="2" Margin="-900,-10, 160,-10" Padding="2" Click="clickBackBtn">
+        <Button x:Name="btnBack" Margin="0 5 200 0" Height ="40" Width="40" BorderBrush="Transparent" Grid.Row="0" Background="Transparent" Padding="2" Click="clickBackBtn">
             <Image Source="images/left.png"></Image>
         </Button>
 
