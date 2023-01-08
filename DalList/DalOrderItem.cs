@@ -84,16 +84,10 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem returnOI = new();
         returnOI = (DO.OrderItem)_ds.orderItemList.FirstOrDefault(x => x != null && x?.IsDeleted == false && x?.OrderID == id && x?.ProductID == productId)!;
-        //foreach (OrderItem? orderi in _ds.orderItemList)//go over OrderItem list
-        //{
-        //    if (orderi?.OrderID == id && orderi?.ProductID == productId)//if found a matching id to the one inputted and product
-        //    { 
-        //        if(orderi?.IsDeleted == false)//not deleted
-        //        {
-        //            returnOI = orderi??throw new IdNotExistException("The order item requested does not exist\n");//save that one
-        //        }
-        //    }
-        //}//find the order of id with product
+        if (returnOI.ID != id)
+        {
+            throw new DalApi.IdNotExistException("the requested order item does not exist");
+        }
         return returnOI;//return the OrderItem
     }
 

@@ -16,18 +16,18 @@ internal class Order : IOrder
     {
         XElement orderRoot = XmlTools.LoadListFromXMLElement(orderPath); //get all the elements from the file
 
-        //check if the customer exists in th file
-        var customerFromFile = (from order in orderRoot.Elements()
-                                where (order.Element("ID").Value == item.ID.ToString())
+        //check if the order exists in th file
+        var orderFromFile = (from order in orderRoot.Elements()
+                                where (order!=null && order.Element("ID")!.Value == item.ID.ToString())
                                 select order).FirstOrDefault();
 
         //throw an exception
-        if (customerFromFile != null)
-            throw new DalApi.IdExistException("the order already exit");
+        if (orderFromFile != null)
+            throw new DalApi.IdExistException("the order already exists");
 
-        //add the customer to the root element
+        //add the order to the root element
         orderRoot.Add(
-            new XElement("order",
+            new XElement("Order",
             new XElement("ID", item.ID),
             new XElement("CostumerName", item.CostumerName),
             new XElement("CostumerEmail", item.CostumerEmail),
@@ -41,26 +41,55 @@ internal class Order : IOrder
 
     public void Delete(int id)
     {
-        
+        List<DO.Order?> orderList = XmlTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);
+
+        DO.Order temp = (from item in orderList
+                                where item!=null&&item?.ID == id
+                                      select (DO.Order)item).FirstOrDefault();
+
+        if (temp.ID.Equals(default(Order)))
+            throw new DalApi.IdNotExistException("the product does not exist");
+
+        orderList.Remove(temp);
+
+        XmlTools.SaveListToXMLSerializer(orderList, orderPath);
     }
 
     public IEnumerable<DO.Order?> GetAll(Func<DO.Order?, bool>? filter = null)
     {
-        throw new NotImplementedException();
+        List<DO.Order?> orderList = XmlTools.LoadListFromXMLSerializer<DO.Order?>(orderPath).ToList();
+
+        return (from order in orderList
+                where filter(order)
+                select order).ToList();
     }
 
     public DO.Order GetByFilter(Func<DO.Order?, bool>? filter)
     {
-        throw new NotImplementedException();
+        List<DO.Order?> orderList = GetAll().ToList();
+
+        return (from item in orderList
+                where filter(item)
+                select (DO.Order)item).FirstOrDefault();
     }
 
     public DO.Order GetById(int id)
     {
-        throw new NotImplementedException();
+        List<DO.Order?> orderList = GetAll().ToList();
+
+        return (from item in orderList
+                where item!=null && item?.ID==id
+                select (DO.Order)item).FirstOrDefault();
+        throw new DalApi.IdNotExistException("the order requested does not exist");
     }
 
     public void Update(DO.Order item)
     {
-        throw new NotImplementedException();
+        DO.Order? temp = GetById(item.ID);//get the order requested to update 
+        List<DO.Order?> orderList = GetAll().ToList();//get all orders from ile
+        orderList.Remove(temp);//remove the existing order
+        orderList.Add(item);//add the updated order
+
+        XmlTools.SaveListToXMLSerializer(orderList, orderPath);//save back into file
     }
 }
