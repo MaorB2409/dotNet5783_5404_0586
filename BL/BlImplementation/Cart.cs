@@ -119,7 +119,7 @@ internal class Cart:ICart
         }
         throw new BO.IdNotExistException("The product requested does not exist");//product does not exist in cart 
     }
-    public void MakeOrder(BO.Cart myCart)
+    public int MakeOrder(BO.Cart myCart)
     {
         if (myCart.CustomerName == "" || myCart.CustomerEmail =="" || myCart.CustomerAddress =="")//check input
         {
@@ -226,8 +226,8 @@ internal class Cart:ICart
             {
                 throw new BO.IdNotExistException("The product requested does not exist\n");
             }
-            throw new BO.Exceptions("Can not place the order requested");
+            //throw new BO.Exceptions("Can not place the order requested");
         }
-
+        return (int)orderId!;
     }
 }

@@ -30,7 +30,7 @@
 
                 </StackPanel>
             </Border>
-            <TextBlock x:Name="orderNum" Width="100" FontSize="20" FontFamily="Edwardian Script ITC" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="545,0,0,112" Height="41" Text="{Binding}"/>
+            <TextBlock x:Name="orderNum" Width="100" FontSize="20" FontFamily="Italic"  VerticalAlignment="Bottom" HorizontalAlignment="Left" FontWeight="DemiBold" Margin="545,0,0,87" Height="41" Text="{Binding}"/>
             <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" HorizontalAlignment="Right" Margin="500 0 30 -330" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="images\home.png"></Image>
             </Button>

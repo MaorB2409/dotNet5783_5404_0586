@@ -27,38 +27,38 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l1" Content="Order ID:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
               HorizontalAlignment="Center"/>
-        <Label Grid.Column="0" Name="l2" Content="Customer Name:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l2" Content="Customer Name:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="1"/>
-        <Label Grid.Column="0" Name="l3" Content="Customer Email:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l3" Content="Customer Email:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="2"/>
-        <Label Grid.Column="0" Name="l4" Content="Customer Address:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l4" Content="Customer Address:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="3"/>
-        <Label Grid.Column="0" Name="l5" Content="OrderDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l5" Content="OrderDate:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="4"/>
-        <Label Grid.Column="0" Name="l6" Content="ShipDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l6" Content="ShipDate:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="5"/>
-        <Label Grid.Column="0" Name="l7" Content="DeliveryDate:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
+        <Label Grid.Column="0" Name="l7" Content="DeliveryDate:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="6"/>
-        <Label Grid.Column="0" Name="l8" Content="Status:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
+        <Label Grid.Column="0" Name="l8" Content="Status:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="7"
               HorizontalAlignment="Center"/>
-        <Label Grid.Column="0" Name="l10" Content="TotalPrice:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
+        <Label Grid.Column="0" Name="l10" Content="TotalPrice:" FontSize="20" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="8"
               HorizontalAlignment="Center"/>
 
-        <TextBox Name="tid" Text="{Binding ID,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" />
-        <TextBox Name="tname" Text="{Binding CustomerName,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,43" Grid.RowSpan="3" />
-        <TextBox Name="temail" Text="{Binding CustomerEmail,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" />
-        <TextBox Name="taddress" Text="{Binding CustomerAddress,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="195" Margin="5,43,0,43" Grid.RowSpan="3" />
+        <TextBox Name="tid" IsEnabled="False" Text="{Binding ID}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,0,0,10" />
+        <TextBox Name="tname" IsReadOnly="False" Text="{Binding CostumerName}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,10" Grid.RowSpan="2" />
+        <TextBox Name="temail" IsReadOnly="False" Text="{Binding CostumerEmail}" Grid.Column="1" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Height="39" Margin="0,48,0,0" Grid.RowSpan="2" VerticalAlignment="Top" />
+        <TextBox Name="taddress" IsReadOnly="False" Text="{Binding CostumerAddress}" Grid.Column="1" Grid.Row="2" FontSize="16" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="195" Margin="5,43,0,10" Grid.RowSpan="2" />
         <Calendar x:Name="orderdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" DisplayDate="{Binding OrderDate,Mode=TwoWay}" Width="200"/>
         <Calendar x:Name="shipdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Margin="0,39,0,39" DisplayDate="{Binding ShipDate,Mode=TwoWay}" Grid.RowSpan="3" Width="200"/>
         <Calendar x:Name="deliverydate" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Margin="0,43,0,43" DisplayDate="{Binding DeliveryDate,Mode=TwoWay}" Width="200" Grid.RowSpan="3"/>
-        <ComboBox Name="statusBox" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" Width="200"/>
-        <TextBox Name="tprice" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="7" FontSize="20" MaxLength="6" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,43" Grid.RowSpan="3" />
+        <ComboBox Name="statusBox" IsEnabled="False" Text="{Binding Status}" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" Width="200"/>
+        <TextBox Name="tprice" IsReadOnly="True" Text="{Binding TotalPrice}" Grid.Column="1" Grid.Row="7" FontSize="16" MaxLength="6" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,10" Grid.RowSpan="2" />
 
-        <Label Name="l11" Content="Order Items::" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="0" Grid.Column="2"
+        <Label Name="l11" Content="Order Items:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold" Grid.Row="0" Grid.Column="2"
               HorizontalAlignment="Center"/>
-        <DataGrid Name="OroductItemGrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="9"
+        <DataGrid Name="ProductItemGrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="9"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
                   AutoGenerateColumns="False" 

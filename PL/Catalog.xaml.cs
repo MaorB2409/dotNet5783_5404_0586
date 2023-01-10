@@ -169,11 +169,5 @@ namespace PL
             Close();
         }
 
-
-        void clickOnCart(object sender, RoutedEventArgs e)
-        {
-            new CartWindow(myCart,bl!).ShowDialog();
-            Close();//close this window
-        }
     }
 }

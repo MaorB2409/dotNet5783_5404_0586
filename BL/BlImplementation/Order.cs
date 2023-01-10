@@ -49,7 +49,7 @@ internal class Order : BlApi.IOrder
         DO.Order ord;
         try
         {
-            ord = (DO.Order)(DOList?.Order.GetById(id)!);//get right DO Order ?????????????
+            ord = (DO.Order)(DOList?.Order.GetById(id)!);//get right DO Order 
         }
         catch (DalApi.IdNotExistException)
         {
@@ -57,15 +57,24 @@ internal class Order : BlApi.IOrder
         }
         double priceTemp = 0;
         priceTemp = (double)(DOList?.OrderItem.GetAll()!.Where(x => x != null && x?.IsDeleted == false && x?.OrderID == id).Sum(x=>x?.Price)!);
-        //foreach (DO.OrderItem? o in DOList?.OrderItem.GetAll()!)
-        //{
-        //    if (o?.IsDeleted == false && o?.OrderID == id)
-        //    {
-        //        priceTemp+=o?.Price ?? 0;//add up all of prices in the order
-        //    }
-        //}
+       
         if(ord.IsDeleted == false && ord.ID == id)//if exists 
         {
+            List<DO.OrderItem?> temp = DOList?.OrderItem.GetAll()!.Where(x => x != null && x?.IsDeleted == false && x?.OrderID == id).ToList();
+            List<BO.OrderItem> bList = new();
+            foreach(DO.OrderItem o in temp)
+            {
+                bList.Add(new BO.OrderItem()
+                {
+                    Amount = o.Amount,
+                    ID = o.ID,
+                    ProductID= o.ProductID,
+                    Price=o.Price,
+                    ProductPrice= (double)DOList?.Product.GetById(o.ProductID).Price!,
+                    ProductName= DOList?.Product.GetById(o.ProductID).Name
+                });
+            }
+            
             return new BO.Order
             {
                 ID = id,
@@ -77,7 +86,8 @@ internal class Order : BlApi.IOrder
                 DeliveryDate = ord.DeliveryDate ?? throw new BO.Exceptions("Delivery Date is null"),
                 Status = GetStatus(ord),
                 TotalPrice = priceTemp,
-                IsDeleted = ord.IsDeleted
+                IsDeleted = ord.IsDeleted,
+                orderItems = bList
             };//new BO Order
         }
         throw new BO.UnfoundException("Order does not exist\n");

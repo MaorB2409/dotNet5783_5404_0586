@@ -16,17 +16,20 @@ public class DalOrderItem : IOrderItem
             _ds.orderItemList.Add(oi);//add p to the Product list
             return oi.ID;//return the id
         }
-        int ind = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID && x?.IsDeleted == false);//save index of orderItem with matching id if not deleted
+        int ind = _ds.orderItemList.FindIndex(x => x?.ProductID == oi.ID && x?.IsDeleted == false);//save index of orderItem with matching id if not deleted
         if (ind != -1)//exists already so cant add again
         {
-            throw new IdExistException("The order item exists already so can't add again");//error
+            oi.Amount++;//add one more of the order item
+            Update(oi);//send to update
+            return oi.ID;
+            //throw new IdExistException("The order item exists already so can't add again");//error
         }
-        ind = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID && x?.IsDeleted == true);//save index of orderItem with matching id if deleted
-        if (ind != -1)//already exists but deleted 
-        {
-            _ds.orderItemList.Add(oi);//add oi to the orderItem list
-            return oi.ID;//return the id
-        }
+        //ind = _ds.orderItemList.FindIndex(x => x?.ProductID == oi.ID && x?.IsDeleted == true);//save index of orderItem with matching id if deleted
+        //if (ind != -1)//already exists but deleted 
+        //{
+        //    _ds.orderItemList.Add(oi);//add oi to the orderItem list
+        //    return oi.ID;//return the id
+        //}
         throw new Exceptions("The order item can not be added due to technical difficulties");//error
 
     }
@@ -51,7 +54,7 @@ public class DalOrderItem : IOrderItem
 
     public void Update(OrderItem oi)
     {
-        int index = _ds.orderItemList.FindIndex(x => x?.ID == oi.ID);
+        int index = _ds.orderItemList.FindIndex(x => x?.ProductID == oi.ID);
 
         if (index == -1)//if does not exist
             throw new IdNotExistException("The order item you wish to update does not exist");

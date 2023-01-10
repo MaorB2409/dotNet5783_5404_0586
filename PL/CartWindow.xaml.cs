@@ -32,8 +32,15 @@ namespace PL
             bl = b;
             orderItems.Clear();
             cart = myCart;
-            orderItems = PL.Tools.IEnumerableToObservable(myCart.OrderItems!);//save the catalog collection from BO in PO obsv collec
-            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            if(myCart.OrderItems != null)
+            {
+                orderItems = PL.Tools.IEnumerableToObservable(myCart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+                PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            }
+            else
+            {
+                PList.DataContext = null;
+            }
             Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
 
@@ -57,6 +64,10 @@ namespace PL
 
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
+            if(cvv.Text.Length!=3 || expire.Text.Length!=4 || cardname.Text.Length<12)
+            {
+                new ErrorWindow("Credit card details window", "Wrong credit card info was inputted");
+            }
             new RegisterWindow(cart,bl!).ShowDialog();//show succesful order placed window
         }
         private void ViewOrderItem_MouseDoubleClick(object sender, RoutedEventArgs e)

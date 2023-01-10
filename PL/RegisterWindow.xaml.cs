@@ -37,9 +37,10 @@ namespace PL
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            int id = 0;
             try
             {
-                bl!.Cart.MakeOrder(PL.Tools.CastPoCToBo(myCart));//placed the order
+                id = bl!.Cart.MakeOrder(PL.Tools.CastPoCToBo(myCart));//placed the order
             }
             catch(BO.UnfoundException ex)
             {
@@ -53,7 +54,6 @@ namespace PL
             {
                 new ErrorWindow("Register Window", ex.Message).ShowDialog();
             }
-            int id = 1002;//save the order id
             new EndingWindow(id,myCart,bl).ShowDialog();//show ending window 
         }
         private void tname_previewtextinput(object sender, TextCompositionEventArgs e)
