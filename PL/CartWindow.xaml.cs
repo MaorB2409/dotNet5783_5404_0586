@@ -39,20 +39,6 @@ namespace PL
             Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
 
-        public CartWindow(BlApi.IBl b)
-        {
-            InitializeComponent();
-            bl = b;
-            orderItems.Clear();
-            cart.OrderItems = null;
-            cart.CustomerAddress = null;
-            cart.Price = 0;
-            cart.CustomerName = null;
-            cart.CustomerEmail = null;
-            orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
-            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
-            Subtotal.DataContext = cart;//set subtotal data context to our cart
-        }
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
         {
