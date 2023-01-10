@@ -57,5 +57,14 @@ namespace PL
             new OrderView(orderTracking.ID, myCart, bl!).ShowDialog();
             Close();//close this window
         }
+        void clickBackBtn(object sender, RoutedEventArgs e)
+        {
+            new OrderIDEnter(myCart, bl!).ShowDialog();
+            Close();//close this window
+        }
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().ShowDialog();//go to home window 
+        }
     }
 }

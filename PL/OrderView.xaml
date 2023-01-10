@@ -25,7 +25,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Name="l1" Content="Order ID:" FontSize="25" FontStyle="Italic" FontWeight="DemiBold"
@@ -96,7 +95,7 @@
         </DataGrid>
 
         <!--Back Button-->
-        <Button x:Name="btnBack" Margin="0 5 200 0" Height ="40" Width="40" BorderBrush="Transparent" Grid.Row="0" Background="Transparent" Padding="2" Click="clickBackBtn">
+        <Button x:Name="btnBack" Margin="0,7,160,1" Height ="40" Width="40" BorderBrush="Transparent" Grid.Row="0" Background="Transparent" Padding="2" Click="clickBackBtn" HorizontalAlignment="Right">
             <Image Source="images/left.png"></Image>
         </Button>
 

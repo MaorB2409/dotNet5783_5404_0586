@@ -49,7 +49,7 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new OrderIDEnter(myCart,bl!).ShowDialog();
+            new OrderTracking(myCart,bl!).ShowDialog();
             Close();//close this window
         }
     }

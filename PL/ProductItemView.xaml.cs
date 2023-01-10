@@ -39,13 +39,7 @@ namespace PL
                 p = productItem;//save the new productItem  
                 myCart = cart;  
                 DataContext = p;//set data context
-                CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-                CategoryBox.IsReadOnly = true;
-                tid.IsReadOnly = true;//cant change id in update 
-                tname.IsReadOnly = true;
-                tprice.IsReadOnly = true;
-                CategoryBox.IsReadOnly = true;
-                tAmount.IsReadOnly = true;
+                CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums               
             }
 
         void clickBackBtn(object sender, RoutedEventArgs e)
