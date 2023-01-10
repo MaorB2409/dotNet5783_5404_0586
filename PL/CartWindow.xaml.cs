@@ -26,6 +26,8 @@ namespace PL
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.Cart cart = new();
         ObservableCollection<PO.OrderItem> orderItems = new();
+
+
         public CartWindow(PO.Cart myCart,BlApi.IBl b)
         {
             InitializeComponent();
@@ -43,6 +45,7 @@ namespace PL
             }
             Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
+
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
         {

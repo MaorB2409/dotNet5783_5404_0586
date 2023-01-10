@@ -19,6 +19,7 @@ namespace PL
     /// </summary>
     public partial class ErrorWindow : Window
     {
+
         public ErrorWindow(string title,string message)
         {
             InitializeComponent();
