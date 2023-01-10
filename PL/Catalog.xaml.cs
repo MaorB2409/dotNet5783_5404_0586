@@ -119,14 +119,21 @@ namespace PL
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().ShowDialog();//go to home window 
+            Close();//close this window
         }
         private void CartBtn_Click(object sender, RoutedEventArgs e)
         {
-            new CartWindow(myCart,bl!).ShowDialog();//go to cart window 
+        
+            new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
+            Close();//close this window
+          
+
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
+
             new MainWindow().ShowDialog();//go to home window 
+            Close();//close this window
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -170,10 +177,10 @@ namespace PL
         }
 
 
-        void clickOnCart(object sender, RoutedEventArgs e)
-        {
-            new CartWindow(myCart,bl!).ShowDialog();
-            Close();//close this window
-        }
+        //void clickOnCart(object sender, RoutedEventArgs e)
+        //{
+        //    new CartWindow(myCart,bl!).ShowDialog();
+        //    Close();//close this window
+        //}
     }
 }

@@ -26,6 +26,8 @@ namespace PL
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.Cart cart = new();
         ObservableCollection<PO.OrderItem> orderItems = new();
+
+
         public CartWindow(PO.Cart myCart,BlApi.IBl b)
         {
             InitializeComponent();
@@ -33,6 +35,21 @@ namespace PL
             orderItems.Clear();
             cart = myCart;
             orderItems = PL.Tools.IEnumerableToObservable(myCart.OrderItems!);//save the catalog collection from BO in PO obsv collec
+            PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
+            Subtotal.DataContext = cart;//set subtotal data context to our cart
+        }
+
+        public CartWindow(BlApi.IBl b)
+        {
+            InitializeComponent();
+            bl = b;
+            orderItems.Clear();
+            cart.OrderItems = null;
+            cart.CustomerAddress = null;
+            cart.Price = 0;
+            cart.CustomerName = null;
+            cart.CustomerEmail = null;
+            orderItems = PL.Tools.IEnumerableToObservable(cart.OrderItems!);//save the catalog collection from BO in PO obsv collec
             PList.DataContext = orderItems;//set data context of orderItem list as the orderItems
             Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
