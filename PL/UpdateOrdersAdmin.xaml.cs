@@ -31,7 +31,7 @@ namespace PL
             DataContext = o;
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateShip.Visibility = Visibility.Collapsed;//update invisible 
-            updateOrder.Visibility = Visibility.Collapsed;//update invisible 
+            //updateOrder.Visibility = Visibility.Collapsed;//update invisible 
             updateDelivery.Visibility = Visibility.Collapsed;//update invisible 
 
         }
@@ -43,7 +43,7 @@ namespace PL
             DataContext = o;
             statusBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Status));//set combobox values to enums
             updateShip.Visibility = Visibility.Visible;//show update
-            updateOrder.Visibility = Visibility.Visible;//show update
+            //updateOrder.Visibility = Visibility.Visible;//show update
             updateDelivery.Visibility = Visibility.Visible;//show update
             tid.IsReadOnly = true;//cant change id in update 
             tname.IsReadOnly = true;
@@ -57,5 +57,39 @@ namespace PL
             Close();//close this window
         }
 
+        private void updateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void updateShip_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                bl!.Order.ShipUpdate(o.ID);
+
+            }
+            catch(DalApi.IdNotExistException ex)
+            {
+                new ErrorWindow("Update Orders For Admin\n", ex.Message).ShowDialog();
+
+            }
+
+
+        }
+
+        private void updateDelivery_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl!.Order.DeliveredUpdate(o.ID);
+            }
+            catch(DalApi.IdNotExistException ex)
+            {
+                new ErrorWindow("Update Orders For Admin\n", ex.Message).ShowDialog();
+            }
+           
+        }
     }
 }

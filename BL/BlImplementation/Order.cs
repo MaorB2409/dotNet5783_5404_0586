@@ -81,7 +81,7 @@ internal class Order : BlApi.IOrder
             };//new BO Order
         }
         throw new BO.UnfoundException("Order does not exist\n");
-    }//get order number, check if exists, update date in DO order, and return BO order that has been "shipped"
+    }
     public BO.Order DeliveredUpdate(int orderId)
     {
         DO.Order oId;
@@ -197,7 +197,7 @@ internal class Order : BlApi.IOrder
             };//new BO Order
         }
         throw new BO.UnfoundException("Order does not exist\n");
-    }
+    }//get order number, check if exists, update date in DO order, and return BO order that has been "shipped"
     public OrderTracking GetOrderTracking(int orderId)
     {
         DO.Order order = new();

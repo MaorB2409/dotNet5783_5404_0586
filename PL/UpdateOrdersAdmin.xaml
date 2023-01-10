@@ -39,20 +39,14 @@
         <TextBox Name="tamount" Text="{Binding Amount,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="20" MaxLength="2" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="5,72,0,32" Grid.RowSpan="2" />
         <TextBox Name="tprice" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="3" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="222" Margin="10,72,0,32" Grid.RowSpan="2" />
 
-        <Button Name="updateDelivery" Content="update delivery date" FontSize="27" FontStyle="Italic" VerticalAlignment="Stretch"
-                HorizontalAlignment="Right" Grid.Row="10"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="2" Width="250">
+        <Button Name="updateDelivery" Content="update delivery date" FontSize="27" FontStyle="Italic"
+                HorizontalAlignment="Left" Grid.Row="5"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Width="250" Click="updateDelivery_Click" Grid.Column="1" Margin="20,0,0,0">
             <Button.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </Button.BorderBrush>
         </Button>
-        <Button Name="updateShip" Content="update ship date" FontSize="27" FontStyle="Italic" VerticalAlignment="Stretch"
-                HorizontalAlignment="Center" Grid.Row="10"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="2" Width="250" >
-            <Button.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
-            </Button.BorderBrush>
-        </Button>
-        <Button Name="updateOrder" Content="update order date" FontSize="27" FontStyle="Italic" VerticalAlignment="Stretch"
-                HorizontalAlignment="Left" Grid.Row="10"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="2" Width="250">
+        <Button Name="updateShip" Content="update ship date" FontSize="27" FontStyle="Italic"
+                HorizontalAlignment="Left" Grid.Row="5"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Width="250" Click="updateShip_Click" Margin="130,0,0,0" Grid.ColumnSpan="2" >
             <Button.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </Button.BorderBrush>
