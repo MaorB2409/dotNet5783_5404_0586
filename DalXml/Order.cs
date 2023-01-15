@@ -12,6 +12,7 @@ using System.Xml.Linq;
 internal class Order : IOrder
 {
     string orderPath = @"Order.xml";
+    string configPath = @"Config.xml";
     public int Add(DO.Order item)
     {
         XElement orderRoot = XmlTools.LoadListFromXMLElement(orderPath); //get all the elements from the file
@@ -25,10 +26,21 @@ internal class Order : IOrder
         if (orderFromFile != null)
             throw new DalApi.IdExistException("the order already exists");
 
+        //get running order ID number
+        List<RunningNumber> runningList = XmlTools.LoadListFromXMLSerializer<RunningNumber>(configPath);
+
+        var runningNum = (from number in runningList
+                          where (number.typeOfnumber == "Order running number")
+                          select number).FirstOrDefault();
+        runningList.Remove(runningNum);//remove the saved number from list
+        runningNum.numberSaved++;//add one to the saved number
+        runningList.Add(runningNum);//add the number back to list
+        int temp = (int)runningNum.numberSaved;//save the running number
+
         //add the order to the root element
         orderRoot.Add(
             new XElement("Order",
-            new XElement("ID", item.ID),
+            new XElement("ID", temp),
             new XElement("CostumerName", item.CostumerName),
             new XElement("CostumerEmail", item.CostumerEmail),
             new XElement("CostumerAddress", item.CostumerAddress),

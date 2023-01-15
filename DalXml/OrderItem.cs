@@ -9,10 +9,10 @@ namespace Dal;
 using DalApi;
 using DO;
 using System.Xml.Linq;
-
 internal class OrderItem : IOrderItem
 {
     string orderItemPath = @"OrderItem.xml";
+    string configPath = @"Config.xml";
     public int Add(DO.OrderItem item)
     {
         XElement orderItemRoot = XmlTools.LoadListFromXMLElement(orderItemPath); //get all the elements from the file
@@ -26,10 +26,23 @@ internal class OrderItem : IOrderItem
         if (orderItemFromFile != null)
             throw new DalApi.IdExistException("the order already exists");
 
+        //get running order item ID number
+        List<RunningNumber> runningList = XmlTools.LoadListFromXMLSerializer<RunningNumber>(configPath);
+
+        var runningNum = (from number in runningList
+                          where (number.typeOfnumber == "Order item running number")
+                          select number).FirstOrDefault();
+        runningList.Remove(runningNum);//remove the saved number from list
+        runningNum.numberSaved++;//add one to the saved number
+        runningList.Add(runningNum);//add the number back to list
+        int temp = (int)runningNum.numberSaved;//save the running number
+
+
+
         //add the orderItem to the root element
         orderItemRoot.Add(
             new XElement("OrderItem",
-            new XElement("ID", item.ID),
+            new XElement("ID", temp),
             new XElement("ProductID", item.ProductID),
             new XElement("OrderID", item.OrderID),
             new XElement("Price", item.Price),

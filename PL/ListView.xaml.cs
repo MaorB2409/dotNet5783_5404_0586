@@ -37,12 +37,8 @@ namespace PL
             ordersForList.Clear();
             try
             {
-
                 productsForList = PL.Tools.IEnumerableToObservable(bl!.Product.GetProductsForList());
                 ordersForList = PL.Tools.IEnumerableToObservable(bl!.Order.GetAllOrderForList());
-                
-                //ItemListview.DataContext = bl?.Product.GetProductsForList();//get products for list from BO
-                //OrderListview.DataContext = bl?.Order.GetAllOrderForList();//get orders for list from BO
             }
             catch (BO.Exceptions ex)//id is null error on screen
             {
@@ -190,10 +186,12 @@ namespace PL
 
         private void RemoveGroupings_Click(object sender, RoutedEventArgs e)
         {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ordersForList);
             view.GroupDescriptions.Clear();
+            view.SortDescriptions.Clear();
+            GroupBack.IsEnabled=false;
         }
         #endregion
-      
+
     }
 }

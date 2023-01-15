@@ -12,6 +12,8 @@ using System.Xml.Linq;
 internal class Product : IProduct
 {
     string productPath = @"Product.xml";
+    string configPath = @"Config.xml";
+
     public int Add(DO.Product item)
     {
         XElement productRoot = XmlTools.LoadListFromXMLElement(productPath); //get all the elements from the file
@@ -25,10 +27,21 @@ internal class Product : IProduct
         if (customerFromFile != null)
             throw new DalApi.IdExistException("the product already exists");
 
+        //get running product ID number
+        List<RunningNumber> runningList = XmlTools.LoadListFromXMLSerializer<RunningNumber>(configPath);
+
+        var runningNum = (from number in runningList
+                          where (number.typeOfnumber == "Product ID running number")
+                          select number).FirstOrDefault();
+        runningList.Remove(runningNum);//remove the saved number from list
+        runningNum.numberSaved++;//add one to the saved number
+        runningList.Add(runningNum);//add the number back to list
+        int temp = (int)runningNum.numberSaved;//save the running number
+
         //add the customer to the root element
         productRoot.Add(
             new XElement("Product",
-            new XElement("ID", item.ID),
+            //new XElement("ID", temp),
             new XElement("Name", item.Name),
             new XElement("Price", item.Price),
             new XElement("Category", item.Category),
