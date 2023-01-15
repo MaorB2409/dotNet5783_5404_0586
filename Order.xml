@@ -201,7 +201,8 @@
 		<CostumerEmail>tt@gamil.com</CostumerEmail>
 		<CostumerAddress>t</CostumerAddress>
 		<OrderDate>1985-03-12T00:00:00</OrderDate>
-
+		<ShipDate></ShipDate>
+		<DeliveryDate></DeliveryDate>
 	</Order>
 
 

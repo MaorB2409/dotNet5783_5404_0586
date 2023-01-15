@@ -31,10 +31,10 @@
                 </StackPanel>
             </Border>
             <TextBlock x:Name="orderNum" Width="100" FontSize="20" FontFamily="Italic"  VerticalAlignment="Bottom" HorizontalAlignment="Left" FontWeight="DemiBold" Margin="545,0,0,87" Height="41" Text="{Binding}"/>
-            <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" HorizontalAlignment="Right" Margin="500 0 30 -330" Background="Transparent" BorderBrush="Transparent">
+            <Button Name="homeBtn" Width="40" Height="40" Click="clickOnHomeBtn" HorizontalAlignment="Right" Margin="500 0 30 -320" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="images\home.png"></Image>
             </Button>
-            <Button x:Name="contshop" Width="120" Height="40" Click="BackToShop" Background="Transparent" BorderBrush="Black" Content="Continue Shopping" FontWeight="DemiBold" Margin="535,332,125,42"/>
+            <Button x:Name="contshop" Width="120" Height="40" Click="BackToShop" Background="Transparent" BorderBrush="Black" Content="Continue Shopping" FontWeight="DemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,85,22"/>
 
         </Grid>
 
