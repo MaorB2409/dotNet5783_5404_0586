@@ -44,10 +44,55 @@
                     <TextBox x:Name="nametbx" Grid.Column="1" Grid.Row="0" Width="300" TextAlignment="Center" Text="{Binding customerName}" FontFamily="italic" PreviewTextInput="tname_previewtextinput" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,-16,0,15"/>
                     <TextBox x:Name="emailtbx" Grid.Column="1" Width="300" TextAlignment="Center" Text="{Binding customerEmail}" FontFamily="italic" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,40,0,15" Grid.RowSpan="2"/>
                     <TextBox x:Name="addresstbx" Grid.Column="1" Grid.Row="1" Width="300" TextAlignment="Center" Text="{Binding customerAddress}" FontFamily="italic" FontSize="20" FontWeight="DemiBold" Background="GhostWhite" BorderThickness="5" Margin="0,40,0,15" Grid.RowSpan="2"/>
-                    <TextBox Grid.Column="1" Grid.Row="3" Width="300" PreviewTextInput="tname_previewtextinput" TextAlignment="Center" FontFamily="italic" Background="GhostWhite" FontSize="20" FontWeight="DemiBold" BorderThickness="5" Margin="0,0,0,35"/>
                     <Button Grid.ColumnSpan="2" Background="LavenderBlush" Margin="175,110,0,-60" Content="Save" FontSize="30" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="Transparent" Height="50" HorizontalAlignment="Left" Width="200" Grid.Row="3" Click="SaveBtn_Click"/>
+                    <!--                    <RadioButton Grid.Column="1" Grid.Row="3" Width="300" PreviewTextInput="tname_previewtextinput" FontFamily="italic" Background="GhostWhite" FontSize="20" FontWeight="DemiBold" BorderThickness="5" Margin="0,0,0,35"/>-->
+                    <Grid x:Name="RadioBtns" Grid.Row="3" Grid.Column="2">
+                        <RadioButton Grid.Row="3" Grid.Column="2" FontSize="20">
+                            <WrapPanel>
+                                <Image Source="\images\emoticon-sad-outline.png" Width="25" Height="26" />
+                                <TextBlock Text="No..." Foreground="Black" Height="29" />
+                            </WrapPanel>
+
+                        </RadioButton>
+
+                        <RadioButton FontSize="20" Margin="0,36,260,39">
+                            <WrapPanel>
+                                <Image Source="\images\emoticon-neutral-outline.png" Width="25" Height="50" RenderTransformOrigin="0.589,0.592"/>
+                                <TextBlock Text="Hmmm" Foreground="Black" />
+                            </WrapPanel>
+                        </RadioButton>
+
+                        <RadioButton Grid.Row="3" FontSize="20" Margin="0,72,260,1" Grid.ColumnSpan="2">
+                            <WrapPanel>
+                                <Image Source="\images\emoticon-excited-outline.png" Width="25" Height="50" RenderTransformOrigin="0.590,0.590"/>
+                                <TextBlock Text="Yes!!!" Foreground="Black" />
+                            </WrapPanel>
+                        </RadioButton>
+
+                        <!--<RadioButton Grid.Row="3" FontSize="20" Margin="200,72,0,1" Grid.ColumnSpan="2">
+                            <WrapPanel>
+                                <Image Source="\images\emoticon-kiss-outline.png" Width="25" Height="50" RenderTransformOrigin="0.590,0.590"/>
+                                <TextBlock Text="Yes!!!!" Foreground="Black" />
+                            </WrapPanel>
+                        </RadioButton>-->
+
+                        <!--<RadioButton FontSize="20" Margin="200,36,0,40">
+                            <WrapPanel>
+                                <Image Source="\images\emoticon-neutral-outline.png" Width="25" Height="50" RenderTransformOrigin="0.590,0.590"/>
+                                <TextBlock Text="Hmmm!" Foreground="Black" />
+                            </WrapPanel>
+                        </RadioButton>-->
 
 
+                        <!--<RadioButton Grid.Row="3" FontSize="20" Margin="200,0,0,70" Grid.ColumnSpan="2">
+                            <WrapPanel>
+                                <Image Source="\images\emoticon-happy-outline.png" Width="25" Height="38" RenderTransformOrigin="0.590,0.590"/>
+                                <TextBlock Text="It was okay" Foreground="Black" Height="32" />
+                            </WrapPanel>
+                        </RadioButton>-->
+
+
+                    </Grid>
                 </Grid>
             </Grid>
         </Border>
