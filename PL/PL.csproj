@@ -56,6 +56,7 @@
 		<Resource Include="images\box.png" />
 		<Resource Include="images\close.png" />
 		<Resource Include="images\left.png" />
+		<Resource Include="images\location.png" />
 		<Resource Include="images\low.png" />
 		<Resource Include="images\add.png" />
 		<Resource Include="images\return.png" />
