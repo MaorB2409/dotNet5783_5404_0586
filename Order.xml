@@ -195,7 +195,7 @@
 		<CostumerAddress>p</CostumerAddress>
 		<OrderDate>2023-01-15 11:58:46</OrderDate>
 		<ShipDate>2023-03-02 2:07:46</ShipDate>
-		<DeliveryDate>2023-04-18 13:20:48</DeliveryDate>
+		<DeliveryDate></DeliveryDate>
 
 	</Order>
 
@@ -205,9 +205,9 @@
 		<CostumerName>Yosef</CostumerName>
 		<CostumerEmail>qq@gamil.com</CostumerEmail>
 		<CostumerAddress>q</CostumerAddress>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
-		<ShipDate>1985-03-12T00:00:00</ShipDate>
-		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+		<OrderDate>2023-01-15 3:50:24</OrderDate>
+		<ShipDate>2023-02-21 12:13:26</ShipDate>
+		<DeliveryDate></DeliveryDate>
 
 	</Order>
 
@@ -217,9 +217,9 @@
 		<CostumerName>Rina</CostumerName>
 		<CostumerEmail>rr@gamil.com</CostumerEmail>
 		<CostumerAddress>r</CostumerAddress>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
-		<ShipDate>1985-03-12T00:00:00</ShipDate>
-		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+		<OrderDate>2023-01-15 11:58:46</OrderDate>
+		<ShipDate>2023-03-02 2:07:46</ShipDate>
+		<DeliveryDate></DeliveryDate>
 
 	</Order>
 
@@ -228,9 +228,9 @@
 		<CostumerName>Aron</CostumerName>
 		<CostumerEmail>ss@gamil.com</CostumerEmail>
 		<CostumerAddress>s</CostumerAddress>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
-		<ShipDate>1985-03-12T00:00:00</ShipDate>
-		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+		<OrderDate>2023-01-15 6:01:31</OrderDate>
+		<ShipDate>2023-03-04 19:06:33</ShipDate>
+		<DeliveryDate></DeliveryDate>
 
 	</Order>
 
@@ -240,9 +240,9 @@
 		<CostumerName>Yoni</CostumerName>
 		<CostumerEmail>tt@gamil.com</CostumerEmail>
 		<CostumerAddress>t</CostumerAddress>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
-		<ShipDate>1985-03-12T00:00:00</ShipDate>
-		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+		<OrderDate>2023-01-14 0:21:16</OrderDate>
+		<ShipDate>2023-02-27 4:34:16</ShipDate>
+		<DeliveryDate></DeliveryDate>
 
 	</Order>
 
