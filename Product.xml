@@ -8,7 +8,6 @@
 		<Name>Couch</Name>
 		<Price>800</Price>
 		<Category>3</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -19,7 +18,6 @@
 		<Name>Table</Name>
 		<Price>310</Price>
 		<Category>0</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -29,7 +27,6 @@
 		<Name>Bed</Name>
 		<Price>1000</Price>
 		<Category>1</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -41,7 +38,6 @@
 		<Name>Chair</Name>
 		<Price>240</Price>
 		<Category>2</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -52,7 +48,6 @@
 		<Name>Closet</Name>
 		<Price>550</Price>
 		<Category>2</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -63,7 +58,6 @@
 		<Name>BookCase</Name>
 		<Price>1250</Price>
 		<Category>2</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -74,7 +68,6 @@
 		<Name>Couch</Name>
 		<Price>2000</Price>
 		<Category>5</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -85,7 +78,6 @@
 		<Name>Table</Name>
 		<Price>500</Price>
 		<Category>5</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -96,7 +88,6 @@
 		<Name>Bed</Name>
 		<Price>1500</Price>
 		<Category>1</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
@@ -108,7 +99,6 @@
 		<Name>Chair</Name>
 		<Price>200</Price>
 		<Category>4</Category>
-		<OrderDate>1985-03-12T00:00:00</OrderDate>
 		<InStock>5</InStock>
 
 	</Product>
