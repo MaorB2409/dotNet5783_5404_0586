@@ -68,17 +68,16 @@
 		<Resource Include="images\57563.png" />
 		<Resource Include="images\e8faa395ecab57e4f66a0fad35c0d073.jpg" />
 		<Resource Include="images\mastercard.png" />
-		<Resource Include="images\emoticon-angry-outline.png"/>
-		<Resource Include="images\emoticon-sad-outline.png"/>
-		<Resource Include="images\emoticon-excited-outline.png"/>
-		<Resource Include="images\emoticon-neutral-outline.png"/>
-		<Resource Include="images\emoticon-happy-outline.png"/>
-		<Resource Include="images\emoticon-kiss-outline.png"/>
-
-
+		<Resource Include="images\emoticon-angry-outline.png" />
+		<Resource Include="images\emoticon-sad-outline.png" />
+		<Resource Include="images\emoticon-excited-outline.png" />
+		<Resource Include="images\emoticon-neutral-outline.png" />
+		<Resource Include="images\emoticon-happy-outline.png" />
+		<Resource Include="images\emoticon-kiss-outline.png" />
 		<Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
 		<Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
 		<Resource Include="marbleBg.jpeg" />
+		<Resource Include="icon.ico" />
 
 	</ItemGroup>
 

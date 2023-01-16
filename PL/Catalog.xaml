@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Catalog" Height="450" Width="800">
+        Title="Catalog" Height="450" Width="800"
+        Icon="icon.ico">
 
     <Window.Resources>
 

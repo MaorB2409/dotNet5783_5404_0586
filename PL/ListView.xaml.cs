@@ -192,6 +192,9 @@ namespace PL
             GroupBack.IsEnabled=false;
         }
         #endregion
-
+        private void track_Click(object sender, RoutedEventArgs e)
+        {
+            new TrackOrdersThreading(bl).ShowDialog();
+        }
     }
 }

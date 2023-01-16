@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,9 +8,35 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace PLConverter
 {
+    public class StatusToBackgroundColourConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var o = (PL.PO.OrderForList)value;
+            if (o.Status.ToString() == "Shipped")
+            {
+                return new SolidColorBrush(Colors.LightGreen);
+
+            }
+            else if(o.Status.ToString() == "Just Ordered")
+            {
+                return new SolidColorBrush(Colors.LightSeaGreen);
+            }
+            else //Recieved
+            {
+                return new SolidColorBrush(Colors.Green);   
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
     public class FalseToTrueConverterDataGrid : IValueConverter
     {
         //convert from source property type to target property type

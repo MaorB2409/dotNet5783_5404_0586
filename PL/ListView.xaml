@@ -31,7 +31,7 @@
                     <ComboBox Name="AttributeSelector" HorizontalAlignment= "Left" VerticalAlignment="Top" SelectionChanged="AttributeSelector_SelectionChanged" Text="choose" Grid.Column="3" Margin="160,-2,0,0" Width="226" Height="42" />
 
 
-                  <DataGrid Name="ProductItemGrid" Grid.Column="0"
+                    <DataGrid Name="ProductItemGrid" Grid.Column="0"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
                   AutoGenerateColumns="False" 
@@ -64,7 +64,6 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btnAdd" Content="Add Product" FontSize="15" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="3" BorderBrush="Transparent" Click="btnAdd_Click" Height="50" Width="110" Margin="200,500,70,30"/>
-
                 </Grid>
 
             </TabItem>
@@ -81,7 +80,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions >
-                  
+
                   <DataGrid Name="ItemGrid" Grid.Column="0"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
@@ -133,6 +132,8 @@
                         Height="40" Width="100"
                         Margin="270,270,10,180" Grid.Column="1" Style="{DynamicResource buttonCheckout}"
                         IsEnabled="False"/>
+                    <Button x:Name="trackOrders" Content="Track Orders" FontSize="15" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" BorderBrush="Transparent" Click="track_Click" Height="40" Width="100" HorizontalAlignment="Right" Margin="0,298,18,258"/>
+
 
                 </Grid>
 
