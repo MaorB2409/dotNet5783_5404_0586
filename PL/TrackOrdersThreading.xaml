@@ -62,7 +62,7 @@
                 <DataGridTemplateColumn Header="Progress" MinWidth="10" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar x:Name="progressBar" Minimum="0" Maximum="100"/>
+                            <ProgressBar x:Name="progressBar" Value="{Binding progress,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -70,10 +70,12 @@
         </DataGrid>
         <Button Name="stoptracking" 
                         Content="Stop Tracking" 
-                        Height="40" Width="83" Background="LavenderBlush" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="707,247,0,0" Click="CancelButton_Click"/>
+                        Height="40" Width="83" Background="LavenderBlush" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Left" Click="CancelButton_Click" Margin="700,250,0,0"/>
         <Button Name="starttracking" 
                         Content="Start Tracking" 
-                        Height="40" Width="83" Background="LavenderBlush" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="707,0,0,0" Click="StartButton_Click"/>
-
+                        Height="40" Width="83" Background="LavenderBlush" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Click="StartButton_Click" Margin="700,0,0,0"/>
+        <Button x:Name="openCatalog" Height="40" Width="40" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="openCatalog_Click" Margin="710,200,0,0">
+            <Image Source="images\cart-outline.png"/>
+        </Button>
     </Grid>
 </Window>

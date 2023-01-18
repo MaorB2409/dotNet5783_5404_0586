@@ -73,7 +73,7 @@ internal class Product : IProduct
         List<DO.Product?> productList = XmlTools.LoadListFromXMLSerializer<DO.Product?>(productPath).ToList();
 
         return (from product in productList
-                where filter(product)
+                where product!=null
                 select product).ToList();
     }
 

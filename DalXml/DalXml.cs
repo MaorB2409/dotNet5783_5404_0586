@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Collections.Specialized.BitVector32;
 
 namespace Dal
@@ -16,11 +17,18 @@ namespace Dal
     }
     sealed internal class DalXml : IDal
     {
+        string configPath = "Config.xml";
+        string orderPath = "Order.xml";
+        string orderItemPath = "OrderItem.xml";
+        string productPath = "Product.xml";
+
         #region singlton
         public static readonly IDal instance = new DalXml();
         public static IDal Instance { get => instance; }
-        DalXml() { }
-        static DalXml() { }
+        DalXml()
+        {
+
+        }
         #endregion
         public IProduct Product { get; } = new Dal.Product();
         public IOrder Order { get; } = new Dal.Order();
