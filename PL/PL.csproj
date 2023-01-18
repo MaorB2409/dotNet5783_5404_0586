@@ -80,6 +80,8 @@
 		<Resource Include="icon.ico" />
 		<Resource Include="error_logo.ico" />
 		<Resource Include="favicon.ico" />
+		<Resource Include="images\istockphoto-1158575634-612x612.jpg" />
+		
 	</ItemGroup>
 
 	<ItemGroup>

@@ -112,6 +112,38 @@ static internal class XmlTools
     public static int? ToIntlNullable(this XElement element, string name) =>
         int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
 
+    public static int? ToInt(this XElement element, string name) =>
+      int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
+
+
+    public static DO.Enums.Category ToCategory(string name)
+    {
+        if (name == "Office")
+        {
+            return DO.Enums.Category.Office;
+        }
+        if (name == "Outdoors")
+        {
+            return DO.Enums.Category.Outdoors;
+        }
+        if (name == "Bedroom")
+        {
+            return DO.Enums.Category.Bedroom;
+        }
+        if (name == "Kitchen")
+        {
+            return DO.Enums.Category.Kitchen;
+        }
+        if (name == "LivingRoom")
+        {
+            return DO.Enums.Category.LivingRoom;
+        }
+        else
+        {
+            return DO.Enums.Category.DiningRoom;
+        }
+    }
+
 
     #endregion
 }

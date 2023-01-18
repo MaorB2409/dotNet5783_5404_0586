@@ -68,14 +68,34 @@ internal class Product : IProduct
         XmlTools.SaveListToXMLSerializer(productList, productPath);
     }
 
-    public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? filter = null)
-    {
-        List<DO.Product?> productList = XmlTools.LoadListFromXMLSerializer<DO.Product?>(productPath).ToList();
 
-        return (from product in productList
-                where filter(product)
-                select product).ToList();
-    }
+    public static DO.Product? GetProduct(XElement p) =>
+     p?.ToInt("ID") is null ? null : new DO.Product()
+     {
+         ID = p.ToInt("ID") ?? 0,
+         Name = (string?)(p.Element("Name")?.Value),
+         Category = XmlTools.ToCategory(p.Element("Category").Value),
+         InStock = p?.ToInt("InStock") ?? 0,
+         Price = p?.ToDoubleNullable("Price") ?? 0,
+     };
+
+
+    public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? filter = null)
+       =>
+       filter is null
+       ? XmlTools.LoadListFromXMLElement(productPath).Elements().Select(p => GetProduct(p))
+       : XmlTools.LoadListFromXMLElement(productPath).Elements().Select(p => GetProduct(p)).Where(filter);
+
+
+
+    
+
+        //XElement productRoot = XmlTools.LoadListFromXMLElement (productPath);
+
+        //return (from product in productRoot
+        //        where filter(product)
+        //        select product).ToList();
+    
 
     public DO.Product GetByFilter(Func<DO.Product?, bool>? filter)
     {
