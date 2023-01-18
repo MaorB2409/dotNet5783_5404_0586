@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OrderView" Height="450" Width="800">
+        Title="OrderView" Height="450" Width="800"
+        Icon="favicon.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/marbleBg.jpeg"/>

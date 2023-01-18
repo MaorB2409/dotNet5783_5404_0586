@@ -52,7 +52,7 @@ namespace PL
             #region worker
             worker = new() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };//create new worker
             worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Worker_ProgressChanged;
+            //worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.RunWorkerAsync(ordersForList);//workere get ????????????
             #endregion
@@ -84,22 +84,22 @@ namespace PL
             e.Result = stopwatch.ElapsedMilliseconds;
         }
 
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            int progress = e.ProgressPercentage;
+        //private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    int progress = e.ProgressPercentage;
 
-            if ()//if not shipped and passed 2 days from being ordered - ship
-            {
+        //    if ()//if not shipped and passed 2 days from being ordered - ship
+        //    {
 
-                //DataContext=ordersForList;
-                System.Threading.Thread.Sleep(500);
-            }
-            if ()//if not delivered and passed 3 days from being shipped - deliver
-            {
-                //DataContext=ordersForList;
-                System.Threading.Thread.Sleep(500);
-            }
-        }
+        //        //DataContext=ordersForList;
+        //        System.Threading.Thread.Sleep(500);
+        //    }
+        //    if ()//if not delivered and passed 3 days from being shipped - deliver
+        //    {
+        //        //DataContext=ordersForList;
+        //        System.Threading.Thread.Sleep(500);
+        //    }
+        //}
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //worker = null;

@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:po="clr-namespace:PL.PO" d:DataContext="{d:DesignInstance Type=po:Product}"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Window1" Height="450" Width="800"
+        Icon="favicon.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/marbleBg.jpeg"/>

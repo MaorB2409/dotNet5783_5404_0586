@@ -10,7 +10,7 @@ namespace Dal;
 
 static internal class XmlTools
 {
-    static string suffixPath = @"xml\";
+    static string suffixPath = @"..\xml\";
 
         #region XElement
         #region load to file
@@ -94,5 +94,24 @@ static internal class XmlTools
                 throw new DalApi.LoadingException(suffixPath + filePath, $"fail to load xml file: {suffixPath + filePath}", ex);
             }
         }
-        #endregion
-    }
+
+
+
+    public static T? ToEnumerable<T> (this XElement element, string name) where T : struct, Enum => 
+        Enum.TryParse<T>((string?)element.Element(name), out var result) ? (T?)result : null;
+
+    public static DateTime? ToDateTimeNullable (this XElement element, string name) =>
+        DateTime.TryParse((string?)element.Element(name), out var result) ? (DateTime?)result : null;
+
+    public static double? ToDoubleNullable(this XElement element, string name) =>
+        double.TryParse((string?)element.Element(name), out var result) ? (double?)result : null;
+
+    public static bool? ToBoolNullable(this XElement element, string name) =>
+        bool.TryParse((string?)element.Element(name), out var result) ? (bool?)result : null;
+
+    public static int? ToIntlNullable(this XElement element, string name) =>
+        int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
+
+
+    #endregion
+}

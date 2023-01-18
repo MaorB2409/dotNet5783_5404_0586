@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PL"
         xmlns:converter="clr-namespace:PLConverter"
         mc:Ignorable="d"
-        Title="ListView" Height="640" Width="800">
+        Title="ListView" Height="640" Width="800"
+        Icon="favicon.ico">
     <Window.Resources>
         <converter:FalseToTrueConverter x:Key="convertIsEnabled"/>
     </Window.Resources>

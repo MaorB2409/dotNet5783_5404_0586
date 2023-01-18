@@ -78,7 +78,8 @@
 		<Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
 		<Resource Include="marbleBg.jpeg" />
 		<Resource Include="icon.ico" />
-
+		<Resource Include="error_logo.ico" />
+		<Resource Include="favicon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
