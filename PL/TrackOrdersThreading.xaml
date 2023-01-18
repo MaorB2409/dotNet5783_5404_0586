@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="TrackOrdersThreading" Height="450" Width="800"
+        Icon="favicon.ico"
         DataContext="{Binding ordersForList,RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <converter:StatusToBackgroundColourConverter x:Key="convertStatusBackground"/>

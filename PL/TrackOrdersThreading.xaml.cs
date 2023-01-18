@@ -52,7 +52,7 @@ namespace PL
             #region worker
             worker = new() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };//create new worker
             worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Worker_ProgressChanged;
+            //worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             #endregion
         }

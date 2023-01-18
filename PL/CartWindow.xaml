@@ -7,7 +7,7 @@
         xmlns:converter="clr-namespace:PLConverter"
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800"
-        Icon="icon.ico">
+        Icon="favicon.ico">
     <Window.Resources>
         <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
             <Setter Property="Template">
