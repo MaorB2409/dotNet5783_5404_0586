@@ -77,7 +77,7 @@ static internal class XmlTools
         {
             try
             {
-                if (File.Exists(suffixPath + filePath))
+            if (File.Exists(suffixPath + filePath))
                 {
                     List<T> list;
                     XmlSerializer x = new XmlSerializer(typeof(List<T>));
@@ -86,9 +86,11 @@ static internal class XmlTools
                     file.Close();
                     return list!;
                 }
-                else
-                    return new List<T>();
+            else
+            {
+                return new List<T>();
             }
+        }
             catch (Exception ex)
             {
                 throw new DalApi.LoadingException(suffixPath + filePath, $"fail to load xml file: {suffixPath + filePath}", ex);

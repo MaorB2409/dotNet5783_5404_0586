@@ -133,7 +133,7 @@
                         Height="40" Width="100"
                         Margin="270,270,10,180" Grid.Column="1" Style="{DynamicResource buttonCheckout}"
                         IsEnabled="False"/>
-                    <Button x:Name="trackOrders" Content="Track Orders" FontSize="15" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" BorderBrush="Transparent" Click="track_Click" Height="40" Width="100" HorizontalAlignment="Right" Margin="0,298,18,258"/>
+                    <Button x:Name="trackOrders" Content="Track Orders" FontSize="15" Background="LavenderBlush" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" BorderBrush="Transparent" Click="track_Click" Height="40" Width="100" HorizontalAlignment="Right" Margin="0,0,18.5,0"/>
 
 
                 </Grid>

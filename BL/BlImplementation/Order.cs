@@ -83,7 +83,7 @@ internal class Order : BlApi.IOrder
                 CostumerName = ord.CostumerName,
                 OrderDate = ord.OrderDate ?? throw new BO.Exceptions("Order Date is null"),
                 ShipDate = ord.ShipDate ?? throw new BO.Exceptions("Ship Date is null"),
-                DeliveryDate = ord.DeliveryDate ?? throw new BO.Exceptions("Delivery Date is null"),
+                DeliveryDate = ord.DeliveryDate,
                 Status = GetStatus(ord),
                 TotalPrice = priceTemp,
                 IsDeleted = ord.IsDeleted,

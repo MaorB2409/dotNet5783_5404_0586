@@ -54,17 +54,20 @@ namespace PL
             worker.DoWork += Worker_DoWork;
             //worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            worker.RunWorkerAsync(ordersForList);//workere get ????????????
             #endregion
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            int length = (int)e.Argument;
+            var listOfOrders = (ObservableCollection<PO.OrderForList>)e.Argument;
 
-            for (int i = 1; i <= length; i++)
+            //foreach (PO.OrderForList order in listOfOrders)
+
+            for (int i = 1; i < listOfOrders.Count; i++)//go over all orders
             {
+                int length = 12;
+                int perc = 1;
                 if (worker.CancellationPending == true)//if canceled
                 {
                     e.Cancel = true;
@@ -77,29 +80,60 @@ namespace PL
                     // Perform a time consuming operation and report progress
                     nowTime.AddHours(6);//add 6 hours to time
                     System.Threading.Thread.Sleep(2000);//sleep for 2 sec
-
-                    worker.ReportProgress(i * 100 / length);
+                    PO.Order matchingOrder = PL.Tools.CastBoOrderToPo(bl.Order.GetBoOrder(listOfOrders[i].ID));//save matching order for curr orderForList
+                    if (listOfOrders[i].Status==BO.Enums.Status.JustOrdered && matchingOrder.OrderDate?.AddDays(2) >= nowTime)//if not shipped and passed 2 days from being ordered - ship
+                    {
+                        bl.Order.ShipUpdate(listOfOrders[i].ID);//update to shipped
+                        try
+                        {
+                            ordersForList = PL.Tools.IEnumerableToObservable(bl!.Order.GetAllOrderForList());
+                        }
+                        catch (BO.Exceptions ex)//id is null error on screen
+                        {
+                            new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
+                        }
+                        catch (BO.IdNotExistException ex)
+                        {
+                            new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
+                        }
+                        catch (BO.IncorrectInput ex)
+                        {
+                            new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
+                        }
+                    }
+                    if (listOfOrders[i].Status == BO.Enums.Status.Shipped && matchingOrder.ShipDate?.AddDays(3) >= nowTime)//if not delivered and passed 3 days from being shipped - deliver
+                    {
+                        bl.Order.DeliveredUpdate(listOfOrders[i].ID);//update to delivered
+                        try
+                        {
+                            ordersForList = PL.Tools.IEnumerableToObservable(bl!.Order.GetAllOrderForList());
+                        }
+                        catch (BO.Exceptions ex)//id is null error on screen
+                        {
+                            new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
+                        }
+                        catch (BO.IdNotExistException ex)
+                        {
+                            new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
+                        }
+                        catch (BO.IncorrectInput ex)
+                        {
+                            new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
+                        }
+                    }
+                    System.Threading.Thread.Sleep(500);
+                    worker.ReportProgress(perc++ * 100 / length);
                 }
             }
             e.Result = stopwatch.ElapsedMilliseconds;
         }
 
-        //private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    int progress = e.ProgressPercentage;
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;//save the percentage
 
-        //    if ()//if not shipped and passed 2 days from being ordered - ship
-        //    {
-
-        //        //DataContext=ordersForList;
-        //        System.Threading.Thread.Sleep(500);
-        //    }
-        //    if ()//if not delivered and passed 3 days from being shipped - deliver
-        //    {
-        //        //DataContext=ordersForList;
-        //        System.Threading.Thread.Sleep(500);
-        //    }
-        //}
+            DataContext = ordersForList;//reset the screen list
+        }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //worker = null;
@@ -108,7 +142,10 @@ namespace PL
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             if (worker.IsBusy != true)
-                worker.RunWorkerAsync(12);// Start the asynchronous operation
+            {
+               
+                worker.RunWorkerAsync(ordersForList);// Start the asynchronous operation
+            }
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -118,9 +155,6 @@ namespace PL
                 worker.CancelAsync();
 
         }
-
-
-
         private void Orders_view(object sender, MouseButtonEventArgs e)
         {
             if (ItemGrid.SelectedItem is PO.OrderForList orderForList)
@@ -128,7 +162,6 @@ namespace PL
                 new OrderView(orderForList.ID, empty, bl!).ShowDialog();//view the chosen order details
             }
         }
-
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
         {
             new MainWindow().ShowDialog();
@@ -138,6 +171,11 @@ namespace PL
         {
             new ListView(bl).ShowDialog();
             Close();//close this window
+        }
+
+        private void openCatalog_Click(object sender, RoutedEventArgs e)
+        {
+            new Catalog(empty,bl!).Show();
         }
     }
 }
