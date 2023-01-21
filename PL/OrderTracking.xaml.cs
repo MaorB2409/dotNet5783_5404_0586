@@ -54,16 +54,21 @@ namespace PL
 
         private void OrderDetails_Click(object sender, RoutedEventArgs e)
         {
-            new OrderView(orderTracking.ID, myCart, bl!).ShowDialog();
+
             Close();//close this window
+            new OrderView(orderTracking.ID, myCart, bl!).ShowDialog();
+            
         }
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new OrderIDEnter(myCart, bl!).ShowDialog();
+
             Close();//close this window
+            new OrderIDEnter(myCart, bl!).ShowDialog();
+            
         }
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
+            Close();//close this window
             new MainWindow().ShowDialog();//go to home window 
         }
     }

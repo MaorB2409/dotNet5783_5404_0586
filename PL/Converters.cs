@@ -217,28 +217,13 @@ namespace PLConverter
             var status = (BO.Enums.Status)value;
             if(status.ToString()== "Just Ordered")
             {
-                return random.Next(34);
+                return random.Next(30);
             }
             else if(status.ToString()== "Shipped")
             {
-                return (int)random.Next(34, 70);
+                return (int)random.Next(30, 80);
             }
             return 100;
-
-            //if (o.Status.ToString() == "Just Ordered")
-            //{
-            //    progressBar.Value = 0;
-            //}
-            //else if (o.Status.ToString() == "Shipped")
-            //{
-            //    progressBar.Value = 50;
-
-            //}
-            //else //Recieved
-            //{
-            //    progressBar.Value = 100;
-            //}
-            //return progressBar;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

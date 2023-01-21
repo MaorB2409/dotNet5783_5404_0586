@@ -130,7 +130,8 @@ namespace PL
         {
             if (ProductItemGrid.SelectedItem is PO.ProductForList productForList)
             {
-               new Window1(productForList, bl!).ShowDialog();
+                Close();//close this window
+                new Window1(productForList, bl!).ShowDialog();
             }
             try
             {
@@ -165,8 +166,9 @@ namespace PL
 
         void clickOnHomeBtn(object sender, RoutedEventArgs e)
         {
-            new MainWindow().ShowDialog();
             Close();//close this window
+            new MainWindow().ShowDialog();
+            
         }
 
 
@@ -194,6 +196,7 @@ namespace PL
         #endregion
         private void track_Click(object sender, RoutedEventArgs e)
         {
+            Close();//close this window
             new TrackOrdersThreading(bl).ShowDialog();
         }
     }

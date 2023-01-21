@@ -179,7 +179,7 @@ namespace PL
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            object result = e.Result;
+            object result = e.Result!;
             //worker = null;
             MessageBox.Show("tracking has stoped!\none of the following might have happend:\n1) stopped by force\n2) no orders left to deliver", "Simulator", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -192,11 +192,7 @@ namespace PL
                 stoptracking.IsEnabled = true;
                 worker.RunWorkerAsync("argument");
             }
-            //if (worker.IsBusy != true)
-            //{
-               
-            //    worker.RunWorkerAsync(ordersForList);// Start the asynchronous operation
-            //}
+            
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -206,16 +202,12 @@ namespace PL
                 starttracking.IsEnabled = true;
                 worker.CancelAsync();// Cancel the asynchronous operation
             }
-
-            //if (worker.WorkerSupportsCancellation == true)
-            //    // Cancel the asynchronous operation
-            //    worker.CancelAsync();
-
         }
         private void Orders_view(object sender, MouseButtonEventArgs e)
         {
             if (ItemGrid.SelectedItem is PO.OrderForList orderForList)
             {
+                Close();//close this window
                 new OrderView(orderForList.ID, empty, bl!).ShowDialog();//view the chosen order details
             }
         }
@@ -226,12 +218,14 @@ namespace PL
         }
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new ListView(bl).ShowDialog();
             Close();//close this window
+            new ListView(bl).ShowDialog();
+            
         }
 
         private void openCatalog_Click(object sender, RoutedEventArgs e)
         {
+            Close();//close this window
             new Catalog(empty, bl!).Show();
         }
     }
