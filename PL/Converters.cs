@@ -200,4 +200,63 @@ namespace PLConverter
         }
     }
 
+
+    public class StatusToProgressBarConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            //var o = (PL.PO.OrderForList)value;
+            //ProgressBar progressBar = new ProgressBar();
+            Random random = new Random();
+            if(!(value is BO.Enums.Status))
+            {
+                throw new Exception("Wrong Creation!");
+            }
+            var status = (BO.Enums.Status)value;
+            if(status.ToString()== "Just Ordered")
+            {
+                return random.Next(34);
+            }
+            else if(status.ToString()== "Shipped")
+            {
+                return (int)random.Next(34, 70);
+            }
+            return 100;
+
+            //if (o.Status.ToString() == "Just Ordered")
+            //{
+            //    progressBar.Value = 0;
+            //}
+            //else if (o.Status.ToString() == "Shipped")
+            //{
+            //    progressBar.Value = 50;
+
+            //}
+            //else //Recieved
+            //{
+            //    progressBar.Value = 100;
+            //}
+            //return progressBar;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+        //var progressBar = new ProgressBar();
+        //if (status == BO.Enums.Status.JustOrdered)
+        //{
+        //    progressBar.Value = 0;
+        //}
+        //if (status == BO.Enums.Status.Shipped)
+        //{
+        //    progressBar.Value = 50;
+        //}
+        //if (status == BO.Enums.Status.Recieved)
+        //{
+        //    progressBar.Value = 100;
+        //}
+        //return progressBar;
+    }
+
 }

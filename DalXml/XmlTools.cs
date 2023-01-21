@@ -116,8 +116,8 @@ static internal class XmlTools
     public static int? ToIntlNullable(this XElement element, string name) =>
         int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
 
-    public static int? ToInt(this XElement element, string name) =>
-      int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
+    //public static int? ToInt(this XElement element, string name) =>
+    //  int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
 
 
     public static DO.Enums.Category ToCategory(string name)

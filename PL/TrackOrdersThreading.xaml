@@ -11,6 +11,7 @@
         DataContext="{Binding ordersForList,RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <converter:StatusToBackgroundColourConverter x:Key="convertStatusBackground"/>
+        <converter:StatusToProgressBarConverter x:Key="statusToProgressBar"/>
     </Window.Resources>
     <Grid Name="OrderGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
              VerticalAlignment="Stretch" Width="auto">
@@ -63,7 +64,8 @@
                 <DataGridTemplateColumn Header="Progress" MinWidth="10" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar x:Name="progresssssss" Value="{Binding progress,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
+                            <ProgressBar x:Name="progressBarStatus" Height="12" Value="{Binding Status, Converter={StaticResource statusToProgressBar}}">
+                            </ProgressBar>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
