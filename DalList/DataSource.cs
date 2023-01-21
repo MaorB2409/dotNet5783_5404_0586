@@ -69,7 +69,7 @@ internal class DataSource
                 OrderDate = DateTime.Now - new TimeSpan(randNum.Next(60), randNum.Next(60), randNum.Next(24))
             };
             //myOrder.OrderDate=DateTime.Now-new TimeSpan();//we need to check percentages
-            if(i>10 && i< 15)//5 אובייקטים נאתחל שנשלחו אבל לא הגיעו עדיין
+            if(i>5 && i< 8 || i>10 && i<17)//5 אובייקטים נאתחל שנשלחו אבל לא הגיעו עדיין
             {
                 myOrder.ShipDate = myOrder.OrderDate + new TimeSpan(randNum.Next(60), randNum.Next(60), randNum.Next(24), randNum.Next(3));
                 myOrder.DeliveryDate = null;

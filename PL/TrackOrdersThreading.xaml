@@ -48,11 +48,22 @@
                                     MinWidth="10" Width="*"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"
                                     MinWidth="10" Width="*"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"
+                <DataGridTextColumn x:Name="statusDataGrid" Header="Status" Binding="{Binding Status}"
                                     MinWidth="10" Width="*">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Background" Value="{Binding Converter={StaticResource convertStatusBackground}}"/>
+                            <Setter Property="Block.Background" Value="{Binding  Converter={StaticResource convertStatusBackground}}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Just Ordered">
+                                    <Setter Property="Background" Value="LightSeaGreen"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Shipped">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Recieved">
+                                    <Setter Property="Background" Value="Green"/>
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
@@ -63,7 +74,7 @@
                 <DataGridTemplateColumn Header="Progress" MinWidth="10" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar x:Name="progresssssss" Value="{Binding progress,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
+                            <ProgressBar x:Name="statusProgresBar" Value="{Binding progress,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

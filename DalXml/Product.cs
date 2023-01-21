@@ -23,6 +23,16 @@ internal class Product : IProduct
         InStock = p?.ToInt("InStock") ?? 0,
         Price = p?.ToDoubleNullable("Price") ?? 0
     };
+    //public static DO.Product? GetProduct(XElement p) =>
+    //p?.ToInt("ID") is null ? null : new DO.Product()
+    //{
+    //    ID = p.ToInt("ID") ?? 0,
+    //    Name = (string?)(p.Element("Name")?.Value),
+    //    Category = XmlTools.ToCategory(p.Element("Category").Value),
+    //    InStock = p?.ToInt("InStock") ?? 0,
+    //    Price = p?.ToDoubleNullable("Price") ?? 0,
+    //};
+
     public int Add(DO.Product item)
     {
         XElement productRoot = XmlTools.LoadListFromXMLElement(productPath); //get all the elements from the file
@@ -78,16 +88,7 @@ internal class Product : IProduct
     }
 
 
-    public static DO.Product? GetProduct(XElement p) =>
-     p?.ToInt("ID") is null ? null : new DO.Product()
-     {
-         ID = p.ToInt("ID") ?? 0,
-         Name = (string?)(p.Element("Name")?.Value),
-         Category = XmlTools.ToCategory(p.Element("Category").Value),
-         InStock = p?.ToInt("InStock") ?? 0,
-         Price = p?.ToDoubleNullable("Price") ?? 0,
-     };
-
+   
 
     public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? filter = null)
        =>

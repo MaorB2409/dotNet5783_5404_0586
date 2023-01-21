@@ -12,6 +12,8 @@ using System.Windows.Media;
 
 namespace PLConverter
 {
+
+
     public class StatusToBackgroundColourConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

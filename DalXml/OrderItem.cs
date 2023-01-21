@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Dal;
 using DalApi;
 using DO;
-using global::Dal.Dal;
+using global::Dal;
 using System.Xml.Linq;
 using static DataSource;
 
