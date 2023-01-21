@@ -56,7 +56,7 @@ namespace PL
         {
 
             Close();//close this window
-            new OrderView(orderTracking.ID, myCart, bl!).ShowDialog();
+            new OrderView(orderTracking.ID, myCart, bl!,false).ShowDialog();
             
         }
         void clickBackBtn(object sender, RoutedEventArgs e)
