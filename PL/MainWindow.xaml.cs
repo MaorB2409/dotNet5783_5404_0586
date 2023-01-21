@@ -30,7 +30,7 @@ namespace PL
 
         private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
         {
-            Close();//close this window
+           
             new ManagerEnterPassword(bl!).ShowDialog();
             
         }
@@ -42,7 +42,6 @@ namespace PL
 
         private void NewOrderWindow_Click(object sender, RoutedEventArgs e)
         {
-            Close();//close this window
             new Catalog(myCart,bl!).ShowDialog();
             
 
