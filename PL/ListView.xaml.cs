@@ -194,7 +194,7 @@ namespace PL
         #endregion
         private void track_Click(object sender, RoutedEventArgs e)
         {
-            new TrackOrdersThreading(bl).ShowDialog();
+           // new TrackOrdersThreading(bl).ShowDialog();
         }
     }
 }

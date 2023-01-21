@@ -34,19 +34,19 @@
 
 
             <Button x:Name="ToOtherWindow" Content="Manager View" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80" Margin="100,-50,100,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
+                Background="LavenderBlush" Width="200" Height="80" Margin="50,-50,100,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
             <Button x:Name="NewOrderWindow" Content="Create A New Order"  FontSize="20" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80"  Margin="100,20,100,0" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.ColumnSpan="2" Click="NewOrderWindow_Click">
+                Background="LavenderBlush" Width="200" Height="80"  Margin="50,20,100,0" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.ColumnSpan="2" Click="NewOrderWindow_Click">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
             <Button x:Name="TrackOrderWindow" Content="Track Order"  FontSize="25" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80" Margin="100,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="TrackOrderWindow_Click">
+                Background="LavenderBlush" Width="200" Height="80" Margin="50,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="TrackOrderWindow_Click">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
