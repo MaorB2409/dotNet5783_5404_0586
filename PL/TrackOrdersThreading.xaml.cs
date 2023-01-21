@@ -27,7 +27,7 @@ namespace PL
         PO.Cart empty = new();
         BackgroundWorker worker;
         bool isWork = false;
-        DateTime nowTime =DateTime.Now;//save current time 
+        DateTime nowTime = DateTime.Now;//save current time 
         public TrackOrdersThreading(BlApi.IBl? Mainbl)
         {
             bl = Mainbl;
@@ -49,7 +49,7 @@ namespace PL
             {
                 new ErrorWindow("Admin Order Tracking Window\n", ex.Message).ShowDialog();
             }
-            DataContext=ordersForList;
+            DataContext = ordersForList;
             #region worker
             worker = new() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };//create new worker
             worker.DoWork += Worker_DoWork;
@@ -232,7 +232,7 @@ namespace PL
 
         private void openCatalog_Click(object sender, RoutedEventArgs e)
         {
-            new Catalog(empty,bl!).Show();
+            new Catalog(empty, bl!).Show();
         }
     }
 }
