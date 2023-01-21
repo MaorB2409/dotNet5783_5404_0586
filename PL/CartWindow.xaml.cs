@@ -54,8 +54,8 @@ namespace PL
         }
         void Back_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             new Catalog(cart,bl!).ShowDialog();
-            Close();//close this window
         }
         private void StackPanel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -71,6 +71,7 @@ namespace PL
             {
                 new ErrorWindow("Credit card details window", "Wrong credit card info was inputted");
             }
+            Close();//close this window
             new RegisterWindow(cart,bl!).ShowDialog();//show succesful order placed window
         }
         private void ViewOrderItem_MouseDoubleClick(object sender, RoutedEventArgs e)

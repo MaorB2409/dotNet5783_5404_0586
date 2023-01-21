@@ -36,7 +36,7 @@
                 <Image Source="images\home.png"></Image>
             </Button>
             <Button x:Name="contshop" Width="120" Height="40" Click="BackToShop" Background="Transparent" BorderBrush="Black" Content="Continue Shopping" FontWeight="DemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,85,22"/>
-
+            <Button x:Name="track" Width="120" Height="40" Click="track_Click" Background="Transparent" BorderBrush="Black" Content="Back To Tracking" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,0,85,22"/>
         </Grid>
 
     </Border>

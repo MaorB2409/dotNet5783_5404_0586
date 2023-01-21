@@ -37,6 +37,10 @@ namespace PL
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            //save customers details entered
+            myCart.CustomerAddress= addresstbx.Text;
+            myCart.CustomerName = nametbx.Text;
+            myCart.CustomerEmail = emailtbx.Text;
             int id = 0;
             try
             {
@@ -54,6 +58,7 @@ namespace PL
             {
                 new ErrorWindow("Register Window", ex.Message).ShowDialog();
             }
+            this.Close();
             new EndingWindow(id,myCart,bl).ShowDialog();//show ending window 
         }
         private void tname_previewtextinput(object sender, TextCompositionEventArgs e)

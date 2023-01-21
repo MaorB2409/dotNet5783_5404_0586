@@ -86,7 +86,7 @@ internal class DataSource
     }
     private void CreateOrderItem()//func to create a orderItems
     {
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 20; i++)
         {
             Product? product = productList[randNum.Next(productList.Count)];
             orderItemList.Add(
@@ -100,6 +100,22 @@ internal class DataSource
                     Amount = randNum.Next(5)
                 });
         }
+        int j = 1001;
+        for (int i = 21; i < 41; i++)
+        {
+            Product? product = productList[randNum.Next(productList.Count)];
+            orderItemList.Add(
+                new OrderItem
+                {
+                    ID = Config.NextOrderItemNumber,
+                    ProductID = product?.ID ?? throw new Exception(),
+                    OrderID = j++,
+                    Price = (double)product?.Price!,
+                    IsDeleted = false,
+                    Amount = randNum.Next(5)
+                });
+        }
+
     }
 
 

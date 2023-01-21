@@ -26,10 +26,10 @@ internal class Order : BlApi.IOrder
                select new BO.OrderForList
                {
                    ID = ord?.ID ?? throw new BO.IdNotExistException("ID does not exist\n"),
-                   Name = ord?.CostumerName ?? throw new BO.IncorrectInput("name does not exist\n"),
+                   Name = ord?.CostumerName ?? null,//throw new BO.IncorrectInput("name does not exist\n"),
                    Status = GetStatus(ord ?? throw new BO.IncorrectInput("status does not exist\n")),
-                   Amount = orderItems!.Select(orderItems => orderItems?.ID == ord?.ID).Count(),
-                   TotalPrice = (double)orderItems!.Sum(orderItems => orderItems?.Price ?? throw new BO.IncorrectInput("price does not exist\n"))
+                   Amount = orderItems!.Count(x => x?.OrderID == ord?.ID),
+                   TotalPrice = (double)orderItems!.Where(x=> x?.OrderID == ord?.ID).Sum(x=> x?.Price ?? throw new BO.IncorrectInput("price does not exist\n"))
                };
 
     }//calls get of DO order list, gets items for each order, and build orderorlist

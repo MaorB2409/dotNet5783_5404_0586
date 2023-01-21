@@ -123,11 +123,8 @@ namespace PL
         }
         private void CartBtn_Click(object sender, RoutedEventArgs e)
         {
-        
-            new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
             Close();//close this window
-          
-
+            new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {

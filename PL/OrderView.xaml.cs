@@ -23,11 +23,13 @@ namespace PL
         BlApi.IBl? bl = BlApi.Factory.Get();
         PO.Order o = new();
         PO.Cart myCart = new();
-        public OrderView(int id, PO.Cart cart, BlApi.IBl? b)
+        bool threadingWindowForBack;
+        public OrderView(int id, PO.Cart cart, BlApi.IBl? b,bool isThreading)
         {
             InitializeComponent();
             bl = b;//new bl
             myCart = cart;
+            threadingWindowForBack=isThreading;
             BO.Order ord = new();
             try
             {
@@ -49,6 +51,10 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
+            if (threadingWindowForBack)
+            {
+                new TrackOrdersThreading(bl).ShowDialog();
+            }
             new OrderTracking(myCart,bl!).ShowDialog();
             Close();//close this window
         }

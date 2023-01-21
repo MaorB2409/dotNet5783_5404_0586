@@ -24,7 +24,7 @@ namespace PLConverter
                 return new SolidColorBrush(Colors.LightGreen);
 
             }
-            else if(o.Status.ToString() == "Just Ordered")
+            else if(o.Status.ToString() == "JustOrdered")
             {
                 return new SolidColorBrush(Colors.LightSeaGreen);
             }
@@ -215,13 +215,13 @@ namespace PLConverter
                 throw new Exception("Wrong Creation!");
             }
             var status = (BO.Enums.Status)value;
-            if(status.ToString()== "Just Ordered")
+            if(status.ToString()== "JustOrdered")
             {
-                return random.Next(34);
+                return random.Next(30);
             }
             else if(status.ToString()== "Shipped")
             {
-                return (int)random.Next(34, 70);
+                return (int)random.Next(30, 80);
             }
             return 100;
 

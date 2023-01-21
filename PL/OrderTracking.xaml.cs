@@ -54,7 +54,7 @@ namespace PL
 
         private void OrderDetails_Click(object sender, RoutedEventArgs e)
         {
-            new OrderView(orderTracking.ID, myCart, bl!).ShowDialog();
+            new OrderView(orderTracking.ID, myCart, bl!,false).ShowDialog();
             Close();//close this window
         }
         void clickBackBtn(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,6 +40,11 @@ namespace PL////>ImageSource="/e8faa395ecab57e4f66a0fad35c0d073.jpg"/>
             new Catalog(myCart,bl!).ShowDialog();
             Close();//close this window
         }
-        
+
+        private void track_Click(object sender, RoutedEventArgs e)
+        {
+            new TrackOrdersThreading(bl).ShowDialog();  
+            //this.Close();
+        }
     }
 }
