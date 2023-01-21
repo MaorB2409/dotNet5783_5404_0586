@@ -44,8 +44,8 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new Catalog(myCart,bl!).ShowDialog();
             Close();//close this window
+            new Catalog(myCart,bl!).ShowDialog();
         }
     }
 }

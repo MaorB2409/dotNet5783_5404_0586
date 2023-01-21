@@ -43,8 +43,9 @@ namespace PL
             {
                 new ErrorWindow("Enter Order ID Window", "Wrong id number entered").ShowDialog();
             }
-            new OrderTracking(id,myCart,bl!).ShowDialog();//open order tracking window with entered id
             this.Close();//close current window
+            new OrderTracking(id,myCart,bl!).ShowDialog();//open order tracking window with entered id
+            
         }
         private void tid_previewtextinput(object sender, TextCompositionEventArgs e)
         {
@@ -53,8 +54,9 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new MainWindow().ShowDialog();
             Close();//close this window
+            new MainWindow().ShowDialog();
+            
         }
         private void EnterPressed_KeyDown(object sender, KeyEventArgs e)
         {

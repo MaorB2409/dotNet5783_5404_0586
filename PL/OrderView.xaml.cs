@@ -56,7 +56,7 @@ namespace PL
                 new TrackOrdersThreading(bl).ShowDialog();
             }
             new OrderTracking(myCart,bl!).ShowDialog();
-            Close();//close this window
+            
         }
     }
 }

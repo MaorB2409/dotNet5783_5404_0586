@@ -224,21 +224,6 @@ namespace PLConverter
                 return (int)random.Next(30, 80);
             }
             return 100;
-
-            //if (o.Status.ToString() == "Just Ordered")
-            //{
-            //    progressBar.Value = 0;
-            //}
-            //else if (o.Status.ToString() == "Shipped")
-            //{
-            //    progressBar.Value = 50;
-
-            //}
-            //else //Recieved
-            //{
-            //    progressBar.Value = 100;
-            //}
-            //return progressBar;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

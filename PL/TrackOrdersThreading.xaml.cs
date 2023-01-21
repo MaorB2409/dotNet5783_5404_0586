@@ -183,8 +183,9 @@ namespace PL
         }
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new ListView(bl).ShowDialog();
             Close();//close this window
+            new ListView(bl).ShowDialog();
+            
         }
 
         private void openCatalog_Click(object sender, RoutedEventArgs e)

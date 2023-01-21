@@ -49,8 +49,9 @@ namespace PL
 
         void clickBackBtn(object sender, RoutedEventArgs e)
         {
-            new MainWindow().ShowDialog();
             Close();//close this window
+            new MainWindow().ShowDialog();
+            
         }
 
 
