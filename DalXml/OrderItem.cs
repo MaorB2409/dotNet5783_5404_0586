@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace Dal;
 using DalApi;
 using DO;
+using global::Dal.Dal;
 using System.Xml.Linq;
+using static DataSource;
+
 internal class OrderItem : IOrderItem
 {
 
