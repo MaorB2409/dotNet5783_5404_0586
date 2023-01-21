@@ -64,9 +64,10 @@ namespace PL
        
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            int temp = int.Parse(tinstock.Text);//save the instock text to a number
+            
             try
             {
+                int temp = int.Parse(tinstock.Text);//save the instock text to a number
                 BO.Product BoProd = new()
                 {
                     ID = p.ID,
@@ -89,7 +90,11 @@ namespace PL
                 new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
                
             }
-            
+            catch(Exception ex) {
+
+                new ErrorWindow("Add Product Window\n", "Wrong input format").ShowDialog();
+
+            }
             Close();//close this window
 
 

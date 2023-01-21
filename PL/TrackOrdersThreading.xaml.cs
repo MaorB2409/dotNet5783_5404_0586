@@ -131,6 +131,7 @@ namespace PL
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int progress = e.ProgressPercentage;//save the percentage
+            //progresssssss.val
 
             DataContext = ordersForList;//reset the screen list
         }

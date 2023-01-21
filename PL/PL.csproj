@@ -26,23 +26,12 @@
 		<None Remove="errorIcon.png" />
 		<None Remove="HomeSpace_LOGO.png" />
 		<None Remove="istockphoto-1284843286-612x612.jpg" />
-		<None Remove="marbleBg.jpeg" />
 		<None Remove="minimalist-living-room-design-with-armchair-plant_23-2148431269.webp" />
 		<None Remove="modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
 		<None Remove="organized-workspace.jpg" />
 		<None Remove="resize-161043321239661085posterwithverticalframesemptywhitewalllivingroominteriorwithbluevelvetarmchair3drendering.jpg" />
+	</ItemGroup>
 	
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="GMap.NET.Core" Version="2.0.3" />
-		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
-	</ItemGroup>
-
 	<ItemGroup>
 		<Resource Include="HomeSpace_LOGO.png" />
 		<Resource Include="images\logo2.png" />
@@ -61,7 +50,6 @@
 		<Resource Include="images\low.png" />
 		<Resource Include="images\add.png" />
 		<Resource Include="images\return.png" />
-		<Resource Include="images\cart-outline.png" />
 		<Resource Include="images\plus-circle.png" />
 		<Resource Include="images\remove.png" />
 		<Resource Include="images\visa.png" />
@@ -78,11 +66,11 @@
 		<Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
 		<Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
 		<Resource Include="marbleBg.jpeg" />
-		<Resource Include="icon.ico" />
-		<Resource Include="error_logo.ico" />
 		<Resource Include="favicon.ico" />
 		<Resource Include="images\istockphoto-1158575634-612x612.jpg" />
-		
+		<Resource Include="images\errorIcon.png" />
+
+
 	</ItemGroup>
 
 	<ItemGroup>

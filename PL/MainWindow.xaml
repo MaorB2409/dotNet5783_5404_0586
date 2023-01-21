@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        Icon="favicon.ico">
+        Title="MainWindow" Height="450" Width="800">
+    <!--Icon= "favicon.ico"-->
     <Window.Resources>
         <Style x:Name="TextStyle" TargetType="TextBlock" >
             <Setter Property="HorizontalAlignment" Value="Center"/>

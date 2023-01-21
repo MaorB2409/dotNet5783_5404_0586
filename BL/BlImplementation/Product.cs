@@ -29,7 +29,7 @@ internal class Product:BlApi.IProduct
                };
 
     }//returns a list of products for the manager
-
+ 
 
     public BO.Product ManagerProduct(int id) {
         BO.Product p = new();//create a BO product

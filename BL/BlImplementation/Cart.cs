@@ -165,6 +165,7 @@ internal class Cart:ICart
         try
         {
             products = from item in myCart.orderItems
+                       where item != null
                        select DOList?.Product.GetById(item.ProductID);//list of products in cart
         }
         catch (DalApi.IdNotExistException)
@@ -174,38 +175,17 @@ internal class Cart:ICart
 
         //products.Zip(myCart.orderItems, (first, second) => first.InStock -= second!.Amount).ToList().ForEach(x => DOList?.Product.GetByFilter(x));
         ////update the amount of products
-        DO.OrderItem oi = new();//create order item
         foreach (BO.OrderItem? item in myCart.orderItems!)//go over orderItems in the cart
         {
             try
             {
-                if (item!.ProductID == DOList?.Product.GetById(item.ProductID).ID && item.Amount > 0 && item.Amount <= DOList?.Product.GetById(item.ProductID).InStock)//if orderItem exists and is instock
+                DO.Product? prod = DOList?.Product.GetById(item.ProductID);
+                if (item!.ProductID == prod?.ID && item.Amount > 0 && item.Amount <= prod?.InStock)//if orderItem exists and is instock
                 {
-                    DO.Order order = new DO.Order();//new DO order
-                    order.OrderDate = DateTime.Now;//ordered now
-                    int num;
-                    try
-                    {
-                        num = (int)(DOList?.Order.Add(order)!);//add to DO orderlist and get order id
-                    }
-                    catch (DalApi.IdNotExistException)
-                    {
-                        throw new BO.IdNotExistException("The product requested does not exist\n");
-                    }
-                    oi.ProductID = item.ProductID;//save product id
-                    oi.OrderID = num;//save order id
-                    try
-                    {
-                        DOList.OrderItem.Add(oi);//add to DO order item list 
-                    }
-                    catch (DalApi.IdNotExistException)
-                    {
-                        throw new BO.IdNotExistException("The product requested does not exist");
-                    }
                     DO.Product p;
                     try
                     {
-                        p = (DO.Product)(DOList?.Product.GetById(oi.ProductID)!);//get matching product
+                        p = (DO.Product)(DOList?.Product.GetById(item.ProductID)!);//get matching product
                     }
                     catch (DalApi.IdNotExistException)
                     {

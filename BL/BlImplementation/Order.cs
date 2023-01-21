@@ -19,18 +19,19 @@ internal class Order : BlApi.IOrder
     readonly private static IDal? DOList = DalApi.Factory.Get()??throw new BO.Exceptions("Factory does not exist\n");//to access DO info  
     public IEnumerable<OrderForList?> GetAllOrderForList()
     {
-        IEnumerable<DO.Order?>? orders = DOList?.Order.GetAll();//get all orders from DO 
+        //IEnumerable<DO.Order?>? orders = DOList?.Order.GetAll();//get all orders from DO 
         IEnumerable<DO.OrderItem?>? orderItems = DOList?.OrderItem.GetAll();//get all orderItems from DO 
-        return from DO.Order? ord in orders!
+        return from DO.Order? ord in DOList?.Order.GetAll()!
+               where ord != null && ord?.IsDeleted == false
                select new BO.OrderForList
                {
                    ID = ord?.ID ?? throw new BO.IdNotExistException("ID does not exist\n"),
-                   Name = ord?.CostumerName??throw new BO.IncorrectInput("name does not exist\n"),
+                   Name = ord?.CostumerName ?? throw new BO.IncorrectInput("name does not exist\n"),
                    Status = GetStatus(ord ?? throw new BO.IncorrectInput("status does not exist\n")),
                    Amount = orderItems!.Select(orderItems => orderItems?.ID == ord?.ID).Count(),
                    TotalPrice = (double)orderItems!.Sum(orderItems => orderItems?.Price ?? throw new BO.IncorrectInput("price does not exist\n"))
-              };
-    
+               };
+
     }//calls get of DO order list, gets items for each order, and build orderorlist
 
     private BO.Enums.Status GetStatus(DO.Order order)
@@ -82,8 +83,8 @@ internal class Order : BlApi.IOrder
                 CostumerEmail = ord.CostumerEmail,
                 CostumerName = ord.CostumerName,
                 OrderDate = ord.OrderDate ?? throw new BO.Exceptions("Order Date is null"),
-                ShipDate = ord.ShipDate ?? throw new BO.Exceptions("Ship Date is null"),
-                DeliveryDate = ord.DeliveryDate,
+                ShipDate = ord.ShipDate ?? null,
+                DeliveryDate = ord.DeliveryDate ?? null,
                 Status = GetStatus(ord),
                 TotalPrice = priceTemp,
                 IsDeleted = ord.IsDeleted,

@@ -63,7 +63,7 @@
                 <DataGridTemplateColumn Header="Progress" MinWidth="10" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar x:Name="progressBar" Value="{Binding progress,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
+                            <ProgressBar x:Name="progresssssss" Value="{Binding progress,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -37,9 +37,9 @@ static class Tools
         ord.CostumerAddress = p.CostumerAddress;
         ord.CostumerName= p.CostumerName;
         ord.CostumerEmail = p.CostumerEmail;
-        ord.DeliveryDate = p.DeliveryDate;
+        ord.DeliveryDate = p.DeliveryDate ?? null;
         ord.OrderDate = p.OrderDate;
-        ord.ShipDate = p.ShipDate;
+        ord.ShipDate = p.ShipDate ?? null;
         ord.ID = p.ID;
         ord.Status=p.Status;
         ord.orderItems=p.OrderItems;
@@ -52,9 +52,9 @@ static class Tools
         ord.CostumerAddress = p.CostumerAddress;
         ord.CostumerName = p.CostumerName;
         ord.CostumerEmail = p.CostumerEmail;
-        ord.DeliveryDate = p.DeliveryDate;
+        ord.DeliveryDate = p.DeliveryDate ?? null;
         ord.OrderDate = p.OrderDate;
-        ord.ShipDate = p.ShipDate;
+        ord.ShipDate = p.ShipDate ?? null;
         ord.ID = p.ID;
         ord.Status = p.Status;
         ord.OrderItems = p.orderItems;

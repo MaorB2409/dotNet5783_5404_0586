@@ -21,7 +21,7 @@ internal class Product : IProduct
         //check if the customer exists in th file
         var customerFromFile = (from prod in productRoot.Elements()
                                 where (prod.Element("ID").Value == item.ID.ToString())
-                                select prod).FirstOrDefault();
+                                select prod).FirstOrDefault()??null;
 
         //throw an exception
         if (customerFromFile != null)
@@ -41,7 +41,7 @@ internal class Product : IProduct
         //add the customer to the root element
         productRoot.Add(
             new XElement("Product",
-            //new XElement("ID", temp),
+            new XElement("ID", temp),
             new XElement("Name", item.Name),
             new XElement("Price", item.Price),
             new XElement("Category", item.Category),
@@ -49,7 +49,7 @@ internal class Product : IProduct
 
         //save the root in the file
         XmlTools.SaveListToXMLElement(productRoot, productPath);
-        return item.ID;
+        return temp;
     }
 
     public void Delete(int id)

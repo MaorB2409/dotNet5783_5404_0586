@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ErrorWindow" Height="450" Width="800"
-         Icon="error_logo.ico">
+         Icon="favicon.ico">
     <Border Padding="10" Background="#eee">
 
         <StackPanel>
