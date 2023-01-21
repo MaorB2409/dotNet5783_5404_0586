@@ -25,16 +25,16 @@
         <StackPanel>
 
             <StackPanel.Background>
-                <ImageBrush ImageSource="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
- 
+                <ImageBrush ImageSource="images\istockphoto-1158575634-612x612.jpg"/>
+
             </StackPanel.Background>
 
 
-            <Image Source="images\logo2.png" Stretch="UniformToFill" Height ="320" Width="400" Margin = "-10,-70,-330,-130"/>
+            <Image Source="images\logo2.png" Stretch="UniformToFill" Height ="233" Width="367" Margin="100,-50,-50,-100"/>
 
 
             <Button x:Name="ToOtherWindow" Content="Manager View" FontSize="25" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80" Margin="50,-50,100,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
+                Background="LavenderBlush" Width="200" Height="80" Margin="50,20,100,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ToOtherWindow_Click" Grid.ColumnSpan="2">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -46,7 +46,7 @@
                 </Button.Effect>
             </Button>
             <Button x:Name="TrackOrderWindow" Content="Track Order"  FontSize="25" FontWeight="Bold" FontStyle="Italic" 
-                Background="LavenderBlush" Width="200" Height="80" Margin="50,20,200,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="TrackOrderWindow_Click">
+                Background="LavenderBlush" Width="200" Height="80" Margin="50,20,100,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="TrackOrderWindow_Click">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProducts>
+
+
+
+  <Product>
+    <ID>100001</ID>
+    <Name>Table</Name>
+    <Price>1566</Price>
+    <InStock>28</InStock>
+    <Category>Bedroom</Category>
+  </Product>
+
+
+  <Product>
+    <ID>100002</ID>
+    <Name>Closet</Name>
+    <Price>2491</Price>
+    <InStock>20</InStock>
+    <Category>LivingRoom</Category>
+  </Product>
+
+  <Product>
+    <ID>100003</ID>
+    <Name>Chair</Name>
+    <Price>2188</Price>
+    <InStock>23</InStock>
+    <Category>Kitchen</Category>
+  </Product>
+
+
+
+  <Product>
+    <ID>100004</ID>
+    <Name>Couch</Name>
+    <Price>2461</Price>
+    <InStock>22</InStock>
+    <Category>LivingRoom</Category>
+  </Product>
+
+
+  <Product>
+    <ID>100005</ID>
+    <Name>Bed</Name>
+    <Price>2442</Price>
+    <InStock>37</InStock>
+    <Category>DiningRoom</Category>
+  </Product>
+
+
+  <Product>
+    <ID>100006</ID>
+    <Name>Chair</Name>
+    <Price>120</Price>
+    <InStock>47</InStock>
+    <Category>Outdoors</Category>
+  </Product>
+
+
+  <Product>
+    <ID>100007</ID>
+    <Name>Couch</Name>
+    <Price>2453</Price>
+    <InStock>20</InStock>
+    <Category>LivingRoom</Category>
+  </Product>
+
+
+  <Product>
+    <ID>100008</ID>
+    <Name>BookCase</Name>
+    <Price>973</Price>
+    <InStock>39</InStock>
+    <Category>Office</Category>
+  </Product>
+
+
+  <Product>
+    <ID>100009</ID>
+    <Name>Chair</Name>
+    <Price>1721</Price>
+    <InStock>30</InStock>
+    <Category>Kitchen</Category>
+  </Product>
+	
+	
+	
+  <Product>
+    <ID>100010</ID>
+    <Name>Table</Name>
+    <Price>427</Price>
+    <InStock>21</InStock>
+    <Category>Kitchen</Category>
+  </Product>
+
+
+</ArrayOfProducts>

@@ -67,14 +67,37 @@ internal class Order : IOrder
         XmlTools.SaveListToXMLSerializer(orderList, orderPath);
     }
 
-    public IEnumerable<DO.Order?> GetAll(Func<DO.Order?, bool>? filter = null)
-    {
-        List<DO.Order?> orderList = XmlTools.LoadListFromXMLSerializer<DO.Order?>(orderPath).ToList();
 
-        return (from order in orderList
-                where filter(order)
-                select order).ToList();
-    }
+
+
+    /*
+     
+        public int ID { get; set; } //item ID
+    public string CostumerName { get; set; }
+    public string CostumerEmail { get; set; }
+    public string CostumerAddress { get; set; }
+    public DateTime? OrderDate { get; set; }
+    public DateTime? ShipDate { get; set; }
+    public DateTime? DeliveryDate { get; set; }*/
+
+    public static DO.Order? GetOrder(XElement o) =>
+    o?.ToInt("ID") is null ? null : new DO.Order()
+    {
+        ID = o.ToInt("ID") ?? 0,
+        CostumerName = (string?)(o?.Element("CostumerName")?.Value)??null,
+        CostumerEmail = (string?)(o.Element("CostumerEmail")?.Value)??null,
+        CostumerAddress = (string?)(o.Element("CostumerAddress")?.Value)??null,
+        OrderDate= o.ToDateTimeNullable(o?.Element("OrderDate").Value)??null,
+        ShipDate= o.ToDateTimeNullable(o?.Element("OrderDate").Value)??null,
+        DeliveryDate = o.ToDateTimeNullable(o?.Element("OrderDate").Value)??null
+
+    };
+
+    public IEnumerable<DO.Order?> GetAll(Func<DO.Order?, bool>? filter = null)
+       =>
+       filter is null
+       ? XmlTools.LoadListFromXMLElement(orderPath).Elements().Select(p => GetOrder(p))
+       : XmlTools.LoadListFromXMLElement(orderPath).Elements().Select(p => GetOrder(p)).Where(filter);
 
     public DO.Order GetByFilter(Func<DO.Order?, bool>? filter)
     {

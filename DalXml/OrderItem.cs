@@ -67,13 +67,22 @@ internal class OrderItem : IOrderItem
         listOrders.Add(order);
         XmlTools.SaveListToXMLSerializer(listOrders, orderItemPath);
     }
+    public static DO.OrderItem? GetOrderItem(XElement p) =>
+ p?.ToInt("ID") is null ? null : new DO.OrderItem()
+ {
+     ID = p?.ToInt("ID") ?? 0,
+     ProductID = p?.ToInt("ProductID") ?? 0,
+     OrderID = p?.ToInt("OrderID") ?? 0,
+     Amount = p.ToInt("Amount") ?? 0,
+     Price = p?.ToDoubleNullable("Price") ?? 0
+ };
 
     public IEnumerable<DO.OrderItem?> GetAll(Func<DO.OrderItem?, bool>? filter = null)
-    {
-        var listOrders = XmlTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath)!;
-        return filter == null ? listOrders.OrderBy(lec => ((DO.OrderItem)lec!).ID)
-                              : listOrders.Where(filter).OrderBy(lec => ((DO.OrderItem)lec!).ID);
-    }
+      =>
+       filter is null
+       ? XmlTools.LoadListFromXMLElement(orderItemPath).Elements().Select(p => GetOrderItem(p))
+       : XmlTools.LoadListFromXMLElement(orderItemPath).Elements().Select(p => GetOrderItem(p)).Where(filter);
+
 
     public DO.OrderItem GetByFilter(Func<DO.OrderItem?, bool>? filter)
     {

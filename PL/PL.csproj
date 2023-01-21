@@ -17,7 +17,49 @@
 		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="..\PL\images"/>
+		<PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="HomeSpace_LOGO.png" />
+		<Resource Include="images\logo2.png" />
+		<Resource Include="images\cartBtn.jpg" />
+		<Resource Include="images\cart-outline.png" />
+		<Resource Include="images\download.jpg" />
+		<Resource Include="images\backBtn.jpg" />
+		<Resource Include="images\homeBtn.jpg" />
+		<Resource Include="images\sidebar.jpg" />
+		<Resource Include="images\marblebg.jpeg" />
+		<Resource Include="images\home.png" />
+		<Resource Include="images\box.png" />
+		<Resource Include="images\close.png" />
+		<Resource Include="images\left.png" />
+		<Resource Include="images\location.png" />
+		<Resource Include="images\low.png" />
+		<Resource Include="images\add.png" />
+		<Resource Include="images\return.png" />
+		<Resource Include="images\cart-outline.png" />
+		<Resource Include="images\plus-circle.png" />
+		<Resource Include="images\remove.png" />
+		<Resource Include="images\visa.png" />
+		<Resource Include="images\credit.png" />
+		<Resource Include="images\57563.png" />
+		<Resource Include="images\e8faa395ecab57e4f66a0fad35c0d073.jpg" />
+		<Resource Include="images\mastercard.png" />
+		<Resource Include="images\emoticon-angry-outline.png" />
+		<Resource Include="images\emoticon-sad-outline.png" />
+		<Resource Include="images\emoticon-excited-outline.png" />
+		<Resource Include="images\emoticon-neutral-outline.png" />
+		<Resource Include="images\emoticon-happy-outline.png" />
+		<Resource Include="images\emoticon-kiss-outline.png" />
+		<Resource Include="images\minimalist-living-room-design-with-armchair-plant_23-2148431269.webp"/>
+		<Resource Include="images\modern-minimalist-interior-with-gray-armchair-empty-white-wall-background_41470-4700.webp" />
+		<Resource Include="marbleBg.jpeg" />
+		<Resource Include="icon.ico" />
+		<Resource Include="error_logo.ico" />
+		<Resource Include="favicon.ico" />
+		<Resource Include="images\istockphoto-1158575634-612x612.jpg" />
+		
 	</ItemGroup>
 
 	<ItemGroup>

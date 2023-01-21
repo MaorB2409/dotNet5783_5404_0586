@@ -24,8 +24,10 @@ namespace Dal
         static string productPath = "Product.xml";
 
         #region singlton
-        public static readonly IDal instance = new DalXml();
-        public static IDal Instance { get => instance; }
+        public static IDal Instance { get; } = new DalXml();
+
+        //public static readonly IDal instance = new DalXml();
+        //public static IDal Instance { get => instance; }
         static DalXml() {
             List<RunningNumber> configs = new()
             {
